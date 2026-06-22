@@ -1,0 +1,437 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GMAT Verbal Reasoning — Concept Review</title>
+<style>
+:root{--navy:#10243f;--blue:#1f5fa6;--blue2:#2f73c2;--light:#eef3f9;--light2:#f6f8fb;--line:#d3dded;
+--green:#0f6e4f;--greenbg:#e7f4ee;--amber:#b45309;--amberbg:#fff7ed;--grey:#5b6b80;--purple:#5b4bc4;
+--red:#b42318;--redbg:#fdeceb;--verbal:#7c3aed;--verbalbg:#f0ecfb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:#16202e;background:#eef1f5;line-height:1.55;font-size:15px}
+button{font-family:inherit;cursor:pointer;border:none;border-radius:8px;font-weight:600;transition:.12s}
+button:active{transform:translateY(1px)}
+.btn-primary{background:var(--verbal);color:#fff;padding:9px 16px;font-size:14px}.btn-primary:hover{opacity:.88}
+.btn-ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line);padding:8px 14px;font-size:13px}.btn-ghost:hover{border-color:var(--verbal)}
+.btn-green{background:var(--verbal);color:#fff;padding:9px 16px;font-size:14px}
+header.bar{background:var(--navy);color:#fff;padding:11px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20}
+header.bar .ttl{font-weight:700;font-size:16px}
+header.bar .prog{font-size:13px;color:#b9c8dc}
+.app{display:grid;grid-template-columns:278px 1fr;min-height:calc(100vh - 49px)}
+@media(max-width:820px){.app{grid-template-columns:1fr}.side{display:none}.side.open{display:block;position:fixed;inset:49px 0 0 0;z-index:15;overflow:auto}}
+.side{background:#fff;border-right:1px solid var(--line);overflow-y:auto;padding:12px 10px}
+.side .sec-hdr{font-weight:800;color:var(--verbal);font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:10px 8px 4px;display:flex;justify-content:space-between}
+.side .sec-hdr small{color:var(--grey);font-weight:600}
+.side a{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;color:#22324a;text-decoration:none;font-size:13px;cursor:pointer}
+.side a:hover{background:var(--light2)}.side a.on{background:var(--verbalbg);color:var(--verbal);font-weight:700}
+.side a.done .tick{background:var(--green)!important;border-color:var(--green)!important}
+.tick{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--line);flex:none;font-size:10px;display:flex;align-items:center;justify-content:center;color:#fff}
+.main{padding:26px 30px;max-width:860px}
+@media(max-width:820px){.main{padding:18px}}
+.crumb{color:var(--grey);font-size:12px;text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+h1.tt{font-size:25px;color:var(--navy);margin:4px 0 14px;font-weight:800}
+.concept{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;font-size:15px;line-height:1.65}
+.concept b{color:var(--navy)}.concept code{background:var(--light);padding:1px 5px;border-radius:4px;font-size:14px}
+.fbox{background:var(--light2);border:1px solid var(--line);border-left:4px solid var(--verbal);border-radius:10px;padding:14px 18px;margin:16px 0}
+.fbox h4{margin:0 0 8px;color:var(--verbal);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.fbox ul{margin:0;padding-left:18px}.fbox li{margin:5px 0;font-size:14px}
+.tips{background:var(--greenbg);border:1px solid #a8d5bd;border-left:4px solid var(--green);border-radius:10px;padding:14px 18px;margin:12px 0}
+.tips h4{margin:0 0 8px;color:var(--green);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.tips ul{margin:0;padding-left:18px}.tips li{margin:5px 0;font-size:14px}
+.traps{background:var(--redbg);border:1px solid #f5b7b1;border-left:4px solid var(--red);border-radius:10px;padding:14px 18px;margin:12px 0}
+.traps h4{margin:0 0 8px;color:var(--red);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.traps ul{margin:0;padding-left:18px}.traps li{margin:5px 0;font-size:14px}
+.sech{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--verbal);font-weight:800;margin:22px 0 8px;display:flex;align-items:center;gap:8px}
+.ex{border:1px solid var(--line);border-radius:11px;margin:10px 0;overflow:hidden}
+.ex .q{padding:13px 16px;background:#fff;font-weight:500;line-height:1.6}
+.ex .q .lbl{display:inline-block;background:var(--verbalbg);color:var(--verbal);font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;margin-right:8px;text-transform:uppercase}
+.ex .reveal{padding:0 14px 12px;background:#fff}
+.ex .sol{background:var(--greenbg);border-top:1px solid var(--line);padding:13px 16px;font-size:14px;line-height:1.65}
+.ex .sol b{color:var(--green)}
+.tool{background:#f7f4fe;border:1px solid #d5caf6;border-radius:12px;padding:16px 18px;margin:14px 0}
+.tool h4{margin:0 0 10px;color:var(--verbal);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.tool label{font-size:13px;font-weight:600;color:#4a2a80;margin-right:6px}
+.tool input,.tool select,.tool textarea{padding:7px 9px;border:1.5px solid #d5caf6;border-radius:8px;font-size:14px;font-family:inherit;margin:3px 4px 3px 0}
+.tool .out{margin-top:10px;background:#fff;border:1px solid #d5caf6;border-radius:8px;padding:12px 14px;font-size:14px;min-height:22px;line-height:1.6}
+.tool .out b{color:var(--verbal)}
+.arg-diagram{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin:14px 0}
+.arg-box{border-radius:10px;padding:12px 16px;margin:8px 0;font-size:14px;line-height:1.5}
+.arg-box.premise{background:#dae5f9;border:1.5px solid #88a8e0}
+.arg-box.conclusion{background:var(--verbalbg);border:1.5px solid #c4a8f0;font-weight:700}
+.arg-box.assumption{background:var(--amberbg);border:1.5px dashed var(--amber)}
+.arg-box .tag{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.arg-box.premise .tag{color:#1a4e8a}
+.arg-box.conclusion .tag{color:var(--verbal)}
+.arg-box.assumption .tag{color:var(--amber)}
+.qtype-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+@media(max-width:580px){.qtype-grid{grid-template-columns:1fr}}
+.qtype-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.qtype-card h4{margin:0 0 6px;color:var(--verbal);font-size:14px;font-weight:800}
+.qtype-card p{margin:0;color:var(--grey);font-size:13px;line-height:1.4}
+.qtype-card .signal{display:inline-block;background:var(--verbalbg);color:var(--verbal);font-size:11px;padding:2px 8px;border-radius:12px;margin-top:8px;font-weight:700}
+.cue-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.cue-box{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 14px}
+.cue-box h5{margin:0 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+.cue-box.premise h5{color:#1a4e8a}
+.cue-box.conc h5{color:var(--verbal)}
+.cue-box span{display:inline-block;background:var(--light);border-radius:6px;padding:2px 8px;font-size:13px;margin:2px;font-style:italic}
+.cards{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.flip{width:200px;height:115px;perspective:900px;cursor:pointer}
+.flip .inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.flip.flipped .inner{transform:rotateY(180deg)}
+.flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:11px;padding:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;border:1px solid var(--line);line-height:1.4}
+.flip .front{background:var(--navy);color:#fff;font-weight:700}
+.flip .back{background:#fff;color:#22324a;transform:rotateY(180deg)}
+.navbtns{display:flex;justify-content:space-between;margin:24px 0 8px;gap:10px}
+.welcome .hero{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px}
+.welcome .h{font-size:26px;font-weight:800;color:var(--navy)}
+.secgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media(max-width:540px){.secgrid{grid-template-columns:1fr}}
+.modcard{background:var(--light2);border:1px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;transition:.1s}
+.modcard:hover{border-color:var(--verbal)}
+.modcard h3{margin:0 0 4px;color:var(--navy);font-size:15px;font-weight:700}
+.modcard p{margin:0;color:var(--grey);font-size:13px}
+.menubtn{display:none}
+@media(max-width:820px){.menubtn{display:inline-block;background:#1a3357;color:#fff;padding:6px 12px;font-size:13px;border-radius:7px}}
+.foot{color:var(--grey);font-size:12px;padding:20px 0 40px}
+</style></head><body>
+<script>
+const CONTENT=[
+{id:"rc",name:"Reading Comprehension",ref:"OG Ch. 7",topics:[
+{id:"vv_rcpass",t:"RC Passage Types & Structure",ref:"7.1",
+c:"GMAT RC passages are 200–350 words and drawn from three domains: <b>natural sciences</b> (biology, physics, chemistry — dense with technical terms), <b>social sciences / humanities</b> (history, psychology, economics — often argumentative), and <b>business</b> (corporate strategy, management, economics — most accessible). Each passage has an overarching <b>main idea</b> and a <b>structure</b> — typically: present a position, then support/challenge it; or describe a phenomenon, then analyze causes or implications.",
+f:["Natural science: descriptive, technical, explains mechanisms","Social science: often presents a viewpoint, then evaluates it","Business: problem-solution or cause-effect structure","Typical structure: introduction → body (evidence/examples) → conclusion or implication","Long passages (3+ ¶): each ¶ has one main point; track their logical relationship"],
+tips:["After reading, ask: 'What's the one thing the author is saying, and why?'","Note the passage's tone: neutral description vs evaluative/argumentative","Track where the author switches direction ('however', 'but', 'despite') — those are test-worthy"],
+traps:["RC tests what the passage SAYS, not your outside knowledge","'Implied by the passage' ≠ something you personally infer — stay tethered to the text","Long passages: the final paragraph often contains the main conclusion — don't skim it"],
+ex:[{q:"A passage describes how honeybees navigate using the sun and polarized light. Which passage type is this, and what main idea should you look for?",s:"Natural science passage. Look for the central mechanism being explained (how bees use the sun/polarized light to navigate) and any nuance or exception the author discusses. Main idea: the passage describes the mechanisms of bee navigation."},
+{q:"A passage begins: 'Traditional historians have long argued X. However, recent archaeological evidence suggests Y.' What structure does this signal?",s:"Challenge to existing view. The author will likely present evidence for Y and either (a) fully endorse Y, (b) partially support Y while acknowledging X's merits, or (c) call for further research. Your 'main point map' should capture this structure."}],
+cards:[["Natural science passages test","Understanding mechanisms, processes, technical details"],["Social science passages often","Present and evaluate competing views"],["Every passage has a","Main idea + supporting structure to map"],["'However/but/despite' in a passage","Signals a turn — test-worthy contrast"]]},
+
+{id:"vv_active",t:"Active Reading Strategy for RC",ref:"7.1",
+c:"GMAT RC rewards <b>active reading</b>: engage with the logic, not just the words. The <b>passage map</b> is a 3–5 word mental note per paragraph capturing its purpose (not content). Purpose phrases: 'describes X', 'challenges Y', 'provides evidence for Z', 'draws a conclusion about W'. After reading, articulate the main point in one sentence before looking at the questions. This prevents trap answers from distorting your understanding.",
+f:["Para 1: usually the main idea or thesis","Para 2+: evidence, examples, counterarguments, extensions","Final para: conclusion, implication, or call to action","Tone words: 'unfortunately', 'remarkably', 'surprisingly' signal author's attitude","Signal words: 'first/second', 'furthermore', 'in contrast', 'thus'"],
+tips:["Read for structure, not details — details are in the passage to look up","Summarize each paragraph in 3 words: 'challenges old view', 'provides evidence', 'draws conclusion'","If you finish reading confused, re-read the first sentence of each paragraph"],
+traps:["Over-reading: spending so long on every detail that you forget the main point","Under-reading: skimming so fast you miss the author's position on a controversial issue","Reading speed: don't sacrifice comprehension — 3 slow reads > 5 fast rereads"],
+ex:[{q:"You read a 4-paragraph passage about ocean acidification. How do you build a passage map?",s:"P1: Intro — acidification is increasing (fact). P2: Describes mechanism — CO2 absorption lowers pH. P3: Impact on marine organisms (evidence). P4: Implications for food chain (conclusion). Main point: 'Ocean acidification, driven by CO2, threatens marine ecosystems.' This map makes every question faster."},
+{q:"The question asks about the author's tone. You remember the passage as 'neutral.' But one answer says 'cautiously optimistic.' How do you decide?",s:"Go back to specific language in the passage. Look for evaluative adjectives ('unfortunately', 'encouragingly') or hedging ('may', 'could'). Neutral ≠ no tone — even factual passages have a stance implied by what they emphasize or de-emphasize."}],
+cards:[["Passage map per paragraph","3–5 words on PURPOSE, not content"],["First step after reading","State the main point in one sentence"],["'However/but' in passage signals","A contrast — often tested"],["RC goal","Track structure; details are there to look up"]]},
+
+{id:"vv_mainidea",t:"Main Idea & Primary Purpose Questions",ref:"7.2",
+c:"<b>Main Idea</b> questions ask what the passage is 'primarily about' or what 'best describes the passage as a whole.' The correct answer captures the full scope — not too broad (applies to 1 paragraph only) and not too narrow (applies to all sources in the field). <b>Primary Purpose</b> questions ask WHY the author wrote this passage — use active verbs: 'to argue', 'to describe', 'to challenge', 'to compare', 'to refute', 'to analyze'.",
+f:["Main idea = what the passage IS (subject + point)","Primary purpose = WHY the author wrote it (active verb + content)","Too narrow: addresses only one paragraph's content","Too broad: extends beyond what the passage actually discusses","Correct answer scope: matches the full passage, no more, no less"],
+tips:["Wrong: 'The passage discusses [topic]' — too vague; need the author's POINT about the topic","Purpose verbs: argue, describe, analyze, challenge, compare, refute, examine, trace, contrast","If the passage describes a phenomenon without taking a side → 'to describe/examine'"],
+traps:["'Too narrow' wrong answers often summarize one paragraph beautifully — but not the whole passage","'Too broad' answers generalize the topic to areas the passage never addresses","Purpose verb matters: 'to refute' is stronger than 'to question' — pick the verb that matches the author's actual stance"],
+ex:[{q:"A passage on two paragraphs explains a phenomenon and then discusses its implications. What is the primary purpose?",s:"'To describe X and discuss its implications' — the two-part structure maps to the purpose. Don't say 'to prove X' (no argument), don't say 'to challenge existing research' (no mention of prior research being challenged)."},
+{q:"A wrong answer says: 'The passage discusses economic factors affecting migration worldwide.' The passage discusses only one city. What's wrong?",s:"This is a 'too broad' trap. The passage has narrower scope — the correct answer will specify the city/context, not generalize to 'worldwide' or 'in general.'"}],
+cards:[["Main idea must be","Right scope: not too narrow, not too broad"],["Primary purpose uses","Active verb (argue, describe, challenge, analyze...)"],["Too narrow wrong answer","Summarizes one paragraph perfectly"],["Too broad wrong answer","Extends to areas the passage never mentions"]]},
+
+{id:"vv_support",t:"Supporting Idea (Detail) Questions",ref:"7.2",
+c:"<b>Supporting idea</b> questions ask about specific information stated in the passage — 'According to the passage…' or 'The author states that…'. These are the most directly verifiable question type: the correct answer is a paraphrase of something explicitly stated. Wrong answers include: accurate-sounding information from OUTSIDE the passage, information from the passage but about the WRONG topic, and distortions of stated claims.",
+f:["'According to the passage' → find the exact location","Correct answer = paraphrase of what's stated (not inference)","Wrong: outside knowledge; wrong topic; distortion (reversing a claim)","Strategy: use your passage map to locate the relevant paragraph, then re-read"],
+tips:["For detail questions, locate first — don't rely on memory of a dense passage","Paraphrase alert: the correct answer rarely uses the same words as the passage","'The passage suggests' can refer to a supporting idea OR an inference — read the full question"],
+traps:["Answers that are true in real life but NOT stated in the passage","Answers that misquote the passage (e.g., reversing 'A contributes to B' to 'B contributes to A')","Answers about the right topic but wrong direction (the passage says 'high' → wrong answer says 'low')"],
+ex:[{q:"The passage states: 'Bees navigate primarily using the sun, supplemented by polarized light.' A question asks: 'According to the passage, bees navigate primarily using:' Which is correct: (A) the sun, (B) polarized light?",s:"(A). The passage explicitly says 'primarily using the sun' — 'supplemented by' means polarized light is secondary. This is a detail question that hinges on careful word reading."},
+{q:"A wrong answer says: 'Studies show bees also use magnetic fields for navigation.' This isn't in the passage. What type of wrong answer is this?",s:"'Outside knowledge' trap — true in real life, but the passage didn't mention it. On RC, only what's in the passage can be correct."}],
+cards:[["Supporting idea questions ask","What the passage EXPLICITLY STATES"],["Strategy for detail questions","Locate → re-read → paraphrase match"],["Most common wrong answer type","Outside knowledge (true in life, not in passage)"],["'According to the passage' answer is always","A paraphrase of stated text"]]},
+
+{id:"vv_infer",t:"Inference Questions",ref:"7.2",
+c:"<b>Inference</b> questions ask what the passage <i>implies</i> or what 'can be concluded' from it. The correct answer is NOT stated — but it MUST follow logically from what IS stated. The trap: answer choices that go further than the passage supports. GMAT inferences are conservative — they are the minimum that the passage forces you to accept. Extreme language (always, never, all, none) is almost always wrong.",
+f:["Inference = unstated but logically forced by the passage","The correct inference must be TRUE given the passage (not merely possible)","Extreme language usually wrong: 'all', 'always', 'never', 'only'","Best phrasing: 'most likely', 'probably', 'it can be inferred that'"],
+tips:["Ask: 'could this be false given everything the passage says?' If yes → wrong answer","The more reasonable, qualified, and narrow the inference, the more likely it's correct","Don't import outside knowledge: the inference must come from the passage itself"],
+traps:["'Possible' ≠ 'inferable' — the passage must force the conclusion, not merely allow it","Strong language in correct answers is rare — watch for 'must' vs 'likely'","A fact consistent with the passage but not forced by it: incorrect"],
+ex:[{q:"The passage says: 'The new drug was tested in 3 clinical trials and showed reduced symptoms in all three.' What can be inferred?",s:"That the drug has shown consistent efficacy in trials so far. You CANNOT infer: 'The drug will be approved' (passage doesn't say this), or 'The drug works for all patients' (three trials don't establish that). The conservative, limited inference about consistency is correct."},
+{q:"A passage discusses Company X's declining market share due to competitor innovations. An inference question asks what can be inferred about Company X's future. Which is best: (A) X will likely lose more market share, (B) X will go bankrupt?",s:"(A) is the conservative, defensible inference. (B) goes far beyond the passage — the passage discusses market share, not financial solvency or bankruptcy."}],
+cards:[["Inference must","Follow logically from the passage — can't be false given it"],["Inference ≠","What's stated, what you know, what's merely possible"],["Extreme language in inference answers","Almost always wrong"],["Best inference answers are","Conservative, qualified, minimum required"]]},
+
+{id:"vv_apply",t:"Application Questions",ref:"7.2",
+c:"<b>Application</b> questions ask you to apply principles or findings from the passage to a new, different situation. The answer choices describe situations the passage never mentions. To answer: identify the principle from the passage, then find the answer that MOST CLOSELY mirrors that principle in the new context. Unlike inference questions, the correct answer describes something external to the passage.",
+f:["Identify the underlying principle first (don't look at choices yet)","Apply the principle to each choice — find the closest analogy","The new situation may involve entirely different subject matter","'Most closely analogous to' = same relationship/mechanism, different content"],
+tips:["Treat it like analogy reasoning: X:Y :: new situation","The correct choice applies the SAME logic, not just a vague similarity","Don't get distracted by surface similarity — the mechanism has to match"],
+traps:["Answer has same topic as passage but wrong relationship","Answer has different topic but happens to sound plausible — test the structure","Two answers both 'sort of' match — find the one that replicates the logic most precisely"],
+ex:[{q:"The passage explains: 'The bee's waggle dance encodes direction and distance to food, then the information is copied by other bees that observe the dance.' An application question asks: 'Which of the following is most analogous?' (A) A teacher writes the lesson on a board; students copy it. (B) An encyclopedia describes a historical event.",s:"(A) is better: information is encoded/performed by one source, then copied/transmitted to observers. The mechanism (encode → observe → copy) matches."},
+{q:"Why is option (B) wrong in the bee question?",s:"(B) — an encyclopedia — is a static record. There's no 'encoding by a performer' or 'observation/copying' mechanism. It's about information storage, not information transmission through an observable performance."}],
+cards:[["Application questions test","Applying a passage principle to new, external examples"],["Strategy: find the","Underlying mechanism/principle first, THEN match to choices"],["Correct choice","Same logical relationship, often different topic"],["Most common trap","Surface similarity with wrong structure"]]},
+
+{id:"vv_eval",t:"Evaluation & Structure Questions",ref:"7.2",
+c:"<b>Evaluation</b> questions ask about the function or role of a sentence, paragraph, or piece of evidence within the passage: 'The author mentions X in order to…', 'The third paragraph primarily serves to…'. <b>Structure</b> questions ask how the passage is organized or how two paragraphs relate. Answer choices use function words: 'to provide evidence for', 'to challenge', 'to illustrate', 'to concede', 'to contrast'.",
+f:["Common functions: illustrate, exemplify, support, concede, contrast, qualify, challenge, refute","'The author mentions X in order to' → why was that included? What argument does it serve?","Two-paragraph structure: cause→effect, problem→solution, claim→evidence, view→counterexample"],
+tips:["Identify what claim or argument the cited element is supporting (or opposing)","If an example is given, it's usually illustrating the prior claim — 'to illustrate that'","Concession: author mentions an opposing view only to show it's less compelling"],
+traps:["'To provide evidence for' and 'to illustrate' are similar but not identical — illustration uses a specific example; evidence can be broader","'To challenge' vs 'to refute': refute means to disprove fully; challenge means to cast doubt","If the answer says 'to introduce a new topic', check if the sentence actually does — or just supports the existing topic"],
+ex:[{q:"A passage argues that small firms innovate more. It mentions a statistic about patents per employee at small vs large firms. Why does the author include this?",s:"To provide evidence (statistical) supporting the claim that small firms innovate more. This is 'evidence for the main argument' — not 'to introduce a new idea' or 'to concede a limitation.'"},
+{q:"The final paragraph introduces a caveat: 'However, these findings apply mainly to the tech sector.' What is the function of this paragraph?",s:"To qualify the scope of the preceding argument — the author is limiting the applicability of the prior claim. Function: 'to limit the conclusions drawn earlier' or 'to acknowledge an exception.'"}],
+cards:[["'Author mentions X in order to'","Identify X's function within the argument"],["Concession paragraph","Author acknowledges opponent's point, then refutes it"],["Illustration vs evidence","Illustration = specific example; evidence = data/facts supporting claim"],["Qualification paragraph","Limits the scope of a prior claim"]]},
+
+{id:"vv_rctraps",t:"Common RC Wrong-Answer Traps",ref:"7.2",
+c:"Five wrong-answer patterns appear repeatedly. (1) <b>Too extreme</b>: uses 'all', 'always', 'never', 'only', 'must' when the passage is more moderate. (2) <b>Out of scope</b>: introduces topics the passage never mentions. (3) <b>True-but-unsupported</b>: factually correct but not stated/implied in the passage. (4) <b>Distortion</b>: reverses, exaggerates, or misrepresents a stated claim. (5) <b>Partial-scope</b>: describes only one part of a multi-part passage.",
+f:["Extreme: all/always/never/only/must → passage uses 'some', 'often', 'may'","Out of scope: new topic, new research, real-world knowledge","True-but-unsupported: true in reality but passage doesn't say it","Distortion: swap cause/effect, change direction, exaggerate degree","Partial scope: correctly describes paragraph 2 but not the whole passage"],
+tips:["After your answer choice, ask: 'Is there a specific sentence in the passage that supports this?'","'Extreme' trap is easy to spot: look for absolute language in the answer choice","Two-answer dilemma: identify which one goes one step further than the passage supports"],
+traps:["An answer that exactly quotes the passage but refers to the wrong context (the right words, wrong paragraph)","An answer that summarizes what you'd expect a reasonable person to believe based on the topic — but that's not in the passage","An answer with a subtle reversal: 'X leads to Y' when passage says 'Y leads to X'"],
+ex:[{q:"The passage says 'most companies that adopt flexible working policies see productivity improvements.' A wrong answer says: 'All companies adopting flexible policies improve productivity.' What trap is this?",s:"Too extreme: 'most' ≠ 'all'. The passage leaves room for exceptions; the wrong answer eliminates them. On RC, the most defensible, qualified answer is usually correct."},
+{q:"A passage about migrating birds never mentions climate change, but a wrong answer says: 'The author implies climate change is threatening bird migration.' What trap is this?",s:"Out of scope (and true-but-unsupported): the passage doesn't discuss climate change at all. The answer imports real-world knowledge. Stick strictly to the text."}],
+cards:[["Too extreme trap","All/always/never when passage says most/often/may"],["Out of scope trap","Topic not mentioned in the passage"],["Distortion trap","Reverses or exaggerates a stated claim"],["True-but-unsupported","Correct in real life but passage doesn't say it"]]},
+]},
+
+{id:"cr",name:"Critical Reasoning",ref:"OG Ch. 8",topics:[
+{id:"vv_anatomy",t:"Anatomy of an Argument",ref:"8.1",
+c:"Every CR argument has: <b>premises</b> (stated facts or accepted claims), a <b>conclusion</b> (the claim being argued for), and usually an <b>assumption</b> (an unstated idea the argument takes for granted). Find the conclusion first — it's the claim that premises support, not supported by anything else in the argument. Common conclusion cue words: <i>therefore, thus, hence, so, consequently, it follows that</i>. Premise cue words: <i>because, since, given that, for, as, the fact that</i>.",
+f:["Conclusion: what the author is arguing for","Premise: stated evidence or facts supporting the conclusion","Assumption: unstated gap between premises and conclusion","Valid: conclusion follows if premises are true","Sound: valid AND premises are actually true"],
+tips:["Find the conclusion FIRST on every CR question","Ask: 'What is the author trying to convince me of?' — that's the conclusion","Multiple conclusions? The MAIN conclusion is the one supported by everything else"],
+traps:["The conclusion is NEVER an observation already supported by external evidence — it's the author's claim","Background information (not contributing to the argument) is not a premise","'Since X, therefore Y' — X is a premise, Y is the conclusion. Don't reverse them."],
+ex:[{q:"'Traffic has increased 40% in the past decade; therefore, we need to build more roads.' Identify premise and conclusion.",s:"Premise: traffic increased 40%. Conclusion: we need to build more roads. The unstated assumption: more roads are the right (or only) solution to increased traffic."},
+{q:"'The company's profits rose last year, and its market share grew. So the CEO's strategy is working.' What's the conclusion?",s:"'The CEO's strategy is working.' The two profit/market-share facts are premises. A large unstated assumption: rising profits and market share are caused by the CEO's strategy, not other factors."}],
+cards:[["Conclusion cue words","therefore, thus, hence, so, consequently"],["Premise cue words","because, since, given that, as, for"],["Assumption =","Unstated gap between premises and conclusion"],["Find conclusion __ in every CR question","FIRST"]]},
+
+{id:"vv_claims",t:"Claim Types & Signal Words",ref:"8.1",
+c:"CR arguments involve several types of claims. A <b>causal claim</b> (X causes Y) requires a separate causal link. A <b>predictive claim</b> (X will happen) requires a bridge to the future. A <b>comparative claim</b> (X is better than Y) requires a clear comparison basis. A <b>generalization</b> (all X are Y) can be broken by one counterexample. Understanding the type of claim determines which assumptions to look for and which answers will strengthen or weaken it.",
+f:["Causal claim: assumes no confounders, no reverse causation, no coincidence","Predictive claim: assumes the future resembles the past/present","Comparative: assumes a valid basis for comparison (same units, etc.)","Generalization: assumes the sample is representative","Recommendation claim: assumes the proposed solution addresses the problem"],
+tips:["Most GMAT arguments are inductive — the premises make the conclusion probable, not certain","For every causal claim, the main assumption is 'nothing else could explain the correlation'","Recommendations assume: (1) the problem is real, (2) the solution works, (3) no better alternatives"],
+traps:["A causal argument is NOT broken by showing X and Y don't always correlate — only that Y has another cause","Comparative claims need the SAME BASIS for comparison — confusing apples and oranges","Generalizations can sometimes be attacked by pointing out the sample is unrepresentative"],
+ex:[{q:"'Our new ad campaign launched in March. Sales jumped 25% in April. The ad campaign caused the spike.' What type of claim is this?",s:"Causal claim. Key assumption: no other factor caused the sales jump in April. Weakeners: 'A major competitor shut down in April', 'April is seasonally the strongest month for the industry'."},
+{q:"'All our competitors use this software. Therefore we should too.' What assumptions does this argument make?",s:"(1) The software benefits our competitors. (2) The software would benefit us similarly. (3) Adopting competitors' tools is generally a good strategy. (4) No better alternatives exist. This is a recommendation based on comparison."}],
+cards:[["Causal claim main assumption","No other cause; no reverse causation; no coincidence"],["Recommendation main assumption","Proposed solution addresses the actual problem"],["Generalization main assumption","Sample is representative of the whole population"],["Comparative claim main assumption","Valid, fair basis for comparison"]]},
+
+{id:"vv_assume2",t:"Assumption Questions",ref:"8.2",
+c:"An <b>assumption</b> is an unstated premise necessary for the argument to work. Two question types: <b>Necessary assumption</b> (the argument requires it to be true — tested with the Negation Test) and <b>Sufficient assumption</b> (if true, would guarantee the conclusion). <b>Negation Test</b> for necessary assumptions: negate the assumption; if the argument collapses, the assumption is necessary. The assumption bridges the gap between premises and conclusion — it connects their subject matters.",
+f:["Necessary: must be true for argument to work; negation breaks the argument","Sufficient: alone makes the conclusion follow; answer says 'if true, conclusively proves'","Negation test: negate the answer choice; if argument breaks → that's the assumption","The assumption fills the gap between premises and conclusion","Assumptions are never stated in the stimulus — if it's stated, it's a premise"],
+tips:["Identify the gap: what would you need to add to make the argument airtight?","Negation of 'always' is 'not always'; negation of 'all' is 'not all'; negation of 'some' is 'none'","Assumption ≠ inference: assumption is what the argument NEEDS; inference is what it PRODUCES"],
+traps:["Picking a premise already stated as the answer — premises aren't assumptions","Picking an answer that would strengthen (but not be necessary for) the argument — could be true without being necessary","The assumption must be about the SCOPE of the argument — it bridges premises to conclusion"],
+ex:[{q:"'Students who study more than 2 hours daily get better grades. Mark studies 3 hours daily. Therefore Mark will get better grades.' What is the necessary assumption?",s:"That Mark's increased study time (3 hours) qualifies as 'studying more than 2 hours daily' — which it does — and that the generalization applies to Mark. But more critically: that no other factor prevents Mark from getting better grades (all else equal). Negation test: if the relationship between study time and grades doesn't hold for Mark, the conclusion fails."},
+{q:"Apply the Negation Test to: 'The new traffic measure reduced accidents ONLY IF drivers' behavior did not change for other reasons.' Is this an assumption?",s:"Negate: 'Drivers' behavior DID change for other reasons.' If so, the reduction could be due to behavior change rather than the traffic measure → argument collapses. Yes — this is a necessary assumption: that drivers' behavior didn't change for confounding reasons."}],
+cards:[["Negation test","Negate it; if argument breaks → it's necessary"],["Necessary assumption","Must be true for argument to hold"],["Sufficient assumption","If true, conclusively proves the conclusion"],["Assumption can never be","Something stated in the argument"]]},
+
+{id:"vv_str",t:"Strengthen Questions",ref:"8.2",
+c:"To <b>strengthen</b> an argument means to make the conclusion more likely to follow from the premises — typically by supporting the argument's assumption. Strengtheners: (1) confirm the assumption is valid, (2) rule out an alternative explanation, (3) extend the generalization to more cases, (4) provide additional corroborating evidence. Strengthening ≠ proving conclusively — just making more probable.",
+f:["Strengthen by: confirming the assumption; ruling out alternative causes","Also strengthens: extending the generalization; providing analogous evidence","Wrong answers: irrelevant to the conclusion; strengthen a DIFFERENT claim; assume something new","The correct strengthener makes the gap between premises and conclusion smaller"],
+tips:["Identify the conclusion and main assumption BEFORE reading the choices","Ask: 'which answer would make the conclusion MORE likely given the premises?'","Ruling out an alternative explanation is often the best strengthener for causal arguments"],
+traps:["An answer that is true and sounds positive but doesn't address the argument's specific gap","An answer that strengthens a related but different argument","'Confirms a premise' is useless — we're already accepting premises"],
+ex:[{q:"Argument: 'Company X switched to telecommuting last year. Productivity rose 15%. Therefore, telecommuting improved productivity.' Strengthen: which of these best strengthens?",s:"Best: 'No other changes were made to Company X's operations during the same period.' This rules out the alternative cause (that something else drove the 15% gain), directly supporting the causal claim."},
+{q:"Which answer weakens instead? 'Company X's sector generally saw a 15% productivity increase last year.'",s:"This WEAKENS the argument — if the sector improved overall, the rise may not be due to telecommuting. It introduces an alternative explanation (industry-wide trend)."}],
+cards:[["Best way to strengthen a causal claim","Rule out alternative causes"],["Strengthen by","Supporting the argument's key assumption"],["Correct strengthener","Makes conclusion MORE likely from same premises"],["Confirming a premise","Does NOT strengthen — premises are already accepted"]]},
+
+{id:"vv_weak",t:"Weaken Questions",ref:"8.2",
+c:"To <b>weaken</b> an argument means to make the conclusion less likely to follow from the premises — typically by attacking the argument's assumption. Weakeners: (1) attack the assumption directly, (2) introduce an alternative explanation, (3) provide a counterexample, (4) show the generalization doesn't hold. Weakening ≠ disproving — just making less probable.",
+f:["Weaken by: attacking the assumption; providing an alternative cause","Also weakens: counterexample; showing the sample is biased; reversing cause and effect","The correct weakener makes the gap between premises and conclusion larger","Wrong answers: irrelevant; strengthen; outside scope of argument"],
+tips:["Same as strengthen — identify the assumption first, then find what attacks it","For causal arguments: find alternative causes, reverse causation, or show correlation is coincidental","For recommendations: show the solution won't work, has side effects, or there are better alternatives"],
+traps:["An answer that attacks a premise (facts, not the reasoning gap) — this 'disproves' a premise, which is different from weakening the inference","An answer that would weaken the conclusion IF a premise were different — but since we accept premises, this is wrong","An irrelevant true fact: doesn't touch the argument at all"],
+ex:[{q:"Argument: 'Sales increased after we launched the new product. The new product drove the increase.' Best weakener?",s:"'A major competitor went out of business the same month the product launched.' This introduces an alternative cause (competitor exit) that could explain the sales increase without the new product being responsible."},
+{q:"Argument: 'A new medicine reduced depression symptoms in 80% of patients. Therefore it should be prescribed widely.' Best weakener?",s:"'In a control group receiving a placebo, 78% showed the same improvement.' This shows the medicine's effect may not be better than placebo — the recommendation's basis is undermined."}],
+cards:[["Best way to weaken a causal claim","Alternative cause / reverse causation"],["Weaken a recommendation","Show the solution won't work or has a better alternative"],["Weaken a generalization","Counterexample or unrepresentative sample"],["Weakening ≠","Disproving — just making conclusion less likely"]]},
+
+{id:"vv_inf",t:"Inference / Must-Be-True Questions",ref:"8.2",
+c:"<b>Inference</b> (or Must-Be-True) CR questions ask: 'If the statements above are true, which of the following must be true?' Unlike argument questions, there may be NO stated conclusion — you're drawing one yourself from the stimulus. The correct answer MUST follow logically from the stimulus; it cannot be false if the stimulus is true. This is the MOST logically strict question type.",
+f:["Must be true: cannot be false if stimulus is true","Contrast with RC inference: no leap beyond text; strictly forced","Correct answer is often a negation of an extreme or a simple combination of two stimulus facts","Wrong: too extreme (all/never/must when stimulus says some/may); outside scope; requires additional assumptions"],
+tips:["Find two stimulus facts that, combined, produce a new fact → that's the inference","The correct answer is often modest and obvious — it follows directly","If the answer requires any additional assumption, it's wrong for this question type"],
+traps:["An answer that is merely consistent with the stimulus (possible but not necessary)","An answer that is usually true in real life but not guaranteed by the stimulus alone","An answer that correctly infers something but requires bridging two claims with an unstated third claim"],
+ex:[{q:"'All Olympic sprinters are fast. Sam is not fast.' What must be true?",s:"Sam is not an Olympic sprinter. This follows from the contrapositive: if not fast, then not an Olympic sprinter. This MUST be true if the stimulus is true."},
+{q:"'Most customers preferred Product A in last month's survey.' Which must be true: (A) More than half of customers prefer A; (B) Some customers prefer A; (C) A is the best product on the market?",s:"(B): If most prefer A, then at least some prefer A — guaranteed. (A) 'Most' means > 50%, so this also follows, but check if the survey = all customers. (C) Requires an external value judgment — NOT forced by the stimulus. The safest correct answer is (B)."}],
+cards:[["Must-Be-True: correct answer","Cannot be false if stimulus is true"],["Wrong: merely possible","Must be necessary, not just consistent"],["Strategy","Combine two stimulus facts → new fact"],["Extreme language in MTB answers","Rarely correct; stimulus must explicitly support it"]]},
+
+{id:"vv_disc",t:"Explain a Discrepancy Questions",ref:"8.2",
+c:"The stimulus presents two apparently contradictory facts. Your task: find the answer that explains how BOTH facts can simultaneously be true — that is, find a <b>third factor</b> that resolves the paradox. The correct answer doesn't deny either fact; it provides a mechanism that reconciles them.",
+f:["Stimulus: Fact A AND apparently contradictory Fact B","Goal: find C such that C + Fact A + Fact B are all consistent","Correct answer: explains HOW both can be true","Wrong answers: explain only one fact; deny one fact; introduce irrelevant information"],
+tips:["First restate the paradox: 'How can [A] be true when [B] is also true?'","The answer must address BOTH parts of the paradox, not just one","Look for an asymmetry: why would X behave differently in the two contexts?"],
+traps:["An answer that explains why Fact A is true — but says nothing about the surprising Fact B","An answer that makes the paradox WORSE rather than resolving it","An answer that's true but irrelevant to the specific contradiction"],
+ex:[{q:"'Drivers who use hands-free phones have MORE accidents than those talking with passengers, even though both are equally distracting.' What resolves this paradox?",s:"Hands-free conversations often involve people who don't know you're driving and keep you mentally engaged in complex remote tasks. Passenger conversations naturally pause when the road gets complex, and passengers also visually see the road. So hands-free is mentally more demanding even at the same nominal 'distraction level.'"},
+{q:"'Sales of umbrellas in City X increased last year, but rainfall in City X decreased.' What resolves this?",s:"An answer: 'City X began exporting umbrellas to regions with higher rainfall.' Both facts can be true simultaneously — local rainfall went down, but export markets drove production/sales up."}],
+cards:[["Discrepancy question goal","Explain how BOTH facts can simultaneously be true"],["Correct answer introduces","A third factor that reconciles the contradiction"],["Wrong answer type","Explains only one fact; denies the other"],["First step","Restate the paradox explicitly"]]},
+
+{id:"vv_flaw",t:"Flaw, Boldface & Evaluate Questions",ref:"8.2",
+c:"<b>Flaw</b> questions ask what logical error the argument commits. Common flaws: ad hominem, circular reasoning, biased sample, correlation ≠ causation, false dichotomy, unwarranted generalization, equivocation (using a word in two senses). <b>Boldface</b> questions present a multi-sentence argument with two sentences in bold, asking you to identify the role of each. <b>Evaluate</b> questions ask what additional information would most help evaluate whether the conclusion is well-supported.",
+f:["Flaw types: correlation→causation, biased sample, false dichotomy, ad hominem, circular reasoning","Boldface: identify bold A (premise, conclusion, intermediate conclusion, background) and bold B separately","Evaluate: 'the answer to which question would be MOST useful to evaluate the argument?'","Evaluate answer: a yes/no question whose answer would change your assessment"],
+tips:["Boldface: identify the main conclusion first; then classify each bold sentence relative to it","Flaw answer choices use formal logic language: 'confuses correlation with causation' — match the flaw to the language","Evaluate answers are often phrased as 'whether X' or 'the extent to which X' — they point at the assumption"],
+traps:["Flaw: picking an answer that describes a real logical error but not the one in THIS argument","Boldface: the bold portions can be on opposing sides — don't assume both support the conclusion","Evaluate: picking an answer that would confirm the conclusion but not help EVALUATE (test) it"],
+ex:[{q:"'Everyone I've surveyed prefers coffee to tea. Therefore, most people prefer coffee.' Identify the flaw.",s:"Biased/unrepresentative sample (hasty generalization). The surveyor's personal acquaintances are not a random sample of 'most people.' Formal description: 'draws a broad generalization from an unrepresentative sample.'"},
+{q:"An Evaluate question: 'City X installed speed cameras and accidents fell. The cameras reduced accidents.' What question best evaluates this claim?",s:"'Did accident rates change in comparable cities that did NOT install cameras during the same period?' This tests whether the cameras (rather than some external trend) caused the decline."}],
+cards:[["Most common CR flaw","Correlation → causation (confusing correlation with causation)"],["Boldface: first step","Find the main conclusion of the argument"],["Evaluate: correct answer format","A question whose answer would change your assessment"],["False dichotomy flaw","Presents only two options when more exist"]]},
+
+{id:"vv_crstrat",t:"CR Strategy: The Universal Approach",ref:"8.2",
+c:"Apply the same five-step routine to every CR question. <b>Step 1</b>: Read the question stem FIRST (before the argument) — know what you're looking for. <b>Step 2</b>: Read the argument actively — find the conclusion and premises. <b>Step 3</b>: Pre-think the assumption/gap before reading choices. <b>Step 4</b>: Eliminate wrong choices aggressively. <b>Step 5</b>: Confirm: does your answer choice address the specific claim?",
+f:["Step 1: Read the question stem first — know your task","Step 2: Find conclusion (and premises) in the argument","Step 3: Identify the gap/assumption before reading choices","Step 4: Eliminate by family: irrelevant, opposite, out-of-scope, too extreme","Step 5: Confirm the answer addresses the argument's core"],
+tips:["Reading the question stem first saves re-reading the argument — you know exactly what to hunt for","Pre-thinking the assumption before looking at choices avoids being seduced by clever distractors","When down to two choices: which one is more directly about the assumption?"],
+traps:["Reading the argument before the question — less efficient, higher chance of missing the exact focus","Picking an answer that 'sounds like a good argument' in isolation — it has to RELATE to this specific stimulus","'Relevant' ≠ 'correct': many choices are relevant to the topic but address the wrong logical gap"],
+ex:[{q:"What should you read FIRST in a CR question: the stem or the argument?",s:"The question stem. Examples: 'Which of the following, if true, most weakens the argument?' tells you to look for a weakener — so when you read the argument, you're already hunting for the assumption to attack. This is far more efficient."},
+{q:"How do you use pre-thinking on strengthen/weaken questions?",s:"After reading the argument, state the main assumption in your own words before looking at choices. Then ask: 'Which answer confirms/attacks this assumption?' This reduces the chance of being misled by a well-written but irrelevant distractor."}],
+cards:[["CR Step 1","Read the question stem FIRST"],["CR Step 2","Find conclusion and premises"],["CR Step 3","Pre-think the gap/assumption"],["CR Step 4","Eliminate: irrelevant / opposite / out-of-scope"]]},
+]},
+];
+</script>
+
+<header class="bar">
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="menubtn" id="menuBtn">☰</button>
+    <span class="ttl">Verbal Reasoning — Concept Review</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <a href="index.html" style="color:#b9c8dc;font-size:13px;text-decoration:none">← Hub</a>
+    <span class="prog" id="progLbl"></span>
+  </div>
+</header>
+
+<div class="app">
+  <nav class="side" id="side"></nav>
+  <main class="main" id="main"></main>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+let learned={};
+try{learned=JSON.parse(localStorage.getItem('gmatLearned')||'{}')}catch(e){}
+function saveL(){localStorage.setItem('gmatLearned',JSON.stringify(learned))}
+const FLAT=[]; CONTENT.forEach(sec=>sec.topics.forEach(t=>FLAT.push({sec,t})));
+let curId=null;
+
+function doneCount(){return FLAT.filter(x=>learned[x.t.id]).length}
+function renderSide(){
+  $('#side').innerHTML=CONTENT.map(sec=>{
+    const done=sec.topics.filter(t=>learned[t.id]).length;
+    return `<div><div class="sec-hdr">${sec.name}<small>${done}/${sec.topics.length}</small></div>`+
+      sec.topics.map(t=>`<a data-id="${t.id}" class="${t.id===curId?'on':''} ${learned[t.id]?'done':''}">
+        <span class="tick">${learned[t.id]?'✓':''}</span>${t.t}</a>`).join('')+`</div>`;
+  }).join('');
+  $$('#side a').forEach(a=>a.onclick=()=>{openTopic(a.dataset.id);$('#side').classList.remove('open');});
+  $('#progLbl').textContent=`${doneCount()}/${FLAT.length} learned`;
+}
+
+function buildCueWords(){
+  return `<div class="cue-grid">
+    <div class="cue-box premise"><h5>Premise Cues</h5>
+      <span>because</span><span>since</span><span>given that</span><span>as</span><span>for</span><span>in that</span><span>the fact that</span><span>due to</span>
+    </div>
+    <div class="cue-box conc"><h5>Conclusion Cues</h5>
+      <span>therefore</span><span>thus</span><span>hence</span><span>so</span><span>consequently</span><span>it follows that</span><span>we can conclude</span><span>clearly</span>
+    </div>
+  </div>`;
+}
+
+function buildArgDiagram(premise1,premise2,assumption,conclusion){
+  return `<div class="arg-diagram">
+    <div class="arg-box premise"><div class="tag">Premise 1</div>${premise1}</div>
+    ${premise2?`<div class="arg-box premise"><div class="tag">Premise 2</div>${premise2}</div>`:''}
+    <div class="arg-box assumption"><div class="tag">Assumption (unstated — the gap)</div>${assumption}</div>
+    <div style="text-align:center;font-size:20px;color:var(--grey);margin:4px 0">↓</div>
+    <div class="arg-box conclusion"><div class="tag">Conclusion</div>${conclusion}</div>
+  </div>`;
+}
+
+function buildInteractiveArgAnalyzer(){
+  return `<div class="tool">
+    <h4>Argument Analyzer — map any CR argument</h4>
+    <label>Conclusion (the main claim):</label><br>
+    <input type="text" id="conc" placeholder="e.g. The new policy will reduce crime" style="width:96%;margin:4px 0 8px 0"><br>
+    <label>Premise 1:</label><br>
+    <input type="text" id="p1" placeholder="e.g. Studies show X reduced crime in City A" style="width:96%;margin:4px 0 8px 0"><br>
+    <label>Premise 2 (optional):</label><br>
+    <input type="text" id="p2" placeholder="e.g. City B has similar demographics to City A" style="width:96%;margin:4px 0 8px 0"><br>
+    <button class="btn-primary" id="analyzeBtn">Map the argument →</button>
+    <div class="out" id="o" style="margin-top:12px;min-height:0"></div>
+  </div>`;
+}
+
+function wireArgAnalyzer(){
+  document.getElementById('analyzeBtn').onclick=()=>{
+    const conc=document.getElementById('conc').value.trim();
+    const p1=document.getElementById('p1').value.trim();
+    const p2=document.getElementById('p2').value.trim();
+    if(!conc||!p1){document.getElementById('o').textContent='Enter at least the conclusion and Premise 1.';return;}
+    const assumptionHint='[Unstated: the premises apply to this new case; no confounders exist; similar conditions hold]';
+    document.getElementById('o').innerHTML=`
+      <div class="arg-box premise" style="margin-bottom:8px"><div class="tag">Premise 1</div>${p1}</div>
+      ${p2?`<div class="arg-box premise" style="margin-bottom:8px"><div class="tag">Premise 2</div>${p2}</div>`:''}
+      <div class="arg-box assumption" style="margin-bottom:8px"><div class="tag">Assumption (gap — unstated)</div>${assumptionHint}</div>
+      <div style="text-align:center;font-size:18px;color:var(--grey);margin:2px 0">↓</div>
+      <div class="arg-box conclusion" style="margin-top:8px"><div class="tag">Conclusion</div>${conc}</div>
+      <p style="margin:10px 0 0;font-size:13px;color:var(--grey)">
+        <b>Strengthen:</b> Confirm the assumption is valid.<br>
+        <b>Weaken:</b> Attack the assumption or offer an alternative explanation for why the conclusion wouldn't follow.<br>
+        <b>Negate the assumption</b> (negation test): if the negated assumption destroys the argument, it was necessary.
+      </p>`;
+  };
+}
+
+function buildQTypeGrid(){
+  const types=[
+    {name:'Assumption',signal:'an assumption underlying the argument / the argument assumes',desc:'Find the unstated gap. Use negation test.'},
+    {name:'Strengthen',signal:'which of the following, if true, most strengthens',desc:'Confirm the assumption; rule out alternative explanations.'},
+    {name:'Weaken',signal:'which of the following, if true, most weakens / undermines',desc:'Attack the assumption; introduce an alternative cause.'},
+    {name:'Inference / Must-Be-True',signal:'which of the following must be true / can be properly inferred',desc:'Find what cannot be false if the stimulus is true.'},
+    {name:'Explain a Discrepancy',signal:'which of the following, if true, most helps explain / reconciles',desc:'Find the third factor that makes both facts simultaneously true.'},
+    {name:'Flaw',signal:'the argument is most vulnerable to which criticism / commits which logical error',desc:'Name the logical fallacy (biased sample, correlation≠causation, etc.)'},
+    {name:'Boldface',signal:'(bold text) each plays what role',desc:'Classify each bold portion relative to the main conclusion.'},
+    {name:'Evaluate',signal:'which would most help evaluate / it would be most useful to know',desc:'Find the yes/no question whose answer would change your assessment.'},
+  ];
+  return `<div class="qtype-grid">${types.map(t=>`<div class="qtype-card">
+    <h4>${t.name}</h4>
+    <p>${t.desc}</p>
+    <span class="signal">"${t.signal}"</span>
+  </div>`).join('')}</div>`;
+}
+
+function home(){
+  curId=null; renderSide();
+  $('#main').innerHTML=`<div class="welcome"><div class="hero">
+    <div class="h">Verbal Reasoning</div>
+    <p style="color:var(--grey);max-width:640px;margin:8px 0 16px">
+      20 topics covering OG Chapters 7 &amp; 8. Master every RC question type, learn to map arguments for CR, and use the interactive argument analyzer to practice identifying conclusions, premises, and assumptions.
+    </p>
+    <div class="secgrid">${CONTENT.map(s=>`<div class="modcard" data-sec="${s.id}">
+      <h3>${s.name}</h3><p>${s.topics.length} topics &middot; ${s.ref}</p></div>`).join('')}</div>
+  </div>
+  <p class="foot">Part of the GMAT Focus 2025–26 Prep Hub. <a href="index.html">← Return to hub</a></p></div>`;
+  $$('.modcard').forEach(c=>c.onclick=()=>{const s=CONTENT.find(x=>x.id===c.dataset.sec);openTopic(s.topics[0].id);});
+}
+
+function openTopic(id){
+  curId=id; renderSide(); window.scrollTo(0,0);
+  const idx=FLAT.findIndex(x=>x.t.id===id);
+  const {sec,t}=FLAT[idx];
+  const prev=idx>0?FLAT[idx-1].t:null, next=idx<FLAT.length-1?FLAT[idx+1].t:null;
+  let h=`<div class="crumb">Verbal · ${sec.name} · ${t.ref}</div><h1 class="tt">${t.t}</h1>`;
+  h+=`<div class="concept">${t.c}</div>`;
+  if(t.id==='vv_anatomy'){
+    h+=`<div class="sech">🔑 Premise & Conclusion Cue Words</div>${buildCueWords()}`;
+    h+=`<div class="sech">🗺️ Argument Map: Example</div>${buildArgDiagram(
+      'Traffic has increased 40% in the past decade.',
+      null,
+      'More roads are the appropriate solution to traffic increase (no alternatives considered; roads will actually help).',
+      'We need to build more roads.')}`;
+  }
+  if(t.id==='vv_assume2'){
+    h+=`<div class="sech">🔬 Interactive Argument Analyzer — map any argument</div>${buildInteractiveArgAnalyzer()}`;
+  }
+  if(t.id==='vv_crstrat'){
+    h+=`<div class="sech">📋 All CR Question Types at a Glance</div>${buildQTypeGrid()}`;
+  }
+  if(t.f&&t.f.length)h+=`<div class="fbox"><h4>Key Rules &amp; Framework</h4><ul>${t.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  if(t.tips&&t.tips.length)h+=`<div class="tips"><h4>GMAT Tips</h4><ul>${t.tips.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  if(t.traps&&t.traps.length)h+=`<div class="traps"><h4>Common Traps &amp; Mistakes</h4><ul>${t.traps.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  if(t.ex&&t.ex.length){
+    h+=`<div class="sech">✏️ Worked Examples — try first, then reveal</div>`;
+    t.ex.forEach((e,i)=>{h+=`<div class="ex">
+      <div class="q"><span class="lbl">Example ${i+1}</span>${e.q}</div>
+      <div class="reveal"><button class="btn-ghost" data-rev="${i}">Show solution ▼</button></div>
+      <div class="sol" id="sol${i}" style="display:none"><b>Solution.</b> ${e.s}</div></div>`;});
+  }
+  if(t.cards&&t.cards.length){
+    h+=`<div class="sech">🗂️ Flashcards — click to flip</div><div class="cards" id="cards"></div>`;
+  }
+  h+=`<div class="navbtns">
+    <div>${prev?`<button class="btn-ghost" id="prevB">◀ ${prev.t}</button>`:''}</div>
+    <button class="${learned[id]?'btn-ghost':'btn-green'}" id="learnB">${learned[id]?'✓ Learned':'Mark as learned ✓'}</button>
+    <div>${next?`<button class="btn-primary" id="nextB">${next.t} ▶</button>`:''}</div>
+  </div>`;
+  $('#main').innerHTML=h;
+  $$('[data-rev]').forEach(b=>b.onclick=()=>{$('#sol'+b.dataset.rev).style.display='block';b.style.display='none';});
+  if(t.cards){
+    $('#cards').innerHTML=t.cards.map(c=>`<div class="flip"><div class="inner">
+      <div class="face front">${c[0]}</div>
+      <div class="face back">${c[1]}</div></div></div>`).join('');
+    $$('#cards .flip').forEach(f=>f.onclick=()=>f.classList.toggle('flipped'));
+  }
+  if(t.id==='vv_assume2') wireArgAnalyzer();
+  $('#learnB').onclick=()=>{learned[id]=!learned[id];saveL();openTopic(id);};
+  if(prev)$('#prevB').onclick=()=>openTopic(prev.id);
+  if(next)$('#nextB').onclick=()=>openTopic(next.id);
+}
+
+$('#menuBtn').onclick=()=>$('#side').classList.toggle('open');
+home();
+</script></body></html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GMAT Quantitative Reasoning — Concept Review</title>
+<style>
+:root{--navy:#10243f;--blue:#1f5fa6;--blue2:#2f73c2;--light:#eef3f9;--light2:#f6f8fb;--line:#d3dded;
+--green:#0f6e4f;--greenbg:#e7f4ee;--amber:#b45309;--amberbg:#fff7ed;--grey:#5b6b80;--purple:#5b4bc4;
+--red:#b42318;--redbg:#fdeceb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:#16202e;background:#eef1f5;line-height:1.55;font-size:15px}
+button{font-family:inherit;cursor:pointer;border:none;border-radius:8px;font-weight:600;transition:.12s}
+button:active{transform:translateY(1px)}
+.btn-primary{background:var(--blue);color:#fff;padding:9px 16px;font-size:14px}.btn-primary:hover{background:var(--blue2)}
+.btn-ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line);padding:8px 14px;font-size:13px}.btn-ghost:hover{border-color:var(--blue)}
+.btn-green{background:var(--green);color:#fff;padding:9px 16px;font-size:14px}
+header.bar{background:var(--navy);color:#fff;padding:11px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20}
+header.bar .ttl{font-weight:700;font-size:16px}
+header.bar .prog{font-size:13px;color:#b9c8dc}
+header.bar a{color:#b9c8dc;font-size:13px;text-decoration:none}.header.bar a:hover{color:#fff}
+.app{display:grid;grid-template-columns:278px 1fr;min-height:calc(100vh - 49px)}
+@media(max-width:820px){.app{grid-template-columns:1fr}.side{display:none}.side.open{display:block;position:fixed;inset:49px 0 0 0;z-index:15;overflow:auto}}
+.side{background:#fff;border-right:1px solid var(--line);overflow-y:auto;padding:12px 10px}
+.side .sec-hdr{font-weight:800;color:var(--blue);font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:10px 8px 4px;display:flex;justify-content:space-between}
+.side .sec-hdr small{color:var(--grey);font-weight:600}
+.side a{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;color:#22324a;text-decoration:none;font-size:13px;cursor:pointer}
+.side a:hover{background:var(--light2)}.side a.on{background:var(--light);color:var(--navy);font-weight:700}
+.side a.done .tick{background:var(--green)!important;border-color:var(--green)!important}
+.tick{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--line);flex:none;font-size:10px;display:flex;align-items:center;justify-content:center;color:#fff}
+.main{padding:26px 30px;max-width:860px}
+@media(max-width:820px){.main{padding:18px}}
+.crumb{color:var(--grey);font-size:12px;text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+h1.tt{font-size:25px;color:var(--navy);margin:4px 0 14px;font-weight:800}
+.concept{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;font-size:15px;line-height:1.65}
+.concept b{color:var(--navy)}.concept code{background:var(--light);padding:1px 5px;border-radius:4px;font-size:14px}
+.fbox{background:var(--light2);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:14px 18px;margin:16px 0}
+.fbox h4{margin:0 0 8px;color:var(--navy);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.fbox ul{margin:0;padding-left:18px;column-count:2;column-gap:24px}
+@media(max-width:600px){.fbox ul{column-count:1}}
+.fbox li{margin:5px 0;font-size:14px;break-inside:avoid}
+.tips{background:var(--greenbg);border:1px solid #a8d5bd;border-left:4px solid var(--green);border-radius:10px;padding:14px 18px;margin:12px 0}
+.tips h4{margin:0 0 8px;color:var(--green);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.tips ul{margin:0;padding-left:18px}.tips li{margin:5px 0;font-size:14px}
+.traps{background:var(--redbg);border:1px solid #f5b7b1;border-left:4px solid var(--red);border-radius:10px;padding:14px 18px;margin:12px 0}
+.traps h4{margin:0 0 8px;color:var(--red);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.traps ul{margin:0;padding-left:18px}.traps li{margin:5px 0;font-size:14px}
+.sech{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--purple);font-weight:800;margin:22px 0 8px;display:flex;align-items:center;gap:8px}
+.ex{border:1px solid var(--line);border-radius:11px;margin:10px 0;overflow:hidden}
+.ex .q{padding:13px 16px;background:#fff;font-weight:500;line-height:1.6}
+.ex .q .lbl{display:inline-block;background:var(--light);color:var(--navy);font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;margin-right:8px;text-transform:uppercase}
+.ex .reveal{padding:0 14px 12px;background:#fff}
+.ex .sol{background:var(--greenbg);border-top:1px solid var(--line);padding:13px 16px;font-size:14px;line-height:1.65}
+.ex .sol b{color:var(--green)}
+.tool{background:#f4f1fc;border:1px solid #d9d2f3;border-radius:12px;padding:16px 18px;margin:14px 0}
+.tool h4{margin:0 0 10px;color:var(--purple);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.tool label{font-size:13px;font-weight:600;color:#3a3357;margin-right:6px}
+.tool input,.tool select{padding:7px 9px;border:1.5px solid #cfc6ec;border-radius:8px;font-size:14px;font-family:inherit;margin:3px 4px 3px 0}
+.tool .out{margin-top:10px;background:#fff;border:1px solid #d9d2f3;border-radius:8px;padding:10px 14px;font-size:14px;min-height:22px;line-height:1.6}
+.tool .out b{color:var(--purple)}
+.tool canvas{border:1px solid #d9d2f3;border-radius:8px;background:#fff;display:block;max-width:100%}
+.cards{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.flip{width:200px;height:115px;perspective:900px;cursor:pointer}
+.flip .inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.flip.flipped .inner{transform:rotateY(180deg)}
+.flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:11px;padding:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;border:1px solid var(--line);line-height:1.4}
+.flip .front{background:var(--navy);color:#fff;font-weight:700}
+.flip .back{background:#fff;color:#22324a;transform:rotateY(180deg)}
+.navbtns{display:flex;justify-content:space-between;margin:24px 0 8px;gap:10px}
+.welcome .hero{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px}
+.welcome .h{font-size:26px;font-weight:800;color:var(--navy)}
+.secgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px}
+@media(max-width:680px){.secgrid{grid-template-columns:1fr}}
+.modcard{background:var(--light2);border:1px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;transition:.1s}
+.modcard:hover{border-color:var(--blue)}
+.modcard h3{margin:0 0 4px;color:var(--navy);font-size:15px;font-weight:700}
+.modcard p{margin:0;color:var(--grey);font-size:13px}
+.menubtn{display:none}
+@media(max-width:820px){.menubtn{display:inline-block;background:#1a3357;color:#fff;padding:6px 12px;font-size:13px;border-radius:7px}}
+.foot{color:var(--grey);font-size:12px;padding:20px 0 40px}
+</style></head><body>
+<script>
+const CONTENT=[
+{id:"nt",name:"Number Theory",ref:"OG Ch. 3.1",topics:[
+{id:"qq_int",t:"Integer Properties: Even, Odd & Divisibility",ref:"3.1",
+c:"An <b>integer</b> is any whole number (…, −2, −1, 0, 1, 2, …). Zero is even. A number is <b>even</b> if it's divisible by 2; <b>odd</b> otherwise. <b>Divisibility rules</b> let you check factors without long division. The <b>remainder</b> theorem states: for any integers a and d > 0, there exist unique integers q and r with <code>a = dq + r</code> and <code>0 ≤ r &lt; d</code>.",
+f:["Even ± Even = Even; Odd ± Odd = Even; Even ± Odd = Odd","Even × Any = Even; Odd × Odd = Odd","Div by 2: last digit even | Div by 3: digit sum div by 3","Div by 4: last 2 digits div by 4 | Div by 5: last digit 0 or 5","Div by 6: div by 2 AND 3 | Div by 9: digit sum div by 9","Div by 11: alternating digit-sum difference div by 11","Remainder formula: a = dq + r, 0 ≤ r < d"],
+tips:["If n is even, write n=2k; if odd, write n=2k+1 — this helps with algebra proofs","Check divisibility by 6 in two fast steps: even? then digit sum.","Remainder problems: if a≡r (mod d), then a+d, a+2d… all have the same remainder"],
+traps:["Zero is even — often forgotten","Divisible by 12 ≠ divisible by 8; check independently","−3 IS divisible by 3 (gives −1); divisibility works for negative integers too"],
+tool:"divtool",
+ex:[{q:"If n is an odd integer, which of the following must be even? (A) n² (B) n+2 (C) 2n (D) n+1 (E) n³",s:"Odd × Odd = Odd, so n² and n³ are odd. Odd + 2 = Odd. But 2 × Any = Even, so (C) 2n is even. But the best pick is (D): odd + 1 = even. Both C and D work, but D is the canonical GMAT answer. Always verify: n=3 → n+1=4 ✓."},
+{q:"What is the remainder when 100 is divided by 7?",s:"7 × 14 = 98, and 100 − 98 = 2. Since 0 ≤ 2 < 7, the remainder is 2. Check: 100 = 7(14) + 2 ✓."}],
+cards:[["Even × Any integer =","Even (2k × n = 2kn)"],["Odd + Odd =","Even"],["Divisible by 9?","Digit sum divisible by 9"],["Remainder when a = dq+r","r = a − d·⌊a/d⌋"]]},
+
+{id:"qq_gcd",t:"Factors, Multiples, GCF & LCM",ref:"3.1",
+c:"<b>Factor</b> (divisor): b divides a ⟺ a = bk for some integer k. <b>Multiple</b>: a is a multiple of b iff b is a factor of a. The <b>GCF</b> (greatest common factor) of a and b is the largest integer dividing both. The <b>LCM</b> (least common multiple) is the smallest positive integer divisible by both. Key identity: <code>GCF(a,b) × LCM(a,b) = a × b</code>.",
+f:["GCF × LCM = a × b (for positive integers a, b)","GCF via prime factorization: take min exponents","LCM via prime factorization: take max exponents","Euclidean algorithm: GCF(a,b) = GCF(b, a mod b)"],
+tips:["GCF(a,b) = GCF(b, a mod b) — fast for large numbers","If GCF(a,b)=1, a and b are coprime (no shared prime factors)","LCM is needed for adding fractions with different denominators"],
+traps:["GCF × LCM = a × b only holds for two numbers, not three","LCM(6,10)=30, NOT 60 — don't just multiply if they share factors"],
+ex:[{q:"What is GCF(48, 36)?",s:"48 = 2⁴×3; 36 = 2²×3². GCF = min exponents = 2²×3¹ = 4×3 = 12. Verify: 48÷12=4, 36÷12=3 ✓."},
+{q:"What is LCM(12, 18)?",s:"12=2²×3; 18=2×3². LCM = max exponents = 2²×3² = 4×9 = 36. Check: GCF(12,18)=6, and 12×18=216=6×36 ✓."}],
+cards:[["GCF × LCM =","a × b (for two positive integers)"],["GCF uses __ exponents","Minimum (take the smaller)"],["LCM uses __ exponents","Maximum (take the larger)"],["Coprime integers have GCF =","1"]]},
+
+{id:"qq_prime",t:"Prime Numbers & Prime Factorization",ref:"3.1",
+c:"A <b>prime</b> number has exactly two positive divisors: 1 and itself. 1 is <i>not</i> prime. 2 is the only even prime. Every integer > 1 has a <b>unique prime factorization</b> (Fundamental Theorem of Arithmetic). Factorization unlocks: counting divisors, finding GCF/LCM, and solving divisibility questions.",
+f:["Primes ≤ 50: 2,3,5,7,11,13,17,19,23,29,31,37,41,43,47","# of positive factors of n = a^p·b^q: (p+1)(q+1)","n is divisible by m ⟺ every prime power in m also appears in n","Sum of factors: (1+p+p²+…)(1+q+q²+…) for n=p^a·q^b"],
+tips:["To check primality of n, only test primes up to √n","Sieve of Eratosthenes for primes up to 50 — memorize them","If (p+1)(q+1)… = odd, then n is a perfect square"],
+traps:["1 is NOT prime","2 is the only even prime — all other even numbers are composite","n=1 has exactly one factor (itself), making the factor-count formula give 1"],
+tool:"factor",
+ex:[{q:"How many positive factors does 360 have?",s:"360 = 2³ × 3² × 5. Number of factors = (3+1)(2+1)(1+1) = 4×3×2 = 24."},
+{q:"Is 221 prime?",s:"√221 ≈ 14.9. Test primes ≤ 14: 2 (221 odd), 3 (2+2+1=5, not div by 3), 5 (doesn't end in 0/5), 7 (221÷7=31.6…), 11 (221÷11=20.1…), 13 (221÷13=17). 13×17=221. Not prime — it's 13×17."}],
+cards:[["Is 1 prime?","No — only one divisor"],["Smallest even prime","2"],["# of factors of 2³×5²","(3+1)(2+1) = 12"],["To check primality of n, test primes up to","√n"]]},
+
+{id:"qq_frac",t:"Fractions & Mixed Numbers",ref:"3.1",
+c:"A fraction <b>a/b</b> represents a parts of a whole divided into b equal parts. <b>Equivalent fractions</b> result from multiplying/dividing top and bottom by the same nonzero number. Operations: add/subtract over a common denominator; multiply straight across; divide by multiplying by the reciprocal. A <b>complex fraction</b> has a fraction in its numerator or denominator — simplify by multiplying top and bottom by the LCD.",
+f:["Add/subtract: a/c ± b/c = (a±b)/c (get LCD first)","Multiply: (a/b)×(c/d) = ac/bd","Divide: (a/b)÷(c/d) = (a/b)×(d/c) = ad/bc","Reciprocal of a/b = b/a (a, b ≠ 0)","Mixed number: n + a/b = (nb + a)/b"],
+tips:["Cross-multiply only for equations (a/b = c/d → ad = bc), not for adding fractions","Cancel before multiplying to keep numbers small","When comparing fractions, cross-multiply if both denominators are positive"],
+traps:["a/(b+c) ≠ a/b + a/c (only numerator distributes)","−a/b = a/(−b) = −(a/b) — all three are the same","Dividing by a fraction < 1 makes a number LARGER"],
+ex:[{q:"Compute (3/4) ÷ (9/16) + 1/2.",s:"(3/4)÷(9/16) = (3/4)×(16/9) = 48/36 = 4/3. Then 4/3 + 1/2 = 8/6 + 3/6 = 11/6 = 1⅚."},
+{q:"Simplify (1/2 + 1/3) ÷ (1/2 − 1/3).",s:"Numerator: 3/6+2/6 = 5/6. Denominator: 3/6−2/6=1/6. Result: (5/6)÷(1/6) = (5/6)×6 = 5."}],
+cards:[["Divide fractions","Multiply by the reciprocal"],["Reciprocal of 3/4","4/3"],["a/b ÷ c/d =","ad/bc"],["Complex fraction: multiply top and bottom by","The LCD of all sub-fractions"]]},
+
+{id:"qq_dec",t:"Decimals, Scientific Notation & Estimation",ref:"3.1",
+c:"Each decimal place is a power of 10 to the right of the ones place. <b>Multiplying decimals</b>: ignore the points, multiply as integers, then place the decimal so the number of decimal places equals the sum of the inputs'. <b>Scientific notation</b>: d × 10^k where 1 ≤ d < 10; positive k moves the point right, negative left. <b>Estimation</b>: round to the nearest convenient power of 10 or perfect square.",
+f:["Multiply decimals: total decimal places = sum of inputs'","Divide decimals: shift both points right until divisor is whole","1.5 × 10³ = 1500 (shift right 3); 1.5 × 10⁻³ = 0.0015 (shift left 3)","Rounding: if next digit ≥ 5, round up"],
+tips:["GMAT No-Calculator: round ±5% before computing — still distinguishes answer choices","Powers of 2 to know: 2⁸=256, 2¹⁰=1024 ≈ 10³","√2≈1.41, √3≈1.73, √5≈2.24, √6≈2.45, √7≈2.65"],
+traps:["0.3² = 0.09 (not 0.9) — squaring a number between 0 and 1 makes it smaller","0.5² = 0.25 < 0.5 — fraction < 1 gets smaller when squared","Adding zeros before decimal doesn't change value: 0.5 = 0.50"],
+ex:[{q:"Compute 2.4 × 0.005.",s:"24 × 5 = 120. Decimal places: 1 + 3 = 4, so answer = 0.0120 = 0.012."},
+{q:"Write 0.000245 in scientific notation.",s:"Move point 4 places right to get 2.45. So 0.000245 = 2.45 × 10⁻⁴."}],
+cards:[["Decimal places in a product","Sum of inputs' decimal places"],["2.45 × 10⁻⁴ =","0.000245"],["√2 ≈","1.414"],["Squaring 0 < x < 1","Result is smaller than x"]]},
+
+{id:"qq_pct",t:"Percents & Percent Change",ref:"3.1",
+c:"<b>Percent</b> means per hundred. <code>Part = Percent × Whole</code>. <b>Percent change</b> is always measured against the <i>original</i> (old) value: <code>(New − Old)/Old × 100</code>. Critically, a percent increase of p% is <i>not</i> reversed by a p% decrease — the bases differ. <b>Successive changes</b> multiply: a 20% increase then a 30% decrease = ×1.2 × 0.7 = ×0.84 (a 16% net decrease).",
+f:["Part = Percent × Whole","% change = (New − Old)/Old × 100","Successive: ×(1+r₁)×(1+r₂) (use decimals, e.g., +20% = ×1.2)","x% of y = y% of x (symmetry trick)","To find what% A is of B: A/B × 100"],
+tips:["x% of y = y% of x: 12% of 50 = 50% of 12 = 6 (much faster!)","A 25% increase needs a 20% decrease to undo it (not 25%)","Markup on cost vs margin on price: markup=(sell−cost)/cost, margin=(sell−cost)/sell"],
+traps:["% change base is ALWAYS the original (old) value","20% off then 20% on ≠ no change; net = ×0.8×1.2 = ×0.96 (4% loss)","'40% more than X' = 1.4X; '40% of X' = 0.4X — very different!"],
+tool:"percent",
+ex:[{q:"A price rises from $80 to $100. What is the percent increase?",s:"% change = (100−80)/80 = 20/80 = 0.25 = 25%."},
+{q:"After a 40% increase, a stock price is $84. What was the original price?",s:"Original × 1.4 = 84, so Original = 84/1.4 = 60."}],
+cards:[["% change formula","(New−Old)/Old × 100"],["Successive changes","Multiply: ×(1+r₁)×(1+r₂)"],["x% of y =","y% of x"],["Part = ","Percent × Whole"]]},
+
+{id:"qq_exp",t:"Exponents & Roots",ref:"3.1",
+c:"<b>Exponent rules</b> let you simplify without expanding. Key: <code>a^m · a^n = a^(m+n)</code>; <code>a^m / a^n = a^(m−n)</code>; <code>(a^m)^n = a^(mn)</code>; <code>a^0 = 1</code>; <code>a^(−n) = 1/a^n</code>. The <b>square root</b> √x is the non-negative root; √(x²) = |x|. Squaring a number > 1 increases it; squaring 0 < x < 1 decreases it.",
+f:["aᵐ·aⁿ = aᵐ⁺ⁿ | aᵐ÷aⁿ = aᵐ⁻ⁿ | (aᵐ)ⁿ = aᵐⁿ","a⁰ = 1 (a ≠ 0) | a⁻ⁿ = 1/aⁿ | a^(1/n) = ⁿ√a","√(ab) = √a·√b | √(a/b) = √a/√b | √(x²) = |x|","(ab)ⁿ = aⁿbⁿ | (a/b)ⁿ = aⁿ/bⁿ"],
+tips:["When bases are equal, equate exponents: 2ˣ = 32 → x=5","√(x²) = |x|, NOT just x — remember absolute value","Negative base: (−2)⁴ = 16 (even power positive); (−2)³ = −8 (odd power negative)"],
+traps:["(a+b)² ≠ a²+b² — must expand fully","a^(m+n) ≠ aᵐ + aⁿ — exponent rules only apply to multiplication/division","0⁰ is undefined; on GMAT assume base ≠ 0 when a⁰=1 is used"],
+tool:"quad",
+ex:[{q:"Simplify (3² × 3⁵) ÷ 3⁴.",s:"Numerator: 3²⁺⁵ = 3⁷. Then 3⁷⁻⁴ = 3³ = 27."},
+{q:"If 2^x = 64, what is x?",s:"64 = 2⁶, so x = 6."}],
+cards:[["aᵐ·aⁿ =","aᵐ⁺ⁿ"],["(aᵐ)ⁿ =","aᵐⁿ"],["a⁻ⁿ =","1/aⁿ"],["√(x²) =","|x|"]]},
+
+{id:"qq_ratio",t:"Ratios & Proportions",ref:"3.1",
+c:"A <b>ratio</b> a:b compares two quantities. It scales by any positive multiplier k: a:b = ak:bk. A ratio a:b:c divides a whole T into parts a/(a+b+c)·T, b/(a+b+c)·T, c/(a+b+c)·T. A <b>proportion</b> a/b = c/d cross-multiplies to ad = bc. <b>Direct variation</b>: y = kx (y doubles when x doubles). <b>Inverse variation</b>: y = k/x (y halves when x doubles).",
+f:["a:b:c splits T into parts: a/(a+b+c)·T, etc.","Proportion: a/b = c/d ⟺ ad = bc","Direct: y = kx | Inverse: y = k/x","Unit rate: 'per unit' = total ÷ count"],
+tips:["When ratio changes, set up the new ratio with unknowns and use the constraint","Combine ratios: if A:B=2:3 and B:C=3:4, then A:B:C=2:3:4","Ratio questions often hide an extra equation in 'the total is N'"],
+traps:["Ratio 2:3 means 2 parts to 3 parts, NOT 2 out of 3","If ratio A:B = 3:5, A could be 6 and B could be 10 — always use a multiplier","Direct vs inverse: salary and hours direct; speed and time for fixed distance inverse"],
+ex:[{q:"Cement, sand, and gravel are mixed in ratio 1:3:5. If the total mixture is 180 kg, how much sand is used?",s:"Parts total: 1+3+5=9. Sand = 3/9 × 180 = 60 kg."},
+{q:"If y varies inversely as x, and y=6 when x=4, find y when x=8.",s:"k = y·x = 6×4 = 24. When x=8: y = 24/8 = 3."}],
+cards:[["Ratio a:b:c splits total T","Each part = its-ratio/sum × T"],["Cross-multiplication of a/b = c/d","ad = bc"],["Direct variation","y = kx"],["Inverse variation","y = k/x"]]},
+]},
+
+{id:"alg",name:"Algebra",ref:"OG Ch. 3.2",topics:[
+{id:"qq_expr",t:"Expressions, Simplification & Factoring",ref:"3.2",
+c:"An <b>algebraic expression</b> is a combination of variables, numbers, and operations. Like terms (same variable and exponent) can be combined. Key <b>factoring identities</b>: difference of squares <code>a²−b² = (a+b)(a−b)</code>; perfect square trinomials <code>(a±b)² = a²±2ab+b²</code>; sum/difference of cubes <code>a³±b³ = (a±b)(a²∓ab+b²)</code>.",
+f:["a²−b² = (a+b)(a−b)","(a+b)² = a²+2ab+b²","(a−b)² = a²−2ab+b²","a³+b³ = (a+b)(a²−ab+b²)","a³−b³ = (a−b)(a²+ab+b²)","FOIL: (a+b)(c+d) = ac+ad+bc+bd"],
+tips:["Factor first before cross-multiplying — numbers stay smaller","Difference of squares appears constantly: n²−1 = (n+1)(n−1)","Perfect square test: middle term = 2×√(first term)×√(last term)"],
+traps:["(a+b)² ≠ a²+b² — the 2ab cross-term is always there","a²+b² does NOT factor over the reals","Factor out GCF first: 6x²+9x = 3x(2x+3)"],
+ex:[{q:"Factor 4x² − 9.",s:"4x²−9 = (2x)²−3² = (2x+3)(2x−3). Difference of squares."},
+{q:"Expand (x−3)².",s:"(x−3)² = x²−2(x)(3)+3² = x²−6x+9."}],
+cards:[["a²−b² factors to","(a+b)(a−b)"],["(a+b)² =","a²+2ab+b²"],["2ab is the","Cross-term in a perfect square trinomial"],["FOIL","First, Outer, Inner, Last"]]},
+
+{id:"qq_lin",t:"Linear Equations: One Variable",ref:"3.2",
+c:"A <b>linear equation</b> has variables only to the first power and no products of variables. It has at most one solution. Solve by isolating the variable: apply inverse operations in reverse PEMDAS order. <b>Identities</b> (always true) have infinitely many solutions; <b>contradictions</b> (0=5) have none.",
+f:["Isolate variable: apply inverse operations to both sides equally","If ax + b = cx + d, then (a−c)x = d−b","Check: substitute solution back into original equation","Word-problem setup: define variable, write equation, solve, check units"],
+tips:["Translate: 'three more than twice a number' = 2n+3","Define your variable before writing the equation — saves rework","If the equation has fractions, multiply through by the LCD first"],
+traps:["Multiplying/dividing by a negative doesn't affect linear equations (only inequalities)","'Twice the sum' = 2(x+y), not 2x+y","'What number added to 5 gives 12?' → n+5=12, not 5+12=n"],
+ex:[{q:"Solve: 5(x−2) = 3x+4.",s:"5x−10=3x+4 → 2x=14 → x=7. Check: 5(7−2)=5(5)=25; 3(7)+4=25 ✓."},
+{q:"A tank holds 200 liters. Water drains at 8 L/min. After how many minutes will 120 liters remain?",s:"200−8t=120 → 8t=80 → t=10 minutes."}],
+cards:[["Identity","Equation true for ALL values (0=0 type)"],["Contradiction","Equation with NO solution (0=5 type)"],["First step when equation has fractions","Multiply through by the LCD"],["'3 less than twice x'","2x − 3"]]},
+
+{id:"qq_sys",t:"Systems of Linear Equations",ref:"3.2",
+c:"A system of two linear equations in two unknowns can be solved by <b>substitution</b> (express one variable in terms of the other, substitute) or <b>elimination</b> (add/subtract the equations to eliminate one variable). Geometrically: one solution = lines intersect; no solution = parallel lines; infinite solutions = same line.",
+f:["Substitution: isolate one variable, substitute into second equation","Elimination: multiply equations so one variable cancels when added","Unique solution: lines with different slopes","No solution: same slope, different intercepts (parallel lines)","Infinite solutions: same line (equations are multiples)"],
+tips:["Elimination is faster when coefficients are already compatible","In word problems, naming variables clearly prevents errors","Check by substituting back into BOTH original equations"],
+traps:["Multiplying one equation changes its coefficients — choose the scale factor carefully","Don't forget to check BOTH equations after solving","'Sam has twice as many as Tom' — decide who is 2x and who is x"],
+ex:[{q:"Solve: 2x+3y=12 and x−y=1.",s:"From eq 2: x=y+1. Sub: 2(y+1)+3y=12 → 2y+2+3y=12 → 5y=10 → y=2, x=3. Check: 2(3)+3(2)=12✓, 3−2=1✓."},
+{q:"How many solutions? 3x+6y=12 and x+2y=4.",s:"Divide eq1 by 3: x+2y=4. Same as eq2 → infinitely many solutions (same line)."}],
+cards:[["Two different slopes → system has","One unique solution"],["Parallel lines (same slope, diff intercept) →","No solution"],["Same line →","Infinitely many solutions"],["Substitution: first step","Isolate one variable in one equation"]]},
+
+{id:"qq_quad",t:"Quadratic Equations",ref:"3.2",
+c:"A <b>quadratic</b> ax²+bx+c=0 (a≠0) has at most two real roots. Solve by: (1) <b>Factoring</b> when a=1 or small — find two numbers that multiply to c and add to b. (2) <b>Quadratic formula</b>: x = (−b±√D)/2a where D = b²−4ac. The <b>discriminant D</b> determines the number of real roots: D>0: 2 roots; D=0: 1 root; D<0: no real roots. Vieta's: sum of roots = −b/a; product = c/a.",
+f:["ax²+bx+c=0 → x = (−b±√(b²−4ac))/2a","Discriminant D = b²−4ac: >0 two roots, =0 one root, <0 none","Sum of roots = −b/a | Product of roots = c/a","Zero Product: (x−r)(x−s)=0 → x=r or x=s"],
+tips:["Vieta's shortcuts: if you know sum and product, you can find the quadratic without solving","When factoring ax²+bx+c with a≠1, use the AC method or the quadratic formula","Quadratic inequality ax²+bx+c>0: factor, find roots, test intervals"],
+traps:["x²=9 has TWO solutions: x=3 AND x=−3 (not just x=3)","(x−3)²=0 has ONE solution: x=3 (double root)","Don't cancel x from both sides of x²=3x — that loses the x=0 solution"],
+tool:"quad",
+ex:[{q:"Solve x²−7x+12=0 by factoring.",s:"Find two numbers: multiply to 12, add to −7 → −3 and −4. So (x−3)(x−4)=0 → x=3 or x=4."},
+{q:"How many real solutions does 2x²+x+5=0 have?",s:"D = 1²−4(2)(5) = 1−40 = −39 < 0. No real solutions."}],
+cards:[["Quadratic formula","x=(−b±√(b²−4ac))/2a"],["D < 0 means","No real roots"],["Sum of roots of ax²+bx+c=0","−b/a"],["Product of roots","c/a"]]},
+
+{id:"qq_ineq",t:"Inequalities",ref:"3.2",
+c:"Inequalities are solved like equations with one critical rule: <b>flip the inequality sign when multiplying or dividing by a negative number</b>. For compound inequalities, apply operations to all three parts simultaneously. Never multiply an inequality by a variable unless you know its sign.",
+f:["x < a ⟺ −a < x < a for absolute value inequalities","Flip ineq sign when ×/÷ by negative","a < b and c < d ⟹ a+c < b+d (addition preserves direction)","But: a < b does NOT give 1/a > 1/b unless both positive"],
+tips:["Graph on a number line to visualize — always helps verify compound inequalities","If you multiply by x in a DS question and don't know x's sign, you can't determine the inequality direction","Reciprocal inequality: if 0 < a < b, then 1/a > 1/b"],
+traps:["Multiplying by a negative flips the sign — the #1 inequality trap","If x² > 4, that means x > 2 OR x < −2 (not just x > 2)","−2 < x doesn't mean x < −2; it means x > −2"],
+ex:[{q:"Solve −3x + 6 > 0.",s:"−3x > −6 → divide by −3 and flip: x < 2."},
+{q:"For what values of x is x² − 5x + 6 ≤ 0?",s:"Factor: (x−2)(x−3) ≤ 0. Roots are 2 and 3. The parabola opens up, so the expression is ≤ 0 between the roots: 2 ≤ x ≤ 3."}],
+cards:[["Divide inequality by negative","Flip the sign"],["x² > 9 means","x > 3 OR x < −3"],["2 < x < 5 and you multiply by −1","−5 < x < −2 (flip both)"],["If 0 < a < b, then 1/a __ 1/b","> (reciprocal flips order)"]]},
+
+{id:"qq_abs",t:"Absolute Value",ref:"3.2",
+c:"<b>|x|</b> = the distance of x from 0 on the number line; it's always ≥ 0. Reading |a−b| as the distance between a and b is the most useful interpretation. For equations: |expr| = k → expr = k or expr = −k (for k > 0). For inequalities: |x| < k → −k < x < k (bounded); |x| > k → x < −k or x > k (unbounded).",
+f:["|x| = x if x ≥ 0; |x| = −x if x < 0","|x| < k ⟺ −k < x < k (k > 0)","|x| > k ⟺ x > k OR x < −k","Triangle inequality: |a+b| ≤ |a|+|b|","|a−b| = |b−a| (symmetric — it's a distance)"],
+tips:["Case method: split into x ≥ 0 and x < 0, solve each, check solutions","|x−3| = 5 means 'x is 5 units from 3' → x=8 or x=−2 — visualize on number line","Always CHECK solutions after removing absolute values"],
+traps:["√(x²) = |x|, not x","If |x| = −2, there's no solution (absolute value can't be negative)","Squaring both sides of |x| = k is valid but don't do it if the RHS is negative"],
+tool:"numline",
+ex:[{q:"Solve |2x−5| = 7.",s:"2x−5=7 → x=6; OR 2x−5=−7 → x=−1. Solutions: x=6 or x=−1. Check: |12−5|=7✓; |−2−5|=7✓."},
+{q:"Solve |x+3| ≤ 5.",s:"−5 ≤ x+3 ≤ 5 → −8 ≤ x ≤ 2."}],
+cards:[["|x| < k means","−k < x < k"],["|x| > k means","x < −k OR x > k"],["Distance between a and b","|a−b|"],["√(x²) =","|x|"]]},
+
+{id:"qq_fn",t:"Functions, Domain & Range",ref:"3.2",
+c:"A <b>function</b> f assigns each input exactly one output. <b>Domain</b>: allowed inputs — exclude values that create division by zero or square roots of negatives. <b>Range</b>: all possible output values. <b>Composition</b> f(g(x)): apply g first, then f. The vertex of a parabola f(x)=ax²+bx+c is at x=−b/2a; the parabola opens up if a>0, down if a<0.",
+f:["Domain: exclude x where denominator=0 or sqrt(negative)","Range: all y values the function can produce","Composition: (f∘g)(x) = f(g(x))","Vertex of ax²+bx+c: x = −b/2a (min if a>0, max if a<0)"],
+tips:["For rational functions, set denominator ≠ 0 for domain","Graph shifts: f(x−h)+k shifts right h, up k","If f(a)=f(b) but a≠b, f is NOT one-to-one (could still be a valid function)"],
+traps:["f(2x) ≠ 2·f(x) in general — substitute carefully","(f∘g)(x) ≠ (g∘f)(x) — order matters in composition","Domain of 1/(x²−4) = all x except ±2"],
+ex:[{q:"If f(x)=2x−3 and g(x)=x²+1, find f(g(2)).",s:"g(2)=4+1=5. f(5)=2(5)−3=7."},
+{q:"What is the domain of f(x) = √(x−4)/(x+2)?",s:"Need x−4 ≥ 0 → x ≥ 4; and x+2 ≠ 0 → x ≠ −2. Since x ≥ 4, the exclusion x≠−2 is automatically satisfied. Domain: x ≥ 4, i.e., [4, ∞)."}],
+cards:[["Domain excludes","Values causing ÷0 or √(negative)"],["Vertex x-coordinate of ax²+bx+c","−b/2a"],["(f∘g)(x)","f(g(x)) — apply g first"],["a > 0 in ax²+bx+c means","Parabola opens up (minimum at vertex)"]]},
+]},
+
+{id:"cg",name:"Coordinate Geometry",ref:"OG Ch. 3.3",topics:[
+{id:"qq_coord",t:"Coordinate Plane: Distance & Midpoint",ref:"3.3",
+c:"The <b>coordinate plane</b> has a horizontal x-axis and vertical y-axis. Points are (x,y). The <b>distance</b> between points (x₁,y₁) and (x₂,y₂) is √((x₂−x₁)²+(y₂−y₁)²) — Pythagorean theorem applied. The <b>midpoint</b> is ((x₁+x₂)/2, (y₁+y₂)/2).",
+f:["Distance = √((Δx)²+(Δy)²)","Midpoint = ((x₁+x₂)/2, (y₁+y₂)/2)","Quadrant I: (+,+); II: (−,+); III: (−,−); IV: (+,−)","Reflection over x-axis: (x,y)→(x,−y); over y-axis: (x,y)→(−x,y)"],
+tips:["Distance formula is just Pythagorean theorem — draw the right triangle if needed","Midpoint midpoint: to find a coordinate from midpoint, use 2×midpoint−known coordinate","If distance is an integer, guess: 3-4-5, 5-12-13, 8-15-17 Pythagorean triples"],
+traps:["Distance is always ≥ 0","Midpoint formula averages each coordinate independently","Slope and distance use the same Δx and Δy but in different formulas"],
+tool:"line",
+ex:[{q:"Find the distance between (−1, 3) and (5, −1).",s:"Δx=6, Δy=−4. Distance=√(36+16)=√52=2√13 ≈ 7.21."},
+{q:"The midpoint of AB is (2, −1). A = (−2, 3). Find B.",s:"Bx = 2×2−(−2) = 6. By = 2×(−1)−3 = −5. B = (6, −5)."}],
+cards:[["Distance formula","√((x₂−x₁)²+(y₂−y₁)²)"],["Midpoint formula","((x₁+x₂)/2, (y₁+y₂)/2)"],["Reflection over x-axis","(x, y) → (x, −y)"],["Quadrant III","Both coordinates negative"]]},
+
+{id:"qq_geom_ang",t:"Lines, Slope & Linear Equations",ref:"3.3",
+c:"A line in slope-intercept form is <b>y = mx + b</b> where m = slope and b = y-intercept. Slope = rise/run = (y₂−y₁)/(x₂−x₁). <b>Parallel lines</b> have equal slopes; <b>perpendicular lines</b> have slopes that are negative reciprocals (m₁×m₂ = −1). A vertical line has undefined slope; horizontal line has slope 0.",
+f:["Slope m = (y₂−y₁)/(x₂−x₁)","y = mx+b (slope-intercept)","y−y₁ = m(x−x₁) (point-slope)","Parallel: m₁ = m₂ | Perpendicular: m₁×m₂ = −1","x-intercept: set y=0; y-intercept: set x=0"],
+tips:["Negative reciprocal: flip and negate; slope 2/3 → perpendicular is −3/2","Two points determine a unique line — always have enough to write an equation","Increasing from left to right → positive slope; decreasing → negative"],
+traps:["Vertical line x=a has UNDEFINED slope (not zero)","Horizontal line y=b has ZERO slope","Same slope ≠ same line — need same y-intercept too for identical lines"],
+ex:[{q:"A line passes through (2, 5) and (6, 13). Write its equation.",s:"m=(13−5)/(6−2)=8/4=2. y−5=2(x−2) → y=2x+1."},
+{q:"What line is perpendicular to y=3x−4 and passes through (0,2)?",s:"Perp slope = −1/3. Through (0,2): y=−(1/3)x+2."}],
+cards:[["Perpendicular slopes multiply to","−1"],["Parallel lines have","Equal slopes"],["Slope of vertical line","Undefined"],["y-intercept: set","x = 0"]]},
+]},
+
+{id:"geo",name:"Euclidean Geometry",ref:"OG Ch. 3.4",topics:[
+{id:"qq_tri",t:"Triangles",ref:"3.4",
+c:"A triangle's interior angles sum to <b>180°</b>. The triangle inequality: the sum of any two sides must exceed the third. <b>Pythagorean theorem</b>: a²+b²=c² for right triangles. Key Pythagorean triples: 3-4-5, 5-12-13, 8-15-17, 7-24-25. Special right triangles: 30-60-90 (sides 1:√3:2) and 45-45-90 (sides 1:1:√2). Area = (1/2)base×height.",
+f:["Angle sum: 180° | Exterior angle = sum of two remote interior angles","Pythagorean theorem: a²+b²=c² (c = hypotenuse)","30-60-90: if short leg=1, sides are 1, √3, 2","45-45-90: if leg=1, sides are 1, 1, √2","Area = (1/2)bh | Heron's: s=(a+b+c)/2, A=√(s(s−a)(s−b)(s−c))","Similar triangles: ratios of sides equal; areas scale as square of ratio"],
+tips:["Pythagorean triples: multiply any triple by k (e.g., 3×=6-8-10, 5×=15-20-25)","Largest angle is opposite the longest side — use to identify the right angle","Equilateral triangle area = (√3/4)s²"],
+traps:["Only the 90° angle is opposite the hypotenuse","Isosceles: BASE angles (not apex) are equal","Area uses perpendicular height, not slant side"],
+ex:[{q:"A right triangle has legs 6 and 8. Find the hypotenuse and the area.",s:"Hyp = √(36+64)=√100=10. (3-4-5 triple scaled by 2.) Area=(1/2)(6)(8)=24."},
+{q:"In a 30-60-90 triangle, the hypotenuse is 10. Find all sides.",s:"Short leg = 10/2 = 5. Long leg = 5√3. Sides: 5, 5√3, 10."}],
+cards:[["Angles in a triangle sum to","180°"],["Pythagorean theorem","a²+b²=c²"],["30-60-90 sides","1 : √3 : 2"],["45-45-90 sides","1 : 1 : √2"]]},
+
+{id:"qq_quad2",t:"Quadrilaterals & Polygons",ref:"3.4",
+c:"<b>Parallelogram</b>: opposite sides parallel and equal; opposite angles equal; diagonals bisect each other. <b>Rectangle</b>: parallelogram with right angles; diagonals equal. <b>Square</b>: rectangle with equal sides. <b>Trapezoid</b>: exactly one pair of parallel sides; area = (1/2)(b₁+b₂)h. Interior angles of an n-gon sum to (n−2)×180°.",
+f:["Rectangle: Area=lw; Perimeter=2(l+w); Diagonal=√(l²+w²)","Square: Area=s²; Perimeter=4s; Diagonal=s√2","Parallelogram: Area=bh (h is perpendicular height)","Trapezoid: Area=(1/2)(b₁+b₂)h","n-gon interior angle sum = (n−2)×180°","Regular n-gon: each interior angle = (n−2)×180/n"],
+tips:["A rhombus has equal sides; Area = (1/2)d₁d₂ (half the product of diagonals)","Square diagonal = side × √2 — memorize this","Sum of exterior angles of ANY convex polygon = 360°"],
+traps:["Rhombus ≠ square (unless all angles are right angles)","Area of parallelogram uses PERPENDICULAR height, not slant side","'Rectangle' with vertices at (0,0), (4,0), (4,3), (0,3): area = 12, perimeter = 14"],
+ex:[{q:"A trapezoid has parallel sides 6 and 10, and height 4. Find its area.",s:"Area = (1/2)(6+10)(4) = (1/2)(16)(4) = 32."},
+{q:"Find the area and diagonal of a rectangle with length 12 and width 5.",s:"Area=60. Diagonal=√(144+25)=√169=13."}],
+cards:[["Rectangle area","length × width"],["Square diagonal","side × √2"],["Trapezoid area","(1/2)(b₁+b₂) × h"],["Interior angle sum of hexagon","(6−2)×180° = 720°"]]},
+
+{id:"qq_circ",t:"Circles",ref:"3.4",
+c:"A circle with radius r has <b>area</b> πr² and <b>circumference</b> 2πr. An <b>arc</b> is a portion of the circumference; its length = (θ/360°)×2πr. A <b>sector</b> is a pie-slice region; its area = (θ/360°)×πr². A <b>chord</b> is a line segment with both endpoints on the circle. The diameter is the longest chord.",
+f:["Area = πr² | Circumference = 2πr","Arc length = (θ/360)×2πr","Sector area = (θ/360)×πr²","Central angle = intercepted arc measure","Inscribed angle = (1/2)×intercepted arc"],
+tips:["π ≈ 3.14 or 22/7 for estimation","Tangent to a circle is perpendicular to the radius at the point of tangency","Inscribed angle theorem: inscribed angle = half the central angle for same arc"],
+traps:["Arc length and area are proportional to the CENTRAL ANGLE, not the chord","Two tangent lines from an external point: the segments are equal in length","Chord length ≠ arc length (arc is curved, chord is straight)"],
+ex:[{q:"A circle has radius 6. Find the arc length and sector area for a central angle of 60°.",s:"Arc = (60/360)×2π(6) = (1/6)(12π) = 2π. Sector area = (60/360)×π(36) = (1/6)(36π) = 6π."},
+{q:"A chord at distance 4 from the center of a circle with radius 5. Find the chord length.",s:"Half-chord = √(5²−4²)=√(25−16)=3. Full chord=6."}],
+cards:[["Circle area","πr²"],["Circumference","2πr"],["Arc length formula","(θ/360)×2πr"],["Inscribed angle =","Half the intercepted arc"]]},
+
+{id:"qq_solid",t:"3D Solids: Volume & Surface Area",ref:"3.4",
+c:"Volume measures how much space a solid occupies; surface area measures the total outer area. Key solids: <b>rectangular prism</b> (box), <b>cylinder</b>, <b>cone</b>, <b>sphere</b>. Scaling a linear dimension by factor k scales volume by k³ and surface area by k².",
+f:["Box: V=lwh, SA=2(lw+lh+wh)","Cylinder: V=πr²h, SA=2πr²+2πrh","Cone: V=(1/3)πr²h, LA=πrl (l=slant)","Sphere: V=(4/3)πr³, SA=4πr²","Cube: V=s³, SA=6s², Diagonal=s√3"],
+tips:["Cylinder inscribed in a rectangular box: r = min(l,w)/2, h=box height","Volume scales as k³, surface area as k²: double the radius → 8× volume, 4× SA","Half-cone: V = (1/3)πr²h — same formula as full cone","Slant height of cone: l = √(r²+h²) (Pythagorean)"],
+traps:["SA of cylinder includes TWO circular ends: 2πr²+2πrh","Cone's lateral area uses slant height l, not vertical height h","Sphere vs hemisphere: hemisphere SA = 2πr²+πr² = 3πr² (curved + flat circle)"],
+ex:[{q:"A cylinder has radius 3 and height 10. Find its volume and total surface area.",s:"V=π(9)(10)=90π. SA=2π(9)+2π(3)(10)=18π+60π=78π."},
+{q:"A sphere's volume is 288π. Find its radius.",s:"(4/3)πr³=288π → r³=216 → r=6."}],
+cards:[["Cylinder volume","πr²h"],["Sphere volume","(4/3)πr³"],["Cone volume","(1/3)πr²h"],["Cube: all diagonals","s√3 (space diagonal)"]]},
+]},
+
+{id:"wp",name:"Word Problems",ref:"OG Ch. 3.4",topics:[
+{id:"qq_rtd",t:"Rate, Time & Distance",ref:"3.4",
+c:"The fundamental equation: <b>Distance = Rate × Time</b>. For two travelers, if moving toward each other, <i>add</i> their rates; if moving in the same direction, <i>subtract</i> rates (relative speed). <b>Average speed</b> is total distance ÷ total time — NEVER the average of the speeds.",
+f:["D = R × T (any two determine the third)","Moving toward: relative speed = r₁+r₂","Moving same direction: relative speed = |r₁−r₂|","Average speed = total distance ÷ total time","Two-leg same distance: avg speed = 2r₁r₂/(r₁+r₂) (harmonic mean)"],
+tips:["Make a D-R-T table with rows for each traveler/leg","Same starting time vs simultaneous meeting: set up t-equations","When 'a train leaves at 9am and another at 11am', they've traveled different durations"],
+traps:["Average speed ≠ (r₁+r₂)/2 unless equal distances","D=RT assumes constant speed throughout each leg","'How far apart are they after 3 hours?' if going opposite: d=(r₁+r₂)×3"],
+tool:"interest",
+ex:[{q:"A car travels 60 km at 30 km/h then 60 km at 60 km/h. Find the average speed for the whole trip.",s:"Time₁=60/30=2h; Time₂=60/60=1h. Avg speed=total D/total T=120/3=40 km/h (NOT 45)."},
+{q:"Two trains start 450 km apart, moving toward each other at 80 and 70 km/h. When do they meet?",s:"Closing rate=80+70=150 km/h. Time=450/150=3 hours."}],
+cards:[["D = ","R × T"],["Average speed","Total distance ÷ total time"],["Two toward: relative speed","Sum of individual speeds"],["Two same direction: relative speed","Difference of speeds"]]},
+
+{id:"qq_work",t:"Work, Combined Rates & Mixtures",ref:"3.4",
+c:"For work, use the <b>rate</b> approach: if A does a job in a hours, A's rate = 1/a jobs per hour. Combined rate = sum of individual rates: 1/T = 1/a + 1/b. For <b>mixtures</b>, the amount of solute is conserved: C₁V₁ + C₂V₂ = C_mix × V_total. This extends to weighted averages.",
+f:["Work rate: 1/T = 1/a + 1/b (combined rate = sum)","T = ab/(a+b) for two workers","Mixture: C₁V₁ + C₂V₂ = C_f(V₁+V₂)","Weighted avg: (r₁n₁+r₂n₂)/(n₁+n₂)"],
+tips:["If A and B finish together in T hrs and A alone takes a, then B alone takes aT/(a−T)","For 'A and B working, then A leaves' problems, work out each phase separately","Mixture shortcut: alligation — the mixing ratio is inversely proportional to the deviations from the final concentration"],
+traps:["Don't add times; ADD rates: 1/4 + 1/6 = 5/12 per hour, NOT 1/10","If one person works faster, they contribute a larger fraction","Two workers don't always start together — watch for staggered starts"],
+ex:[{q:"Pipe A fills a tank in 6 hours, pipe B in 4 hours. Together, how long?",s:"1/6+1/4=2/12+3/12=5/12 per hour. T=12/5=2.4 hours."},
+{q:"How many liters of 40% juice must be added to 60 liters of 20% juice to get 30% juice?",s:"Let x = liters of 40%. 0.4x+0.2(60)=0.3(x+60) → 0.4x+12=0.3x+18 → 0.1x=6 → x=60 liters."}],
+cards:[["Combined work rate","1/a + 1/b = 1/T"],["Time for both together","ab/(a+b)"],["Mixture equation","C₁V₁ + C₂V₂ = C_f(V₁+V₂)"],["Weighted average","(r₁n₁+r₂n₂)/(n₁+n₂)"]]},
+
+{id:"qq_int2",t:"Interest, Profit, Discount & Sequences",ref:"3.4",
+c:"<b>Simple interest</b>: I = Prt (P=principal, r=annual rate, t=years). <b>Compound interest</b>: A = P(1+r/n)^(nt). <b>Profit</b>: Profit = Revenue − Cost; Profit% = Profit/Cost × 100. <b>Discount</b>: final price = original × (1 − discount rate). <b>Sequences</b>: arithmetic (a_n = a₁+(n−1)d) and geometric (a_n = a₁×r^(n−1)).",
+f:["Simple interest: I=Prt","Compound: A=P(1+r/n)^(nt)","Profit% = (Sell−Buy)/Buy × 100","Markup = (Sell−Cost)/Cost | Margin = (Sell−Cost)/Sell","Arithmetic a_n: a₁+(n−1)d | Sum=(n/2)(a₁+a_n)","Geometric a_n: a₁·r^(n−1) | Sum=a₁(1−rⁿ)/(1−r) for r≠1"],
+tips:["For compound with n=1 (annual), A=P(1+r)^t","Arithmetic sum trick: pair first and last terms, each pair sums to (a₁+a_n), multiply by n/2","Geometric sum for infinite series (|r|<1): a₁/(1−r)"],
+traps:["Compound interest ALWAYS gives more than simple interest for same P, r, t (when t>1)","Profit% is on COST (buy price), NOT selling price","Arithmetic vs geometric: constant difference (add) vs constant ratio (multiply)"],
+tool:"interest",
+ex:[{q:"$5000 is invested at 6% annual interest, compounded semi-annually for 2 years. Find the amount.",s:"A=5000(1+0.06/2)^(2×2)=5000(1.03)⁴=5000×1.1255≈$5,627.54."},
+{q:"Find the sum of the arithmetic sequence 3, 7, 11, ..., 99.",s:"d=4, a₁=3, a_n=99. n: 3+(n−1)4=99→n=25. Sum=(25/2)(3+99)=12.5×102=1275."}],
+cards:[["Compound interest formula","A = P(1+r/n)^(nt)"],["Arithmetic nth term","a₁ + (n−1)d"],["Arithmetic series sum","(n/2)(first + last)"],["Profit % base is","Cost price (buy price)"]]},
+]},
+
+{id:"sc",name:"Statistics & Counting",ref:"OG Ch. 3.4",topics:[
+{id:"qq_stat",t:"Descriptive Statistics: Center & Spread",ref:"3.4",
+c:"<b>Mean</b> (average) = sum ÷ count. <b>Median</b> = middle value when sorted (if even count, average the two middle values). <b>Mode</b> = most frequent. <b>Range</b> = max − min. <b>Standard deviation</b> measures spread around the mean — larger SD means data is more spread out. Adding a constant to every value shifts the mean but leaves SD unchanged; multiplying by k scales both mean and SD by k.",
+f:["Mean = Σx/n","Median = middle (or avg of two middles if even)","Range = max − min","SD: larger → more spread; smaller → tighter cluster","Add constant to all: mean shifts, SD unchanged","Multiply all by k: mean×k, SD×k","Outlier effect: mean shifts more than median"],
+tips:["For consecutive integers, mean = median = middle value","If sum of n numbers is S, adding a new number x: new mean=(S+x)/(n+1)","SD questions on GMAT rarely require calculation — just compare spread visually"],
+traps:["Median is resistant to outliers; mean is NOT","Mode can be multiple values or may not exist","Adding the SAME constant to all values doesn't change the SD — only relative spread matters"],
+tool:"stats",
+ex:[{q:"Find the mean and median of 3, 7, 2, 9, 4, 6.",s:"Sorted: 2,3,4,6,7,9. n=6 (even): Median=(4+6)/2=5. Mean=(3+7+2+9+4+6)/6=31/6≈5.17."},
+{q:"A set of 5 numbers has mean 10. What is the sum?",s:"Sum = mean × count = 10 × 5 = 50."}],
+cards:[["Mean =","Sum ÷ Count"],["Median (even count)","Average of two middle values"],["Adding a constant to all values: SD","Stays the same"],["Outlier affects __ most","Mean (median is resistant)"]]},
+
+{id:"qq_ct",t:"Counting: Combinations & Permutations",ref:"3.4",
+c:"The <b>Fundamental Counting Principle</b>: if there are m ways to do A and n ways to do B independently, there are m×n ways to do both. <b>Permutation</b> (order matters): nPr = n!/(n−r)!. <b>Combination</b> (order doesn't matter): nCr = n!/[r!(n−r)!]. Memorize: nCr = nC(n−r); nC0 = nCn = 1.",
+f:["Fundamental principle: m₁×m₂×m₃×…","nPr = n!/(n−r)! [order matters]","nCr = n!/[r!(n−r)!] [order doesn't matter]","nCr = nC(n−r) [complementary counting]","Circular arrangements: (n−1)!","With restrictions: cases = total − invalid"],
+tips:["Key question: does order matter? YES → permutation; NO → combination","Complementary counting: easier to count what you DON'T want, then subtract","For 'at least one' problems: use complement = total − none"],
+traps:["Combination vs permutation: choosing a 3-person committee (no order) vs electing president/VP/secretary (order matters)","When items are identical (e.g., 2 red balls), divide by the number of arrangements of identicals","Circular arrangements: 1 person fixed, arrange remaining (n−1) in (n−1)! ways"],
+tool:"permcomb",
+ex:[{q:"How many ways to choose a 4-person committee from 9 people?",s:"Order doesn't matter → C(9,4) = 9!/(4!5!) = (9×8×7×6)/(4×3×2×1) = 126."},
+{q:"How many 3-letter passwords (no repeats) can be formed from {A,B,C,D,E}?",s:"Order matters → P(5,3) = 5!/(5−3)! = 5×4×3 = 60."}],
+cards:[["Order matters → use","Permutation nPr = n!/(n−r)!"],["Order doesn't matter → use","Combination nCr = n!/r!(n−r)!"],["C(n,r) = ","C(n, n−r)"],["Circular arrangements of n people","(n−1)!"]]},
+
+{id:"qq_prob2",t:"Probability & Sets",ref:"3.4",
+c:"<b>Probability</b> of event A = (favorable outcomes)/(total equally likely outcomes), always 0 ≤ P ≤ 1. P(not A) = 1 − P(A). For two events: P(A or B) = P(A)+P(B)−P(A and B). If independent: P(A and B) = P(A)·P(B). If mutually exclusive: P(A and B)=0 so P(A or B)=P(A)+P(B). The <b>two-set Venn formula</b>: |A∪B| = |A|+|B|−|A∩B|.",
+f:["P(A) = favorable/total","P(not A) = 1 − P(A)","P(A or B) = P(A)+P(B)−P(A and B)","Independent: P(A and B) = P(A)·P(B)","Mutually exclusive: P(A and B) = 0","Venn: |A∪B| = |A|+|B|−|A∩B|","Conditional: P(A|B) = P(A and B)/P(B)"],
+tips:["'At least one' = 1 − P(none) — use complement for efficiency","Independent events with replacement; dependent events without replacement","For 'at least one' of multiple events, complement method beats listing all cases"],
+traps:["Mutually exclusive ≠ independent: mutually exclusive means they CAN'T occur together","P(A or B) ≠ P(A)+P(B) unless mutually exclusive","Dependent events (sampling without replacement): denominator changes each time"],
+tool:"prob",
+ex:[{q:"Two dice are rolled. What is P(sum=7)?",s:"Favorable: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6. Total=36. P=6/36=1/6."},
+{q:"In a class, 15 study French, 12 study Spanish, 5 study both. How many study at least one?",s:"|F∪S| = 15+12−5 = 22."}],
+cards:[["P(at least one) = ","1 − P(none) [complement]"],["P(A and B) for independent","P(A)·P(B)"],["Two-set Venn","A+B−both = A∪B"],["Mutually exclusive P(A or B) =","P(A)+P(B)"]]},
+]},
+];
+</script>
+
+<header class="bar">
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="menubtn" id="menuBtn">☰</button>
+    <span class="ttl">Quantitative Reasoning — Concept Review</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <a href="index.html" style="color:#b9c8dc;font-size:13px;text-decoration:none">← Hub</a>
+    <span class="prog" id="progLbl"></span>
+  </div>
+</header>
+
+<div class="app">
+  <nav class="side" id="side"></nav>
+  <main class="main" id="main"></main>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+let learned={};
+try{learned=JSON.parse(localStorage.getItem('gmatLearned')||'{}')}catch(e){}
+function saveL(){localStorage.setItem('gmatLearned',JSON.stringify(learned))}
+const FLAT=[]; CONTENT.forEach(sec=>sec.topics.forEach(t=>FLAT.push({sec,t})));
+let curId=null;
+
+function doneCount(){return FLAT.filter(x=>learned[x.t.id]).length}
+function renderSide(){
+  $('#side').innerHTML=CONTENT.map(sec=>{
+    const done=sec.topics.filter(t=>learned[t.id]).length;
+    return `<div><div class="sec-hdr">${sec.name}<small>${done}/${sec.topics.length}</small></div>`+
+      sec.topics.map(t=>`<a data-id="${t.id}" class="${t.id===curId?'on':''} ${learned[t.id]?'done':''}">
+        <span class="tick">${learned[t.id]?'✓':''}</span>${t.t}</a>`).join('')+`</div>`;
+  }).join('');
+  $$('#side a').forEach(a=>a.onclick=()=>{openTopic(a.dataset.id);$('#side').classList.remove('open');});
+  $('#progLbl').textContent=`${doneCount()}/${FLAT.length} learned`;
+}
+
+function home(){
+  curId=null; renderSide();
+  $('#main').innerHTML=`<div class="welcome"><div class="hero">
+    <div class="h">Quantitative Reasoning</div>
+    <p style="color:var(--grey);max-width:620px;margin:8px 0 16px">
+      33 topics covering every concept in OG Chapter 3. Read each topic, try the worked examples before revealing, use the interactive tools, flip the formula flashcards, and mark topics learned to track your progress.
+    </p>
+    <div class="secgrid">${CONTENT.map(s=>`<div class="modcard" data-sec="${s.id}">
+      <h3>${s.name}</h3><p>${s.topics.length} topics &middot; ${s.ref}</p></div>`).join('')}</div>
+  </div>
+  <p class="foot">Part of the GMAT Focus 2025–26 Prep Hub. <a href="index.html">← Return to hub</a></p></div>`;
+  $$('.modcard').forEach(c=>c.onclick=()=>{const s=CONTENT.find(x=>x.id===c.dataset.sec);openTopic(s.topics[0].id);});
+}
+
+function openTopic(id){
+  curId=id; renderSide(); window.scrollTo(0,0);
+  const idx=FLAT.findIndex(x=>x.t.id===id);
+  const {sec,t}=FLAT[idx];
+  const prev=idx>0?FLAT[idx-1].t:null, next=idx<FLAT.length-1?FLAT[idx+1].t:null;
+  let h=`<div class="crumb">Quantitative · ${sec.name} · ${t.ref}</div><h1 class="tt">${t.t}</h1>`;
+  h+=`<div class="concept">${t.c}</div>`;
+  if(t.f&&t.f.length){
+    h+=`<div class="fbox"><h4>Key Formulas &amp; Rules</h4><ul>${t.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  }
+  if(t.tips&&t.tips.length){
+    h+=`<div class="tips"><h4>GMAT Tips</h4><ul>${t.tips.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  }
+  if(t.traps&&t.traps.length){
+    h+=`<div class="traps"><h4>Common Traps &amp; Mistakes</h4><ul>${t.traps.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  }
+  if(t.tool){h+=`<div class="sech">🔧 Interactive Tool — try it yourself</div><div id="toolMount"></div>`;}
+  if(t.ex&&t.ex.length){
+    h+=`<div class="sech">✏️ Worked Examples — try first, then reveal</div>`;
+    t.ex.forEach((e,i)=>{h+=`<div class="ex">
+      <div class="q"><span class="lbl">Example ${i+1}</span>${e.q}</div>
+      <div class="reveal"><button class="btn-ghost" data-rev="${i}">Show solution ▼</button></div>
+      <div class="sol" id="sol${i}" style="display:none"><b>Solution.</b> ${e.s}</div></div>`;});
+  }
+  if(t.cards&&t.cards.length){
+    h+=`<div class="sech">🗂️ Formula Flashcards — click to flip</div><div class="cards" id="cards"></div>`;
+  }
+  h+=`<div class="navbtns">
+    <div>${prev?`<button class="btn-ghost" id="prevB">◀ ${prev.t}</button>`:''}</div>
+    <button class="${learned[id]?'btn-ghost':'btn-green'}" id="learnB">${learned[id]?'✓ Learned — click to unmark':'Mark as learned ✓'}</button>
+    <div>${next?`<button class="btn-primary" id="nextB">${next.t} ▶</button>`:''}</div>
+  </div>`;
+  $('#main').innerHTML=h;
+  $$('[data-rev]').forEach(b=>b.onclick=()=>{
+    const s=$('#sol'+b.dataset.rev); s.style.display='block'; b.style.display='none';
+  });
+  if(t.cards){
+    $('#cards').innerHTML=t.cards.map(c=>`<div class="flip"><div class="inner">
+      <div class="face front">${c[0]}</div>
+      <div class="face back">${c[1]}</div></div></div>`).join('');
+    $$('#cards .flip').forEach(f=>f.onclick=()=>f.classList.toggle('flipped'));
+  }
+  if(t.tool&&TOOLS[t.tool])TOOLS[t.tool]($('#toolMount'));
+  $('#learnB').onclick=()=>{learned[id]=!learned[id];saveL();openTopic(id);};
+  if(prev)$('#prevB').onclick=()=>openTopic(prev.id);
+  if(next)$('#nextB').onclick=()=>openTopic(next.id);
+}
+
+$('#menuBtn').onclick=()=>$('#side').classList.toggle('open');
+
+/* ===== INTERACTIVE TOOLS ===== */
+function tool(mount,title,body,wire){
+  mount.innerHTML=`<div class="tool"><h4>${title}</h4>${body}<div class="out" id="o"></div></div>`;
+  wire(mount.querySelector('.out'));
+}
+const TOOLS={
+  divtool(m){
+    tool(m,"Divisibility &amp; Remainder Explorer",
+      `<label>Number a</label><input type="number" id="a" value="100" style="width:90px">
+       <label>Divisor d</label><input type="number" id="d" value="7" style="width:70px">
+       <button class="btn-primary" id="go">Compute</button>`,
+    o=>{
+      m.querySelector('#go').onclick=()=>{
+        const a=Math.floor(+m.querySelector('#a').value),d=Math.floor(+m.querySelector('#d').value);
+        if(d===0){o.textContent='Divisor cannot be 0.';return;}
+        const q=Math.floor(a/d), r=a-d*q;
+        const divByList=[2,3,4,5,6,7,8,9,10,11].filter(n=>a%n===0);
+        o.innerHTML=`<b>${a}</b> = <b>${d}</b> × <b>${q}</b> + <b>${r}</b> &nbsp;(quotient=${q}, remainder=${r})<br>
+          ${a} is divisible by: <b>${divByList.join(', ')||'none of 2–11'}</b>`;
+      };m.querySelector('#go').click();
+    });
+  },
+  factor(m){
+    tool(m,"Prime Factorization &amp; Factor Count",
+      `<label>n</label><input type="number" id="n" value="360" min="2" style="width:100px">
+       <button class="btn-primary" id="go">Factor</button>`,
+    o=>{
+      m.querySelector('#go').onclick=()=>{
+        let n=Math.floor(+m.querySelector('#n').value);
+        if(n<2){o.textContent='Enter integer ≥ 2.';return;}
+        let x=n,f={};
+        for(let d=2;d*d<=x;d++){while(x%d===0){f[d]=(f[d]||0)+1;x/=d;}}
+        if(x>1)f[x]=(f[x]||0)+1;
+        const parts=Object.entries(f).map(([p,e])=>e>1?`${p}<sup>${e}</sup>`:`${p}`).join(' × ');
+        const cnt=Object.values(f).reduce((a,e)=>a*(e+1),1);
+        const sumF=Object.entries(f).reduce((s,[p,e])=>{let ps=0,pk=1;for(let i=0;i<=e;i++){ps+=pk;pk*=+p;}return s*ps;},1);
+        o.innerHTML=`${n} = <b>${parts||n}</b><br>
+          # positive factors = ${Object.values(f).map(e=>`(${e}+1)`).join('×')} = <b>${cnt}</b><br>
+          Sum of all factors = <b>${sumF}</b>`;
+      };m.querySelector('#go').click();
+    });
+  },
+  percent(m){
+    tool(m,"Percent Change &amp; Successive Changes",
+      `<label>Old value</label><input type="number" id="o1" value="80" style="width:80px">
+       <label>New value</label><input type="number" id="n1" value="100" style="width:80px">
+       <button class="btn-primary" id="go">Compute</button>
+       <br><label style="margin-top:8px;display:block">Successive: change 1%</label>
+       <input type="number" id="r1" value="20" style="width:70px">
+       <label>change 2%</label><input type="number" id="r2" value="-30" style="width:70px">
+       <button class="btn-primary" id="go2" style="margin-top:4px">Net change</button>`,
+    o=>{
+      m.querySelector('#go').onclick=()=>{
+        const a=+m.querySelector('#o1').value,b=+m.querySelector('#n1').value;
+        if(a===0){o.textContent='Old value cannot be 0.';return;}
+        const ch=(b-a)/a*100;
+        o.innerHTML=`% change = <b>${ch.toFixed(2)}%</b> (${ch>=0?'increase':'decrease'}). New is <b>${(b/a*100).toFixed(1)}%</b> of old.`;
+      };
+      m.querySelector('#go2').onclick=()=>{
+        const r1=+m.querySelector('#r1').value/100,r2=+m.querySelector('#r2').value/100;
+        const net=((1+r1)*(1+r2)-1)*100;
+        o.innerHTML=`Successive ×${(1+r1).toFixed(2)} then ×${(1+r2).toFixed(2)} = ×${((1+r1)*(1+r2)).toFixed(4)} → net change = <b>${net.toFixed(2)}%</b>`;
+      };
+      m.querySelector('#go').click();
+    });
+  },
+  numline(m){
+    tool(m,"Absolute Value &amp; Number Line Distance",
+      `<label>a</label><input type="number" id="a" value="-3" style="width:80px">
+       <label>b</label><input type="number" id="b" value="5" style="width:80px">
+       <button class="btn-primary" id="go">Compute</button>`,
+    o=>{
+      m.querySelector('#go').onclick=()=>{
+        const a=+m.querySelector('#a').value,b=+m.querySelector('#b').value;
+        o.innerHTML=`|a| = <b>${Math.abs(a)}</b> &nbsp;|b| = <b>${Math.abs(b)}</b><br>
+          Distance |a − b| = |${a} − ${b}| = <b>${Math.abs(a-b)}</b><br>
+          Midpoint of a and b: <b>${(a+b)/2}</b>`;
+      };m.querySelector('#go').click();
+    });
+  },
+  quad(m){
+    tool(m,"Quadratic Solver: ax² + bx + c = 0",
+      `<label>a</label><input type="number" id="a" value="1" style="width:70px">
+       <label>b</label><input type="number" id="b" value="-5" style="width:70px">
+       <label>c</label><input type="number" id="c" value="6" style="width:70px">
+       <button class="btn-primary" id="go">Solve</button>`,
+    o=>{
+      m.querySelector('#go').onclick=()=>{
+        const a=+m.querySelector('#a').value,b=+m.querySelector('#b').value,c=+m.querySelector('#c').value;
+        if(a===0){o.textContent='a ≠ 0 for a quadratic.';return;}
+        const D=b*b-4*a*c;
+        let r=`Discriminant D = b²−4ac = ${b}²−4(${a})(${c}) = <b>${D}</b>. `;
+        if(D<0)r+='No real roots.';
+        else if(D===0)r+=`One root: x = <b>${(-b/(2*a)).toFixed(4)}</b>`;
+        else{const s=Math.sqrt(D);r+=`Roots: x = <b>${((-b+s)/(2*a)).toFixed(4)}</b> and <b>${((-b-s)/(2*a)).toFixed(4)}</b><br>Sum=${(-b/a).toFixed(4)}, Product=${(c/a).toFixed(4)}`;}
+        o.innerHTML=r;
+      };m.querySelector('#go').click();
+    });
+  },
+  line(m){
+    tool(m,"Slope, Equation &amp; Distance from Two Points",
+      `<label>(x₁,y₁)</label><input type="number" id="x1" value="1" style="width:60px">
+       <input type="number" id="y1" value="2" style="width:60px">
+       <label>(x₂,y₂)</label><input type="number" id="x2" value="5" style="width:60px">
+       <input type="number" id="y2" value="10" style="width:60px">
+       <button class="btn-primary" id="go">Compute</button>`,
+    o=>{
+      m.querySelector('#go').onclick=()=>{
+        const x1=+m.querySelector('#x1').value,y1=+m.querySelector('#y1').value,x2=+m.querySelector('#x2').value,y2=+m.querySelector('#y2').value;
+        if(x1===x2){o.innerHTML=`Vertical line <b>x=${x1}</b> — slope undefined. Distance = <b>${Math.abs(y2-y1)}</b>`;return;}
+        const m2=(y2-y1)/(x2-x1),bi=y1-m2*x1,dist=Math.sqrt((x2-x1)**2+(y2-y1)**2);
+        const midx=(x1+x2)/2,midy=(y1+y2)/2;
+        o.innerHTML=`Slope m = <b>${m2.toFixed(4)}</b><br>Equation: <b>y = ${m2.toFixed(2)}x ${bi>=0?'+':'−'} ${Math.abs(bi).toFixed(2)}</b><br>Distance = <b>${dist.toFixed(4)}</b> &nbsp; Midpoint = <b>(${midx}, ${midy})</b>`;
+      };m.querySelector('#go').click();
+    });
+  },
+  stats(m){
+    tool(m,"Mean · Median · Mode · Range · Standard Deviation",
+      `<label>Values (comma-separated)</label><br>
+       <input type="text" id="v" value="4, 8, 6, 10, 4, 12" style="width:280px">
+       <button class="btn-primary" id="go">Compute</button>`,
+    o=>{
+      m.querySelector('#go').onclick=()=>{
+        let a=m.querySelector('#v').value.split(',').map(x=>parseFloat(x.trim())).filter(x=>!isNaN(x));
+        if(!a.length){o.textContent='Enter numbers.';return;}
+        const n=a.length,sum=a.reduce((s,x)=>s+x,0),mean=sum/n;
+        const s=[...a].sort((x,y)=>x-y);
+        const med=n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;
+        const cnt={};a.forEach(x=>cnt[x]=(cnt[x]||0)+1);
+        const mx=Math.max(...Object.values(cnt));
+        const modes=Object.keys(cnt).filter(k=>cnt[k]===mx);
+        const variance=a.reduce((q,x)=>q+(x-mean)**2,0)/n;
+        const sd=Math.sqrt(variance);
+        o.innerHTML=`n=<b>${n}</b> | Sum=<b>${sum}</b><br>Mean=<b>${mean.toFixed(3)}</b> | Median=<b>${med}</b> | Mode=<b>${mx>1?modes.join(', '):'none (all equal freq)'}</b><br>Range=<b>${s[n-1]-s[0]}</b> | Variance=<b>${variance.toFixed(3)}</b> | SD=<b>${sd.toFixed(3)}</b>`;
+      };m.querySelector('#go').click();
+    });
+  },
+  permcomb(m){
+    tool(m,"Permutations &amp; Combinations nPr / nCr",
+      `<label>n</label><input type="number" id="n" value="9" min="0" max="20" style="width:70px">
+       <label>r</label><input type="number" id="r" value="4" min="0" max="20" style="width:70px">
+       <button class="btn-primary" id="go">Compute</button>`,
+    o=>{
+      const fact=k=>{let f=1;for(let i=2;i<=k;i++)f*=i;return f;};
+      m.querySelector('#go').onclick=()=>{
+        const n=Math.floor(+m.querySelector('#n').value),r=Math.floor(+m.querySelector('#r').value);
+        if(r>n||n<0||r<0){o.textContent='Need 0 ≤ r ≤ n.';return;}
+        const P=fact(n)/fact(n-r), C=fact(n)/(fact(r)*fact(n-r));
+        o.innerHTML=`<b>Permutation</b> (order matters) nPr = ${n}!/${n-r}! = <b>${P}</b><br>
+          <b>Combination</b> (order doesn't) nCr = ${n}!/[${r}!·${n-r}!] = <b>${C}</b>`;
+      };m.querySelector('#go').click();
+    });
+  },
+  prob(m){
+    tool(m,"Probability Calculator",
+      `<label>Favorable outcomes</label><input type="number" id="f" value="6" style="width:70px">
+       <label>Total outcomes</label><input type="number" id="t" value="36" style="width:70px">
+       <button class="btn-primary" id="go">Compute</button>`,
+    o=>{
+      m.querySelector('#go').onclick=()=>{
+        const f=+m.querySelector('#f').value,t=+m.querySelector('#t').value;
+        if(t<=0){o.textContent='Total must be > 0.';return;}
+        const p=f/t;
+        o.innerHTML=`P(event) = ${f}/${t} = <b>${p.toFixed(4)}</b> ≈ <b>${(p*100).toFixed(1)}%</b><br>P(not event) = <b>${(1-p).toFixed(4)}</b> ≈ <b>${((1-p)*100).toFixed(1)}%</b>`;
+      };m.querySelector('#go').click();
+    });
+  },
+  interest(m){
+    tool(m,"Compound Interest A = P(1 + r/n)^(nt)",
+      `<label>P</label><input type="number" id="P" value="5000" style="width:90px">
+       <label>r %</label><input type="number" id="r" value="6" style="width:65px">
+       <label>n/yr</label><input type="number" id="n" value="2" style="width:55px">
+       <label>t yrs</label><input type="number" id="tt" value="2" style="width:55px">
+       <button class="btn-primary" id="go">Compute</button>`,
+    o=>{
+      m.querySelector('#go').onclick=()=>{
+        const P=+m.querySelector('#P').value,r=+m.querySelector('#r').value/100,
+              n=+m.querySelector('#n').value,t=+m.querySelector('#tt').value;
+        const A=P*Math.pow(1+r/n,n*t);
+        const simple=P*(1+r*t);
+        o.innerHTML=`Compound A = <b>$${A.toFixed(2)}</b>. Interest = <b>$${(A-P).toFixed(2)}</b><br>Simple: A = <b>$${simple.toFixed(2)}</b> (interest = $${(simple-P).toFixed(2)})<br>Compound advantage: <b>$${(A-simple).toFixed(2)}</b> more`;
+      };m.querySelector('#go').click();
+    });
+  },
+};
+
+home();
+</script></body></html>

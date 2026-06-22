@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GMAT Focus 2025–26 — My Prep Hub</title>
+<style>
+:root{--navy:#10243f;--blue:#1f5fa6;--blue2:#2f73c2;--light:#eef3f9;--light2:#f6f8fb;--line:#d3dded;
+--green:#0f6e4f;--greenbg:#e7f4ee;--grey:#5b6b80;--purple:#5b4bc4;--amber:#b45309;--amberbg:#fff7ed;
+--quant:#1f5fa6;--quantbg:#e6eefa;--di:#0f6e4f;--dibg:#e7f4ee;--verbal:#7c3aed;--verbalbg:#f0ecfb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:#16202e;background:#eef1f5;line-height:1.55}
+a{text-decoration:none;color:inherit}
+header{background:var(--navy);color:#fff;padding:44px 20px 36px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -20%,#1f5fa640 0%,transparent 70%)}
+header h1{margin:0 0 8px;font-size:32px;font-weight:800;position:relative}
+header p{margin:0;color:#b9c8dc;font-size:15px;position:relative}
+.badge{display:inline-block;background:#1f5fa6;border:1px solid #2f73c2;color:#b9c8dc;font-size:11px;
+  font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:3px 10px;border-radius:20px;margin-bottom:14px;position:relative}
+.wrap{max-width:1000px;margin:0 auto;padding:28px 18px 70px}
+.section-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--grey);margin:32px 0 12px}
+
+/* Section trio */
+.trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
+@media(max-width:740px){.trio{grid-template-columns:1fr}}
+.sec-card{border-radius:16px;padding:22px 22px 20px;border:1px solid transparent;transition:.15s;cursor:pointer}
+.sec-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(16,36,63,.12)}
+.sec-card.quant{background:var(--quantbg);border-color:#b8cef4}
+.sec-card.di{background:var(--dibg);border-color:#a8d5bd}
+.sec-card.verbal{background:var(--verbalbg);border-color:#d5caf6}
+.sec-card .ic{font-size:28px;margin-bottom:10px}
+.sec-card h2{margin:0 0 6px;font-size:19px;font-weight:800}
+.sec-card.quant h2{color:var(--quant)}.sec-card.di h2{color:var(--di)}.sec-card.verbal h2{color:var(--verbal)}
+.sec-card p{margin:0 0 14px;color:var(--grey);font-size:13.5px;line-height:1.45}
+.sec-card .pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.3px}
+.tag.q{background:#dae5f9;color:#1a4e8a}.tag.d{background:#d0eadc;color:#0a5a3e}.tag.v{background:#e8e0fb;color:#5b24c0}
+.sec-card .golink{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14px;padding:9px 18px;border-radius:9px;color:#fff;transition:.12s}
+.sec-card.quant .golink{background:var(--quant)}.sec-card.di .golink{background:var(--di)}.sec-card.verbal .golink{background:var(--verbal)}
+.sec-card .golink:hover{opacity:.88;transform:translateX(2px)}
+.sec-card .stats{font-size:12px;color:var(--grey);margin-left:auto;display:flex;gap:12px;align-items:center;margin-top:4px}
+.sec-card .link-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+
+/* Tools grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+@media(max-width:580px){.grid{grid-template-columns:1fr}}
+.card{display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;
+  transition:.12s;box-shadow:0 1px 3px rgba(16,36,63,.05)}
+.card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 6px 18px rgba(16,36,63,.10)}
+.card .ic{font-size:28px;margin-bottom:8px}
+.card h3{margin:0 0 4px;color:var(--navy);font-size:18px;font-weight:700}
+.card p{margin:0;color:var(--grey);font-size:13.5px;line-height:1.4}
+.card .go{display:inline-block;margin-top:12px;color:var(--blue);font-weight:700;font-size:14px}
+.tag-sm{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;
+  padding:2px 8px;border-radius:20px;margin-bottom:6px}
+.tag-sm.test{background:#e6eefa;color:var(--blue)}.tag-sm.ref{background:var(--light);color:var(--navy)}
+.tag-sm.learn{background:#f0ecfb;color:var(--purple)}
+
+/* Daily routine */
+.routine{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:24px}
+.routine h3{margin:0 0 16px;color:var(--navy);font-size:16px;font-weight:800}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:640px){.steps{grid-template-columns:1fr}}
+.step{display:flex;gap:13px;padding:12px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:none}
+.step .n{flex:none;width:30px;height:30px;border-radius:50%;color:#fff;font-weight:800;
+  display:flex;align-items:center;justify-content:center;font-size:13px}
+.step.s1 .n{background:var(--quant)}.step.s2 .n{background:var(--di)}.step.s3 .n{background:var(--verbal)}.step.s4 .n{background:var(--navy)}
+.step b{color:var(--navy);font-size:14px}
+.step .d{font-size:13px;color:#33455c}
+
+/* Score tracker */
+.tracker{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:14px}
+.tracker h3{margin:0 0 12px;color:var(--navy);font-size:16px;font-weight:800}
+.prog-bars{display:grid;gap:10px}
+.pbar-row{display:flex;align-items:center;gap:10px}
+.pbar-label{width:120px;font-size:13px;color:var(--grey);font-weight:600}
+.pbar-track{flex:1;height:10px;background:var(--light);border-radius:6px;overflow:hidden}
+.pbar-fill{height:100%;border-radius:6px;transition:.6s}
+.pbar-pct{width:36px;font-size:12px;font-weight:700;color:var(--navy);text-align:right}
+.note{background:var(--amberbg);border:1px solid var(--amber);color:#7c3a06;border-radius:11px;padding:14px 16px;margin-top:16px;font-size:13.5px}
+.foot{color:var(--grey);font-size:12px;text-align:center;margin-top:28px}
+</style></head><body>
+
+<header>
+  <div class="badge">GMAT Official Guide 2025–2026</div>
+  <h1>GMAT Focus — My Prep Hub</h1>
+  <p>Three learning sections · Interactive concepts · 798 official questions · Timed practice &amp; error log</p>
+</header>
+
+<div class="wrap">
+  <div class="section-label">Learn by section — start here</div>
+
+  <div class="trio">
+    <a class="sec-card quant" href="GMAT_Quant.html">
+      <div class="ic">🔢</div>
+      <h2>Quantitative Reasoning</h2>
+      <p>33 topics covering every OG Chapter 3 concept: Arithmetic, Algebra, Coordinate & Euclidean Geometry, and Word Problems.</p>
+      <div class="pill-row">
+        <span class="tag q">Arithmetic</span><span class="tag q">Algebra</span>
+        <span class="tag q">Geometry</span><span class="tag q">Word Problems</span><span class="tag q">Statistics</span>
+      </div>
+      <div class="link-row">
+        <span class="golink">Open Quant →</span>
+        <span class="stats">33 topics · tools · flashcards</span>
+      </div>
+    </a>
+
+    <a class="sec-card di" href="GMAT_DI.html">
+      <div class="ic">📊</div>
+      <h2>Data Insights</h2>
+      <p>19 topics covering OG Chapters 5 &amp; 6: reading charts, inferring from data, DS strategy, and all five DI question formats.</p>
+      <div class="pill-row">
+        <span class="tag d">Charts &amp; Tables</span><span class="tag d">Data Sufficiency</span>
+        <span class="tag d">Two-Part Analysis</span><span class="tag d">MSR</span>
+      </div>
+      <div class="link-row">
+        <span class="golink">Open DI →</span>
+        <span class="stats">19 topics · DS trainer · visuals</span>
+      </div>
+    </a>
+
+    <a class="sec-card verbal" href="GMAT_Verbal.html">
+      <div class="ic">📖</div>
+      <h2>Verbal Reasoning</h2>
+      <p>20 topics covering OG Chapters 7 &amp; 8: RC passage types, all five CR question families, and argument analysis tools.</p>
+      <div class="pill-row">
+        <span class="tag v">Reading Comp</span><span class="tag v">Critical Reasoning</span>
+        <span class="tag v">Argument Analysis</span><span class="tag v">Logic</span>
+      </div>
+      <div class="link-row">
+        <span class="golink">Open Verbal →</span>
+        <span class="stats">20 topics · arg analyzer · flashcards</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-label">Practice &amp; reference</div>
+
+  <div class="grid">
+    <a class="card" href="GMAT_Practice.html">
+      <div class="ic">📝</div>
+      <span class="tag-sm test">Practice</span>
+      <h3>Timed Practice &amp; Error Log</h3>
+      <p>All 798 official questions (PS, DS, RC, CR, Two-Part). Exam &amp; study modes, per-question timer, automatic scoring, and a persistent error log with "why likely wrong" explanations.</p>
+      <span class="go">Open the quiz app →</span>
+    </a>
+    <a class="card" href="GMAT_Concepts.html">
+      <div class="ic">📘</div>
+      <span class="tag-sm learn">Learn</span>
+      <h3>Combined Concept Tutor</h3>
+      <p>All 28 core topics in one scrollable tutor — concepts, try-then-reveal examples, 10 interactive calculators, formula flashcards, and progress tracking.</p>
+      <span class="go">Open the tutor →</span>
+    </a>
+    <a class="card" href="GMAT_Review_Handbook.pdf">
+      <div class="ic">📑</div>
+      <span class="tag-sm ref">Reference</span>
+      <h3>Complete Review Handbook</h3>
+      <p>12-page concept handbook covering every OG review chapter topic — your read-through and night-before reference.</p>
+      <span class="go">Open the handbook →</span>
+    </a>
+    <a class="card" href="GMAT_Cheat_Sheet.pdf">
+      <div class="ic">⚡</div>
+      <span class="tag-sm ref">Reference</span>
+      <h3>Concise Cheat Sheet</h3>
+      <p>Fast, printable 5-page formula-and-rules reference. All critical formulas, divisibility rules, DS choices, and CR question families on one sheet.</p>
+      <span class="go">Open the cheat sheet →</span>
+    </a>
+  </div>
+
+  <!-- Progress tracker -->
+  <div class="tracker" id="trackerCard">
+    <h3>Your progress at a glance</h3>
+    <div class="prog-bars">
+      <div class="pbar-row"><span class="pbar-label">Quant topics</span><div class="pbar-track"><div class="pbar-fill" id="pbQ" style="background:var(--quant)"></div></div><span class="pbar-pct" id="pctQ">—</span></div>
+      <div class="pbar-row"><span class="pbar-label">DI topics</span><div class="pbar-track"><div class="pbar-fill" id="pbD" style="background:var(--di)"></div></div><span class="pbar-pct" id="pctD">—</span></div>
+      <div class="pbar-row"><span class="pbar-label">Verbal topics</span><div class="pbar-track"><div class="pbar-fill" id="pbV" style="background:var(--verbal)"></div></div><span class="pbar-pct" id="pctV">—</span></div>
+      <div class="pbar-row"><span class="pbar-label">Practice Qs done</span><div class="pbar-track"><div class="pbar-fill" id="pbP" style="background:var(--navy)"></div></div><span class="pbar-pct" id="pctP">—</span></div>
+    </div>
+  </div>
+
+  <div class="routine">
+    <h3>Suggested daily study loop (~60–75 min)</h3>
+    <div class="steps">
+      <div class="step s1"><div class="n">1</div><div class="d"><b>Review concept (15–20 min)</b><br>Open Quant / DI / Verbal, read 1–2 topics, try examples before revealing, use the interactive tools, flip cards, mark learned.</div></div>
+      <div class="step s2"><div class="n">2</div><div class="d"><b>Drill matching questions (30–40 min)</b><br>Open Practice, filter to the same question type, run a timed set in Exam mode. Then switch to Study mode to read every explanation.</div></div>
+      <div class="step s3"><div class="n">3</div><div class="d"><b>Review error log (10–15 min)</b><br>Highest-leverage step. Open the error log, read "why likely wrong" for each miss, then run "Drill my mistakes." Cleared once you get them right.</div></div>
+      <div class="step s4"><div class="n">4</div><div class="d"><b>Reference as needed</b><br>Keep the Cheat Sheet or Handbook open for formula lookups. Use the in-page formula boxes without leaving the concept tutor.</div></div>
+    </div>
+  </div>
+
+  <div class="note"><b>Two things to know.</b> (1) Progress (learned topics, error log, session scores) saves in <i>this browser on this device</i> — it does not sync. Pick one main device for tracked practice. (2) Three DI question types (Graphics Interpretation, Multi-Source Reasoning, Table Analysis) are available only in the publisher's Online Question Bank at <b>mba.com</b> (access code inside your Official Guide).</div>
+
+  <div class="foot">For personal study use only. Concept content is original; practice questions, answer keys, and explanations are from the GMAT Official Guide 2025–2026 (GMAC). Do not publish on a public URL.</div>
+</div>
+
+<script>
+// Read learned progress from localStorage to populate the progress bars
+function pct(done, total){
+  if(!total) return '—';
+  const p=Math.round(done/total*100);
+  return p+'%';
+}
+try {
+  const learned = JSON.parse(localStorage.getItem('gmatLearned')||'{}');
+  const quantKeys = ['q_numbers','q_factors','q_primes','q_exponents','q_decimals','q_algebra','q_quadratics','q_functions','q_lines','q_percent','q_fractions','q_interest','q_stats','q_sets','q_prob','q_sequences','q_estimation',
+    'qq_int','qq_gcd','qq_prime','qq_frac','qq_dec','qq_pct','qq_exp','qq_ratio','qq_expr','qq_lin','qq_sys','qq_quad','qq_ineq','qq_abs','qq_fn','qq_coord','qq_geom_ang','qq_tri','qq_quad2','qq_circ','qq_solid','qq_rtd','qq_work','qq_mix','qq_int2','qq_seq','qq_stat','qq_ct','qq_prob2'];
+  const diKeys = ['di_types','di_displays','di_patterns','di_ds','di_qtypes',
+    'dd_datatype','dd_tables','dd_bar','dd_hist','dd_line','dd_scatter','dd_pie','dd_desc','dd_dist','dd_causal','dd_traps','dd_dsfmt','dd_dsstrat','dd_dstrap','dd_msr','dd_ta','dd_gi2pa'];
+  const vKeys = ['v_arg','v_assume','v_induct','v_deduct','v_rc','v_cr',
+    'vv_rcpass','vv_active','vv_mainidea','vv_support','vv_infer','vv_apply','vv_eval','vv_rctraps','vv_anatomy','vv_claims','vv_scope','vv_assume2','vv_str','vv_weak','vv_inf','vv_disc','vv_flaw','vv_bold','vv_eval2','vv_crstrat'];
+  const qDone = quantKeys.filter(k=>learned[k]).length;
+  const dDone = diKeys.filter(k=>learned[k]).length;
+  const vDone = vKeys.filter(k=>learned[k]).length;
+  const qTotal=quantKeys.length, dTotal=diKeys.length, vTotal=vKeys.length;
+  document.getElementById('pbQ').style.width=pct(qDone,qTotal);
+  document.getElementById('pbD').style.width=pct(dDone,dTotal);
+  document.getElementById('pbV').style.width=pct(vDone,vTotal);
+  document.getElementById('pctQ').textContent=pct(qDone,qTotal);
+  document.getElementById('pctD').textContent=pct(dDone,dTotal);
+  document.getElementById('pctV').textContent=pct(vDone,vTotal);
+
+  const hist = JSON.parse(localStorage.getItem('gmatHistory')||'[]');
+  const totalSeen = new Set(hist.flatMap(h=>h.ids||[])).size;
+  const p = Math.min(100, Math.round(totalSeen/798*100));
+  document.getElementById('pbP').style.width=p+'%';
+  document.getElementById('pctP').textContent=p+'%';
+} catch(e){}
+</script>
+</body></html>
