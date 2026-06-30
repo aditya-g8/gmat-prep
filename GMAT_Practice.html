@@ -21,7 +21,7 @@ button:active{transform:translateY(1px)}
 a{color:var(--blue)}
 
 /* top bar */
-header.bar{background:var(--navy);color:#fff;padding:11px 0}
+header.bar{background:var(--navy);color:#fff;padding:11px 0;height:auto;border-radius:0;overflow:visible;margin:0}
 header.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
 header.bar .ttl{font-weight:700;font-size:16px;letter-spacing:.2px}
 header.bar .meta{font-size:13px;color:#b9c8dc;display:flex;gap:16px;align-items:center}
@@ -106,7 +106,7 @@ kbd{background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-
 </head>
 <body>
 <header class="bar"><div class="wrap">
-  <div class="ttl" id="barTitle"><a href="index.html" style="color:#b9c8dc;text-decoration:none;font-size:13px;font-weight:400">← Hub</a> &nbsp; GMAT Focus Practice</div>
+  <div class="ttl" id="barTitle"><a href="index.html" style="color:#b9c8dc;text-decoration:none;font-size:13px;font-weight:400">← Hub</a> &nbsp;<span id="barTitleText">GMAT Focus Practice</span></div>
   <div class="meta" id="barMeta"></div>
 </div></header>
 
@@ -336,7 +336,7 @@ function persistCurrent(){store.current=S;save();}
 function curQ(){return S.qs[S.idx]}
 function renderQuiz(){
   show('quiz');const q=curQ();
-  $('#barTitle').textContent=q.section+' — '+q.type;
+  $('#barTitleText').textContent=q.section+' — '+q.type;
   S.qStart=Date.now();
   // meta
   $('#qTags').innerHTML=`<span>Question ${S.idx+1} of ${S.qs.length}</span><span>${q.type}</span><span>${q.difficulty}</span><span>OG #${q.id}</span>`;
