@@ -1,0 +1,651 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GMAT Focus — Study Planner & Progress Tracker</title>
+<style>
+:root{
+  --page:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;
+  --grid:#e1e0d9;--axis:#c3c2b7;--ring:rgba(11,11,11,.10);
+  --accent:#2a78d6;--accent-ink:#1c5cab;--track:#cde2fb;
+  --good:#0ca30c;--goodbg:#e9f6e9;--warn:#fab219;--warnbg:#fdf3dd;--crit:#d03b3b;--critbg:#fbe9e9;
+  --good-text:#006300;--warn-text:#7a5200;--crit-text:#a02020;
+  --chip:#eef1f5;
+}
+:root[data-theme="dark"]{
+  --page:#0d0d0d;--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;
+  --grid:#2c2c2a;--axis:#383835;--ring:rgba(255,255,255,.10);
+  --accent:#3987e5;--accent-ink:#86b6ef;--track:#0d366b;
+  --goodbg:#12290f;--warnbg:#332a10;--critbg:#331313;
+  --good-text:#0ca30c;--warn-text:#fab219;--crit-text:#e66767;
+  --chip:#242423;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#0d0d0d;--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;
+    --grid:#2c2c2a;--axis:#383835;--ring:rgba(255,255,255,.10);
+    --accent:#3987e5;--accent-ink:#86b6ef;--track:#0d366b;
+    --goodbg:#12290f;--warnbg:#332a10;--critbg:#331313;
+    --good-text:#0ca30c;--warn-text:#fab219;--crit-text:#e66767;
+    --chip:#242423;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--page);color:var(--ink);line-height:1.5;font-size:15px}
+a{color:var(--accent)}
+button{font-family:inherit;cursor:pointer;border:none;border-radius:8px;font-weight:600;font-size:14px;padding:10px 16px;transition:.12s}
+button:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--grid)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-danger{background:transparent;color:var(--crit-text);border:1.5px solid var(--grid)}
+.btn-sm{padding:6px 11px;font-size:13px}
+header{position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--grid);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px}
+header .ttl{font-weight:800;font-size:16px}
+header .ttl small{color:var(--muted);font-weight:500;margin-left:8px}
+header a.hub{color:var(--ink2);text-decoration:none;font-size:13px}
+.wrap{max-width:1060px;margin:0 auto;padding:16px 14px 70px}
+nav.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 12px;-webkit-overflow-scrolling:touch}
+nav.tabs button{background:var(--surface);color:var(--ink2);border:1.5px solid var(--grid);border-radius:20px;padding:8px 16px;font-size:13.5px;white-space:nowrap}
+nav.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.card{background:var(--surface);border:1px solid var(--grid);border-radius:14px;padding:20px;margin:0 0 16px;box-shadow:0 1px 2px var(--ring)}
+.card h2{margin:0 0 4px;font-size:18px;font-weight:800}
+.card h3{margin:18px 0 8px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink2)}
+.sub{color:var(--ink2);font-size:13.5px;margin:0 0 10px}
+.mut{color:var(--muted);font-size:12.5px}
+label.f{display:block;font-weight:700;font-size:13px;margin:14px 0 5px}
+input,select,textarea{width:100%;max-width:340px;padding:10px 11px;border:1.5px solid var(--grid);border-radius:9px;
+  background:var(--page);color:var(--ink);font-size:14.5px;font-family:inherit}
+textarea{max-width:520px;min-height:64px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent)}
+.frow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 22px}
+.hidden{display:none!important}
+
+/* KPI tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:16px}
+.tile{background:var(--surface);border:1px solid var(--grid);border-radius:14px;padding:16px 18px;box-shadow:0 1px 2px var(--ring)}
+.tile .lb{font-size:12.5px;color:var(--ink2);font-weight:600}
+.tile .val{font-size:32px;font-weight:700;line-height:1.15;margin:2px 0}
+.tile .sub2{font-size:12px;color:var(--muted)}
+.tile .delta.up{color:var(--good-text);font-size:12.5px;font-weight:700}
+.tile .delta.down{color:var(--crit-text);font-size:12.5px;font-weight:700}
+
+/* meters & bars */
+.meter{height:8px;background:var(--track);border-radius:5px;overflow:hidden;margin-top:8px}
+.meter>i{display:block;height:100%;background:var(--accent);border-radius:5px}
+.hbar-row{display:grid;grid-template-columns:150px 1fr 110px;gap:12px;align-items:center;padding:7px 0;font-size:13.5px}
+@media(max-width:560px){.hbar-row{grid-template-columns:96px 1fr 92px}}
+.hbar{height:10px;background:var(--track);border-radius:5px;overflow:hidden}
+.hbar>i{display:block;height:100%;background:var(--accent);border-radius:5px}
+.hbar-val{font-variant-numeric:tabular-nums;color:var(--ink2)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--grid)}
+td{padding:9px 10px;border-bottom:1px solid var(--grid);vertical-align:top}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tscroll{overflow-x:auto}
+.status{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12.5px;border-radius:20px;padding:3px 10px;white-space:nowrap}
+.status.g{background:var(--goodbg);color:var(--good-text)}
+.status.a{background:var(--warnbg);color:var(--warn-text)}
+.status.r{background:var(--critbg);color:var(--crit-text)}
+.status.n{background:var(--chip);color:var(--muted)}
+
+/* plan cards */
+.chiprow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.chip{background:var(--chip);border-radius:20px;padding:6px 13px;font-size:13px;font-weight:600;color:var(--ink2)}
+.chip b{color:var(--ink)}
+.wkgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.wk{background:var(--surface);border:1px solid var(--grid);border-radius:13px;padding:15px 17px}
+.wk.cur{outline:2px solid var(--accent)}
+.wk .whead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.wk .whead b{font-size:14.5px}
+.wk .dates{font-size:12px;color:var(--muted)}
+.phasetag{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;border-radius:6px;padding:2px 8px;margin:7px 0 8px}
+.phasetag.p1{background:var(--chip);color:var(--accent-ink)}
+.phasetag.p2{background:var(--chip);color:var(--ink2)}
+.phasetag.p3{background:var(--chip);color:var(--good-text)}
+.wk ul{margin:4px 0 0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.wk li{margin:3px 0}
+.mockflag{margin-top:9px;font-size:12.5px;font-weight:700;color:var(--accent-ink)}
+
+/* banner */
+.banner{border-radius:13px;padding:15px 18px;margin-bottom:16px;font-size:14.5px;border:1px solid}
+.banner.ready{background:var(--goodbg);border-color:var(--good);color:var(--good-text);font-weight:700}
+.banner.info{background:var(--chip);border-color:var(--grid);color:var(--ink2)}
+
+/* chart */
+.chartbox{position:relative}
+.chartbox svg{width:100%;height:auto;display:block}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--grid);border-radius:9px;
+  box-shadow:0 4px 14px var(--ring);padding:8px 11px;font-size:12.5px;min-width:120px;z-index:5;display:none}
+.tip .tv{font-size:15px;font-weight:800}
+.tip .tk{color:var(--ink2)}
+.tip .key{display:inline-block;width:12px;height:3px;border-radius:2px;background:var(--accent);margin-right:6px;vertical-align:middle}
+.loglist .rowline{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid var(--grid);padding:9px 2px;font-size:13.5px}
+.foot{color:var(--muted);font-size:12px;text-align:center;margin-top:26px}
+</style></head><body>
+
+<header>
+  <div class="ttl">🗓️ GMAT Study Planner <small id="hdrSub"></small></div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <a class="hub" href="index.html">← Hub</a>
+    <button class="btn-ghost btn-sm" id="themeBtn" title="Toggle light/dark">◐ Theme</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="tabs" id="tabs">
+    <button data-tab="dash">Dashboard</button>
+    <button data-tab="plan">Study plan</button>
+    <button data-tab="log">Daily log</button>
+    <button data-tab="mocks">Mock tests</button>
+    <button data-tab="setup">Setup</button>
+  </nav>
+
+  <!-- SETUP -->
+  <section id="tab-setup" class="hidden">
+    <div class="card">
+      <h2>Set up your plan</h2>
+      <p class="sub">Everything is computed from these four inputs. You can change them any time — the plan recalculates; your logged data is kept.</p>
+      <div class="frow">
+        <div><label class="f" for="suStart">Plan start date</label><input type="date" id="suStart"></div>
+        <div><label class="f" for="suExam">Target exam date</label><input type="date" id="suExam"></div>
+        <div><label class="f" for="suBase">Baseline mock score (205–805)</label><input type="number" id="suBase" min="205" max="805" step="10" placeholder="e.g. 565"></div>
+        <div><label class="f" for="suTarget">Target score (205–805)</label><input type="number" id="suTarget" min="205" max="805" step="10" placeholder="e.g. 720"></div>
+        <div><label class="f" for="suHours">Daily study hours</label><input type="number" id="suHours" min="0.5" max="16" step="0.5" placeholder="e.g. 2.5"></div>
+      </div>
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn-primary" id="suSave">Save & generate plan</button>
+        <button class="btn-danger btn-sm" id="suReset">Erase all planner data…</button>
+      </div>
+      <p class="mut" id="suMsg" style="margin-top:10px"></p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">How the plan is built</h3>
+      <p class="sub" style="margin:0">First <b>30%</b> of your weeks: fundamentals &amp; concept building. Next <b>40%</b>: section-by-section practice. Final <b>30%</b>: full-length mocks &amp; error review. Your 6 free GMAC official mocks are spaced from the end of the fundamentals phase to the week before the exam. Section time follows GMAT Focus weightage — all three sections count equally on the exam, with slightly more prep time on Quant for its larger syllabus: <b>Quant 40% · Verbal 30% · Data Insights 30%</b>.</p>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="tab-dash" class="hidden">
+    <div id="readyBanner"></div>
+    <div class="tiles" id="tiles"></div>
+    <div class="card">
+      <h2>Mock scores over time</h2>
+      <p class="sub">Baseline plus every logged mock. Reference lines: your target and the 630 book-ready bar.</p>
+      <div class="chartbox" id="mockChartBox"></div>
+    </div>
+    <div class="card">
+      <h2>Accuracy by section</h2>
+      <p class="sub">From your daily practice logs.</p>
+      <div id="secBars"></div>
+    </div>
+    <div class="card">
+      <h2>Topic health — where to focus</h2>
+      <p class="sub">🔴 below 50% — drill now · 🟠 50–70% — improving · 🟢 above 70% — strong.</p>
+      <div class="tscroll"><table id="topicTable"></table></div>
+    </div>
+  </section>
+
+  <!-- PLAN -->
+  <section id="tab-plan" class="hidden">
+    <div class="card">
+      <h2>Your week-by-week plan</h2>
+      <div class="chiprow" id="planChips"></div>
+      <p class="sub" id="planNote"></p>
+    </div>
+    <div class="wkgrid" id="wkGrid"></div>
+    <div class="card" style="margin-top:16px">
+      <h3 style="margin-top:0">Official GMAC mock schedule</h3>
+      <div id="mockSched"></div>
+    </div>
+  </section>
+
+  <!-- DAILY LOG -->
+  <section id="tab-log" class="hidden">
+    <div class="card">
+      <h2>Log a study day</h2>
+      <div class="frow">
+        <div><label class="f" for="lgDate">Date</label><input type="date" id="lgDate"></div>
+        <div><label class="f" for="lgHours">Hours studied</label><input type="number" id="lgHours" min="0" max="16" step="0.25" placeholder="e.g. 2"></div>
+        <div><label class="f" for="lgSection">Section</label>
+          <select id="lgSection"></select></div>
+        <div><label class="f" for="lgTopic">Topic</label>
+          <select id="lgTopic"></select></div>
+        <div><label class="f" for="lgAtt">Questions attempted</label><input type="number" id="lgAtt" min="0" step="1" placeholder="e.g. 25"></div>
+        <div><label class="f" for="lgCor">Questions correct</label><input type="number" id="lgCor" min="0" step="1" placeholder="e.g. 18"></div>
+      </div>
+      <p class="mut" id="lgAcc" style="margin:8px 0 0"></p>
+      <div style="margin-top:14px"><button class="btn-primary" id="lgAdd">Add entry</button></div>
+      <p class="mut" id="lgMsg" style="margin-top:8px"></p>
+    </div>
+    <div class="card">
+      <h2>Recent entries</h2>
+      <div class="loglist" id="logList"></div>
+    </div>
+  </section>
+
+  <!-- MOCKS -->
+  <section id="tab-mocks" class="hidden">
+    <div id="readyBanner2"></div>
+    <div class="card">
+      <h2>Record a mock test</h2>
+      <p class="sub">Total score 205–805; section scores 60–90 each (optional).</p>
+      <div class="frow">
+        <div><label class="f" for="mkDate">Date taken</label><input type="date" id="mkDate"></div>
+        <div><label class="f" for="mkScore">Total score</label><input type="number" id="mkScore" min="205" max="805" step="10" placeholder="e.g. 645"></div>
+        <div><label class="f" for="mkQ">Quant (60–90)</label><input type="number" id="mkQ" min="60" max="90" step="1"></div>
+        <div><label class="f" for="mkV">Verbal (60–90)</label><input type="number" id="mkV" min="60" max="90" step="1"></div>
+        <div><label class="f" for="mkD">Data Insights (60–90)</label><input type="number" id="mkD" min="60" max="90" step="1"></div>
+      </div>
+      <label class="f" for="mkNotes">Notes (pacing, weak areas, conditions…)</label>
+      <textarea id="mkNotes"></textarea>
+      <div style="margin-top:14px"><button class="btn-primary" id="mkAdd">Add mock</button></div>
+      <p class="mut" id="mkMsg" style="margin-top:8px"></p>
+    </div>
+    <div class="card">
+      <h2>Score progression</h2>
+      <div class="chartbox" id="mockChartBox2"></div>
+    </div>
+    <div class="card">
+      <h2>Mock log</h2>
+      <div class="tscroll"><table id="mockTable"></table></div>
+    </div>
+  </section>
+
+  <div class="foot">Part of the GMAT Focus Prep Hub · data saves in this browser (localStorage) and never leaves your device.</div>
+</div>
+
+<script>
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const esc=t=>(t==null?'':String(t)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+/* ---------- data ---------- */
+const SECTIONS={
+  "Quantitative":["Arithmetic","Algebra","Word Problems","Geometry"],
+  "Verbal":["Critical Reasoning","Reading Comprehension"],
+  "Data Insights":["Data Sufficiency","Table Analysis","Graph Analysis","Multi-Source Reasoning","Two-Part Analysis"]
+};
+const SEC_SHARE={"Quantitative":0.40,"Verbal":0.30,"Data Insights":0.30};
+const TOPIC_SHARE={ // within-section prep weight
+  "Arithmetic":0.30,"Algebra":0.30,"Word Problems":0.25,"Geometry":0.15,
+  "Critical Reasoning":0.5,"Reading Comprehension":0.5,
+  "Data Sufficiency":0.30,"Table Analysis":0.15,"Graph Analysis":0.15,"Multi-Source Reasoning":0.20,"Two-Part Analysis":0.20
+};
+let D={setup:null,logs:[],mocks:[]};
+try{D=Object.assign(D,JSON.parse(localStorage.getItem('gmatPlanner')||'{}'))}catch(e){}
+function save(){localStorage.setItem('gmatPlanner',JSON.stringify(D))}
+
+/* ---------- theme ---------- */
+const themePref=localStorage.getItem('gmatPlannerTheme');
+if(themePref)document.documentElement.dataset.theme=themePref;
+$('#themeBtn').onclick=()=>{
+  const cur=document.documentElement.dataset.theme||
+    (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  const nxt=cur==='dark'?'light':'dark';
+  document.documentElement.dataset.theme=nxt;
+  localStorage.setItem('gmatPlannerTheme',nxt);
+  render(); // charts re-read CSS vars
+};
+
+/* ---------- date helpers ---------- */
+const DAY=86400000;
+const iso=d=>{const x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');};
+const parseISO=s=>{const [y,m,dd]=s.split('-').map(Number);return new Date(y,m-1,dd);};
+const fmtD=s=>parseISO(s).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+const fmtDY=s=>parseISO(s).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
+const today=()=>iso(new Date());
+
+/* ---------- plan model ---------- */
+function planModel(){
+  const su=D.setup; if(!su)return null;
+  const start=parseISO(su.start), exam=parseISO(su.exam);
+  const days=Math.max(1,Math.round((exam-start)/DAY));
+  const daysLeft=Math.max(0,Math.round((exam-parseISO(today()))/DAY));
+  const weeks=Math.max(1,Math.ceil(days/7));
+  let p1=Math.max(1,Math.round(weeks*0.3)), p3=Math.max(1,Math.round(weeks*0.3));
+  if(p1+p3>=weeks){p1=Math.max(1,Math.floor(weeks/2));p3=Math.max(0,weeks-p1);}
+  const p2=Math.max(0,weeks-p1-p3);
+  const weeklyH=su.hours*7, totalH=+(su.hours*days).toFixed(1);
+  // mocks: from end of phase 1 to final week, evenly
+  const nMocks=6, firstW=Math.min(p1,weeks), mockWeeks=[];
+  for(let i=0;i<nMocks;i++){
+    mockWeeks.push(weeks===firstW?weeks:Math.round(firstW+i*(weeks-firstW)/(nMocks-1)));
+  }
+  // build weeks
+  const wk=[];
+  const qRot=SECTIONS["Quantitative"],vRot=SECTIONS["Verbal"],dRot=SECTIONS["Data Insights"];
+  // phase 2 primary-section sequence, 40/30/30
+  const p2seq=[];
+  {
+    const nq=Math.round(p2*SEC_SHARE["Quantitative"]),nv=Math.round(p2*SEC_SHARE["Verbal"]);
+    for(let i=0;i<p2;i++)p2seq.push(i<nq?"Quantitative":(i<nq+nv?"Verbal":"Data Insights"));
+  }
+  for(let w=1;w<=weeks;w++){
+    const ws=new Date(start.getTime()+(w-1)*7*DAY);
+    let we=new Date(Math.min(ws.getTime()+6*DAY,exam.getTime()));
+    const phase=w<=p1?1:(w<=p1+p2?2:3);
+    const mocksThisWeek=mockWeeks.filter(x=>x===w).length;
+    const items=[];
+    if(phase===1){
+      const hQ=weeklyH*SEC_SHARE["Quantitative"],hV=weeklyH*SEC_SHARE["Verbal"],hD=weeklyH*SEC_SHARE["Data Insights"];
+      items.push(`Quant fundamentals — <b>${qRot[(w-1)%qRot.length]}</b> · ${hQ.toFixed(1)} h`);
+      items.push(`Verbal fundamentals — <b>${vRot[(w-1)%vRot.length]}</b> · ${hV.toFixed(1)} h`);
+      items.push(`DI fundamentals — <b>${dRot[(w-1)%dRot.length]}</b> · ${hD.toFixed(1)} h`);
+      items.push(`Use the concept tutors; finish each topic with a 10-question untimed set.`);
+    }else if(phase===2){
+      const primary=p2seq[w-p1-1]||"Quantitative";
+      const hMain=weeklyH*0.7,hMix=weeklyH*0.3;
+      const tps=SECTIONS[primary].map(t=>`${t} (${(hMain*TOPIC_SHARE[t]/SECTIONS[primary].reduce((a,x)=>a+TOPIC_SHARE[x],0)).toFixed(1)} h)`).join(', ');
+      items.push(`<b>${primary} practice block</b> · ${hMain.toFixed(1)} h — timed sets by topic: ${tps}`);
+      items.push(`Mixed review of the other two sections · ${hMix.toFixed(1)} h`);
+      items.push(`Every miss goes to the error log; re-drill mistakes at week's end.`);
+    }else{
+      const mockH=mocksThisWeek*3.5;
+      const rest=Math.max(0,weeklyH-mockH);
+      if(mocksThisWeek)items.push(`<b>Full-length official mock${mocksThisWeek>1?'s ×'+mocksThisWeek:''}</b> · ~${mockH.toFixed(1)} h incl. same-day review`);
+      items.push(`Error-log review &amp; re-drills · ${(rest*0.4).toFixed(1)} h`);
+      items.push(`Weak-topic drills (worst 2–3 topics on your dashboard) · ${(rest*0.35).toFixed(1)} h`);
+      items.push(`Timed sectional sets to hold pacing · ${(rest*0.25).toFixed(1)} h`);
+    }
+    wk.push({w,ws:iso(ws),we:iso(we),phase,mocks:mocksThisWeek,items});
+  }
+  return {days,daysLeft,weeks,p1,p2,p3,weeklyH,totalH,mockWeeks,wk};
+}
+
+/* ---------- aggregates ---------- */
+function aggTopics(){
+  const agg={};
+  Object.entries(SECTIONS).forEach(([s,ts])=>ts.forEach(t=>agg[s+'·'+t]={section:s,topic:t,att:0,cor:0,hours:0}));
+  D.logs.forEach(l=>{
+    const k=l.section+'·'+l.topic;
+    if(!agg[k])agg[k]={section:l.section,topic:l.topic,att:0,cor:0,hours:0};
+    agg[k].att+=l.att;agg[k].cor+=l.cor;agg[k].hours+=l.hours;
+  });
+  return agg;
+}
+function sortedMocks(){return D.mocks.slice().sort((a,b)=>a.date<b.date?-1:1)}
+function bookReady(){
+  const m=sortedMocks();
+  return m.length>=2&&m[m.length-1].score>=630&&m[m.length-2].score>=630;
+}
+
+/* ---------- tabs ---------- */
+let tab=D.setup?'dash':'setup';
+$$('#tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render();});
+function render(){
+  $$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===tab));
+  ['setup','dash','plan','log','mocks'].forEach(t=>$('#tab-'+t).classList.toggle('hidden',t!==tab));
+  const pm=planModel();
+  $('#hdrSub').textContent=D.setup?`${pm.daysLeft} days to exam`:'';
+  if(tab==='setup')renderSetup();
+  if(tab==='dash')renderDash(pm);
+  if(tab==='plan')renderPlan(pm);
+  if(tab==='log')renderLog();
+  if(tab==='mocks')renderMocks();
+}
+
+/* ---------- setup ---------- */
+function renderSetup(){
+  const su=D.setup||{};
+  $('#suStart').value=su.start||today();
+  $('#suExam').value=su.exam||'';
+  $('#suBase').value=su.base||'';
+  $('#suTarget').value=su.target||'';
+  $('#suHours').value=su.hours||'';
+}
+$('#suSave').onclick=()=>{
+  const start=$('#suStart').value,exam=$('#suExam').value,
+        base=+$('#suBase').value,target=+$('#suTarget').value,hours=+$('#suHours').value;
+  const err=m=>{$('#suMsg').textContent='⚠ '+m};
+  if(!start||!exam)return err('Pick both dates.');
+  if(parseISO(exam)<=parseISO(start))return err('Exam date must be after the start date.');
+  if(!(base>=205&&base<=805))return err('Baseline score must be between 205 and 805.');
+  if(!(target>=205&&target<=805))return err('Target score must be between 205 and 805.');
+  if(!(hours>=0.5&&hours<=16))return err('Daily hours must be between 0.5 and 16.');
+  D.setup={start,exam,base,target,hours};save();
+  $('#suMsg').textContent='✓ Saved.';tab='plan';render();
+};
+$('#suReset').onclick=()=>{
+  if(confirm('Erase the plan, all daily logs and all mock records? This cannot be undone.')){
+    D={setup:null,logs:[],mocks:[]};save();tab='setup';render();
+  }
+};
+
+/* ---------- dashboard ---------- */
+function renderDash(pm){
+  if(!D.setup){$('#tiles').innerHTML='';$('#readyBanner').innerHTML=
+    '<div class="banner info">Set up your plan first — it takes 30 seconds. <button class="btn-primary btn-sm" onclick="tab=\'setup\';render()">Go to setup</button></div>';
+    $('#mockChartBox').innerHTML='';$('#secBars').innerHTML='';$('#topicTable').innerHTML='';return;}
+  $('#readyBanner').innerHTML=readyBannerHTML();
+  // planned-to-date
+  const su=D.setup;
+  const elapsed=Math.min(pm.days,Math.max(0,Math.round((parseISO(today())-parseISO(su.start))/DAY)+1));
+  const plannedToDate=+(elapsed*su.hours).toFixed(1);
+  const hrs=+(D.logs.reduce((a,l)=>a+l.hours,0)).toFixed(1);
+  const att=D.logs.reduce((a,l)=>a+l.att,0),cor=D.logs.reduce((a,l)=>a+l.cor,0);
+  const acc=att?Math.round(cor/att*100):null;
+  const m=sortedMocks(),last=m[m.length-1];
+  const latest=last?last.score:su.base;
+  const delta=latest-su.base;
+  const hoursPct=plannedToDate?Math.min(100,Math.round(hrs/plannedToDate*100)):0;
+  $('#tiles').innerHTML=`
+    <div class="tile"><div class="lb">Days to exam</div><div class="val">${pm.daysLeft}</div>
+      <div class="sub2">${fmtDY(su.exam)} · ${pm.weeks}-week plan</div></div>
+    <div class="tile"><div class="lb">Hours studied</div><div class="val">${hrs}</div>
+      <div class="sub2">of ${plannedToDate} planned by today (${hoursPct}%)</div>
+      <div class="meter"><i style="width:${hoursPct}%"></i></div></div>
+    <div class="tile"><div class="lb">Questions practiced</div><div class="val">${att.toLocaleString()}</div>
+      <div class="sub2">${cor.toLocaleString()} correct${acc!=null?' · '+acc+'% overall':''}</div></div>
+    <div class="tile"><div class="lb">Latest score</div><div class="val">${latest}</div>
+      <div class="sub2">target ${su.target} · <span class="delta ${delta>=0?'up':'down'}">${delta>=0?'▲':'▼'} ${Math.abs(delta)} vs baseline</span></div></div>`;
+  drawMockChart($('#mockChartBox'));
+  // section bars
+  const agg=aggTopics(),bySec={};
+  Object.values(agg).forEach(a=>{const s=bySec[a.section]=bySec[a.section]||{att:0,cor:0};s.att+=a.att;s.cor+=a.cor;});
+  $('#secBars').innerHTML=Object.keys(SECTIONS).map(s=>{
+    const v=bySec[s]||{att:0,cor:0};
+    const pct=v.att?Math.round(v.cor/v.att*100):0;
+    return `<div class="hbar-row"><span>${s}</span>
+      <div class="hbar"><i style="width:${pct}%"></i></div>
+      <span class="hbar-val">${v.att?pct+'% ('+v.cor+'/'+v.att+')':'no data yet'}</span></div>`;
+  }).join('');
+  // topic table
+  const rows=Object.values(agg);
+  $('#topicTable').innerHTML=`<thead><tr><th>Section</th><th>Topic</th><th class="num">Attempted</th><th class="num">Correct</th><th class="num">Accuracy</th><th>Status</th></tr></thead><tbody>`+
+    rows.map(a=>{
+      const pct=a.att?Math.round(a.cor/a.att*100):null;
+      const st=pct==null?['n','◌','No data yet']:pct<50?['r','🔴','Weak — drill now']:pct<=70?['a','🟠','Improving']:['g','🟢','Strong'];
+      return `<tr><td>${a.section}</td><td>${a.topic}</td><td class="num">${a.att||'—'}</td><td class="num">${a.cor||'—'}</td>
+        <td class="num">${pct==null?'—':pct+'%'}</td><td><span class="status ${st[0]}">${st[1]} ${st[2]}</span></td></tr>`;
+    }).join('')+'</tbody>';
+}
+function readyBannerHTML(){
+  if(bookReady())return '<div class="banner ready">🎯 Two consecutive mocks at 630 or above — <u>you are ready to book your exam.</u></div>';
+  const m=sortedMocks();
+  if(m.length&&m[m.length-1].score>=630)return '<div class="banner info">One mock at 630+. Score 630+ on your next mock too and you\'ll be ready to book.</div>';
+  return '';
+}
+
+/* ---------- plan ---------- */
+function renderPlan(pm){
+  if(!D.setup){$('#planChips').innerHTML='';$('#wkGrid').innerHTML='';$('#mockSched').innerHTML='';
+    $('#planNote').innerHTML='No plan yet — <a href="#" onclick="tab=\'setup\';render();return false">set up first</a>.';return;}
+  const su=D.setup;
+  $('#planChips').innerHTML=`
+    <span class="chip">Exam <b>${fmtDY(su.exam)}</b></span>
+    <span class="chip">Days left <b>${pm.daysLeft}</b></span>
+    <span class="chip">Total study hours <b>${pm.totalH}</b></span>
+    <span class="chip">Weekly <b>${pm.weeklyH.toFixed(1)} h</b></span>
+    <span class="chip">Baseline <b>${su.base}</b></span>
+    <span class="chip">Target <b>${su.target}</b></span>`;
+  $('#planNote').innerHTML=`Weeks 1–${pm.p1}: <b>Fundamentals</b> · Weeks ${pm.p1+1}–${pm.p1+pm.p2}: <b>Sectional practice</b> · Weeks ${pm.p1+pm.p2+1}–${pm.weeks}: <b>Mocks &amp; review</b>. The current week is outlined.`;
+  const tISO=today();
+  $('#wkGrid').innerHTML=pm.wk.map(w=>{
+    const cur=tISO>=w.ws&&tISO<=w.we;
+    const ph=w.phase===1?['p1','Phase 1 · Fundamentals']:w.phase===2?['p2','Phase 2 · Practice']:['p3','Phase 3 · Mocks & review'];
+    return `<div class="wk${cur?' cur':''}">
+      <div class="whead"><b>Week ${w.w}</b><span class="dates">${fmtD(w.ws)} – ${fmtD(w.we)}</span></div>
+      <span class="phasetag ${ph[0]}">${ph[1]}</span>
+      <ul>${w.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+      ${w.mocks?`<div class="mockflag">📝 Official GMAC mock scheduled this week${w.mocks>1?' ×'+w.mocks:''}</div>`:''}
+    </div>`;
+  }).join('');
+  let n=0;
+  $('#mockSched').innerHTML='<ul style="margin:6px 0;padding-left:20px">'+pm.mockWeeks.map(w=>{
+    n++;const wk=pm.wk[w-1];
+    return `<li style="margin:5px 0"><b>Mock ${n}</b> — Week ${w} (${fmtD(wk.ws)} – ${fmtD(wk.we)})${n===6?' · final dress rehearsal, take it at your real exam time of day':''}</li>`;
+  }).join('')+'</ul><p class="mut">All 6 are the free official GMAC practice exams at mba.com — the only mocks with the real scoring algorithm.</p>';
+}
+
+/* ---------- daily log ---------- */
+function fillTopicSelects(){
+  $('#lgSection').innerHTML=Object.keys(SECTIONS).map(s=>`<option>${s}</option>`).join('');
+  const upd=()=>{$('#lgTopic').innerHTML=SECTIONS[$('#lgSection').value].map(t=>`<option>${t}</option>`).join('');};
+  $('#lgSection').onchange=upd;upd();
+}
+function liveAcc(){
+  const a=+$('#lgAtt').value,c=+$('#lgCor').value;
+  $('#lgAcc').textContent=(a>0&&c>=0&&c<=a)?`Accuracy for this entry: ${Math.round(c/a*100)}%`:'';
+}
+$('#lgAtt').oninput=liveAcc;$('#lgCor').oninput=liveAcc;
+$('#lgAdd').onclick=()=>{
+  const e={date:$('#lgDate').value,hours:+$('#lgHours').value,section:$('#lgSection').value,
+    topic:$('#lgTopic').value,att:Math.round(+$('#lgAtt').value)||0,cor:Math.round(+$('#lgCor').value)||0};
+  const err=m=>{$('#lgMsg').textContent='⚠ '+m};
+  if(!e.date)return err('Pick a date.');
+  if(!(e.hours>0))return err('Hours must be more than 0.');
+  if(e.cor>e.att)return err('Correct cannot exceed attempted.');
+  D.logs.push(e);save();$('#lgMsg').textContent='✓ Logged.';
+  $('#lgHours').value='';$('#lgAtt').value='';$('#lgCor').value='';liveAcc();renderLog();
+};
+function renderLog(){
+  if(!$('#lgSection').options.length)fillTopicSelects();
+  if(!$('#lgDate').value)$('#lgDate').value=today();
+  const list=D.logs.slice().sort((a,b)=>a.date<b.date?1:-1).slice(0,40);
+  $('#logList').innerHTML=list.length?list.map(l=>{
+    const i=D.logs.indexOf(l);
+    const pct=l.att?Math.round(l.cor/l.att*100):null;
+    return `<div class="rowline"><span><b>${fmtD(l.date)}</b> · ${esc(l.section)} — ${esc(l.topic)} · ${l.hours} h${l.att?` · ${l.cor}/${l.att} (${pct}%)`:''}</span>
+      <button class="btn-ghost btn-sm" data-del="${i}">✕</button></div>`;
+  }).join(''):'<p class="mut">Nothing logged yet.</p>';
+  $$('#logList [data-del]').forEach(b=>b.onclick=()=>{D.logs.splice(+b.dataset.del,1);save();renderLog();});
+}
+
+/* ---------- mocks ---------- */
+$('#mkAdd').onclick=()=>{
+  const m={date:$('#mkDate').value,score:+$('#mkScore').value,
+    q:+$('#mkQ').value||null,v:+$('#mkV').value||null,di:+$('#mkD').value||null,notes:$('#mkNotes').value.trim()};
+  const err=x=>{$('#mkMsg').textContent='⚠ '+x};
+  if(!m.date)return err('Pick the date taken.');
+  if(!(m.score>=205&&m.score<=805))return err('Total score must be 205–805.');
+  for(const [k,lbl] of [['q','Quant'],['v','Verbal'],['di','Data Insights']])
+    if(m[k]!=null&&!(m[k]>=60&&m[k]<=90))return err(lbl+' section score must be 60–90.');
+  D.mocks.push(m);save();$('#mkMsg').textContent='✓ Recorded.';
+  $('#mkScore').value='';$('#mkQ').value='';$('#mkV').value='';$('#mkD').value='';$('#mkNotes').value='';
+  renderMocks();
+};
+function renderMocks(){
+  if(!$('#mkDate').value)$('#mkDate').value=today();
+  $('#readyBanner2').innerHTML=readyBannerHTML();
+  drawMockChart($('#mockChartBox2'));
+  const m=sortedMocks();
+  $('#mockTable').innerHTML='<thead><tr><th>#</th><th>Date</th><th class="num">Total</th><th class="num">Q</th><th class="num">V</th><th class="num">DI</th><th>Notes</th><th></th></tr></thead><tbody>'+
+    (m.length?m.map((x,i)=>{
+      const oi=D.mocks.indexOf(x);
+      return `<tr><td>${i+1}</td><td>${fmtDY(x.date)}</td><td class="num"><b>${x.score}</b></td>
+        <td class="num">${x.q!=null?x.q:'—'}</td><td class="num">${x.v!=null?x.v:'—'}</td><td class="num">${x.di!=null?x.di:'—'}</td>
+        <td>${esc(x.notes)||'—'}</td>
+        <td><button class="btn-ghost btn-sm" data-mdel="${oi}">✕</button></td></tr>`;
+    }).join(''):'<tr><td colspan="8" class="mut">No mocks recorded yet.</td></tr>')+'</tbody>';
+  $$('#mockTable [data-mdel]').forEach(b=>b.onclick=()=>{D.mocks.splice(+b.dataset.mdel,1);save();renderMocks();});
+}
+
+/* ---------- mock score chart ---------- */
+function cssVar(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function drawMockChart(box){
+  if(!box)return;
+  const su=D.setup;
+  const pts=[];
+  if(su)pts.push({date:su.start,score:su.base,label:'Baseline'});
+  sortedMocks().forEach((m,i)=>pts.push({date:m.date,score:m.score,label:'Mock '+(i+1),q:m.q,v:m.v,di:m.di}));
+  if(pts.length<1){box.innerHTML='<p class="mut">Log your first mock to see the trend.</p>';return;}
+  const C={accent:cssVar('--accent'),grid:cssVar('--grid'),axis:cssVar('--axis'),muted:cssVar('--muted'),
+    ink:cssVar('--ink'),ink2:cssVar('--ink2'),surface:cssVar('--surface'),good:cssVar('--good-text')};
+  const W=720,H=280,L=44,R=64,T=18,B=30;
+  const target=su?su.target:705;
+  const scores=pts.map(p=>p.score).concat([target,630]);
+  let yMin=Math.floor((Math.min(...scores)-30)/50)*50, yMax=Math.ceil((Math.max(...scores)+30)/50)*50;
+  yMin=Math.max(205,yMin);yMax=Math.min(805,yMax);
+  pts.sort((a,b)=>a.date<b.date?-1:1);
+  const times=pts.map(p=>parseISO(p.date).getTime());
+  const t0=Math.min.apply(null,times), t1=Math.max(Math.max.apply(null,times),t0+DAY);
+  const X=d=>L+(parseISO(d).getTime()-t0)/(t1-t0)*(W-L-R);
+  const Y=v=>T+(1-(v-yMin)/(yMax-yMin))*(H-T-B);
+  let g='';
+  const step=(yMax-yMin)>=200?100:50;
+  for(let v=yMin;v<=yMax;v+=step){
+    g+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${C.grid}" stroke-width="1"/>`;
+    g+=`<text x="${L-7}" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="${C.muted}" style="font-variant-numeric:tabular-nums">${v}</text>`;
+  }
+  // reference lines: target (muted, dashed = threshold semantics) & 630 book-ready
+  let refs='';
+  if(target>=yMin&&target<=yMax){
+    refs+=`<line x1="${L}" x2="${W-R}" y1="${Y(target)}" y2="${Y(target)}" stroke="${C.axis}" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="${W-R+6}" y="${Y(target)+4}" font-size="11" fill="${C.ink2}">Target ${target}</text>`;
+  }
+  if(630>=yMin&&630<=yMax&&Math.abs(Y(630)-Y(target))>12){
+    refs+=`<line x1="${L}" x2="${W-R}" y1="${Y(630)}" y2="${Y(630)}" stroke="${C.good}" stroke-width="1" stroke-dasharray="5 4" opacity=".7"/>
+    <text x="${W-R+6}" y="${Y(630)+4}" font-size="11" fill="${C.good}">Book at 630</text>`;
+  }
+  const path=pts.map((p,i)=>(i?'L':'M')+X(p.date).toFixed(1)+' '+Y(p.score).toFixed(1)).join(' ');
+  const dots=pts.map((p,i)=>`<circle data-i="${i}" cx="${X(p.date).toFixed(1)}" cy="${Y(p.score).toFixed(1)}" r="4.5" fill="${C.accent}" stroke="${C.surface}" stroke-width="2" tabindex="0" style="outline:none"/>`).join('');
+  const last=pts[pts.length-1];
+  const endLbl=`<text x="${(X(last.date)+9).toFixed(1)}" y="${(Y(last.score)-9).toFixed(1)}" font-size="12" font-weight="700" fill="${C.ink}">${last.score}</text>`;
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mock score progression line chart">
+    ${g}${refs}
+    <line x1="${L}" x2="${W-R}" y1="${Y(yMin)}" y2="${Y(yMin)}" stroke="${C.axis}" stroke-width="1"/>
+    <path d="${path}" fill="none" stroke="${C.accent}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <line id="xh" x1="0" x2="0" y1="${T}" y2="${H-B}" stroke="${C.axis}" stroke-width="1" opacity="0"/>
+    ${dots}${endLbl}
+    <text x="${L}" y="${H-6}" font-size="11" fill="${C.muted}">${fmtD(pts[0].date)}</text>
+    <text x="${W-R}" y="${H-6}" text-anchor="end" font-size="11" fill="${C.muted}">${fmtD(last.date)}</text>
+  </svg><div class="tip" id="tip"></div>`;
+  const svg=box.querySelector('svg'),tip=box.querySelector('.tip'),xh=box.querySelector('#xh');
+  function showTip(i){
+    const p=pts[i];
+    tip.innerHTML='';
+    const v=document.createElement('div');v.className='tv';v.textContent=p.score;
+    const k=document.createElement('div');k.className='tk';
+    const key=document.createElement('span');key.className='key';k.appendChild(key);
+    k.appendChild(document.createTextNode(p.label+' · '+fmtDY(p.date)));
+    tip.appendChild(v);tip.appendChild(k);
+    if(p.q||p.v||p.di){const s=document.createElement('div');s.className='tk';
+      s.textContent='Q '+(p.q!=null?p.q:'—')+' · V '+(p.v!=null?p.v:'—')+' · DI '+(p.di!=null?p.di:'—');tip.appendChild(s);}
+    const r=svg.getBoundingClientRect(),sx=r.width/W;
+    const px=X(p.date)*sx;
+    tip.style.display='block';
+    tip.style.left=Math.min(Math.max(0,px-60),r.width-130)+'px';
+    tip.style.top=Math.max(0,Y(p.score)*sx-tip.offsetHeight-14)+'px';
+    xh.setAttribute('x1',X(p.date));xh.setAttribute('x2',X(p.date));xh.setAttribute('opacity','.8');
+  }
+  function hideTip(){tip.style.display='none';xh.setAttribute('opacity','0');}
+  svg.addEventListener('pointermove',e=>{
+    const r=svg.getBoundingClientRect();
+    const mx=(e.clientX-r.left)/r.width*W;
+    let best=0,bd=1e9;
+    pts.forEach((p,i)=>{const d=Math.abs(X(p.date)-mx);if(d<bd){bd=d;best=i;}});
+    showTip(best);
+  });
+  svg.addEventListener('pointerleave',hideTip);
+  box.querySelectorAll('circle[data-i]').forEach(c=>{
+    c.addEventListener('focus',()=>showTip(+c.dataset.i));
+    c.addEventListener('blur',hideTip);
+  });
+}
+
+render();
+</script>
+</body></html>

@@ -12,6 +12,7 @@ Self-contained website with no external dependencies. Works fully offline. `inde
 | `GMAT_Verbal.html` | **Verbal Review** — 20 topics, all RC & CR question families + argument analyzer |
 | `GMAT_Concepts.html` | Original 28-topic combined concept tutor (still works; now also links to new section pages) |
 | `GMAT_Practice.html` | **Timed Practice** — 798 official questions, timer, error log with "why likely wrong" analysis |
+| `GMAT_Planner.html` | **Study Planner & Tracker** — exam-date setup, phased week-by-week plan (30% fundamentals / 40% practice / 30% mocks), 6 GMAC mock scheduling, daily study log, accuracy traffic lights, mock score trend & "ready to book" alert. Dark-mode friendly. |
 | `GMAT_Review_Handbook.pdf` | 12-page concept handbook |
 | `GMAT_Cheat_Sheet.pdf` | 5-page formula cheat sheet |
 
@@ -43,6 +44,7 @@ Includes: interactive argument analyzer, premise/conclusion cue-word reference, 
 
 ## Practice app enhancements
 
+- **Question pool modes**: Default is the **full question bank**. Optional modes: *Unseen only* (skip attempted questions) and *Review: mistakes & flagged* (a dedicated review mode). Questions whose figure/diagram wasn't captured from the printed book are skipped by default (uncheck to include them with an in-quiz notice pointing to the OG question number).
 - **Timer**: Shows `Q X/Y · this Q: MM:SS` and total time remaining. Turns red at 2 minutes remaining (was 1 minute). Auto-ends session when time expires.
 - **Error log**: Each mistake now shows a **"Why likely wrong"** panel with question-type-specific traps and likely error patterns (adjacent-answer slips, C-trap for DS, opposite-direction for CR, out-of-scope for RC, etc.).
 - **Results review**: Same "why likely wrong" analysis appears on every incorrect answer in the post-session review.
