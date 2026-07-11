@@ -96,6 +96,11 @@ input[type=number]{width:90px;padding:8px;border:1.5px solid var(--line);border-
 .bar>i{display:block;height:100%;background:var(--blue)}
 .brk{display:grid;grid-template-columns:1fr;gap:6px}
 .brkrow{display:grid;grid-template-columns:170px 1fr 70px;gap:10px;align-items:center;font-size:13px}
+.rv2col{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px;margin-top:8px}
+@media(max-width:760px){.rv2col{grid-template-columns:1fr}}
+.rvlbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--grey);margin:8px 0 6px}
+.rv2col .brkrow{grid-template-columns:150px 1fr 96px}
+.rv2col .brkrow span:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .rev-item{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;background:#fff}
 .rev-item .rh{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--grey);font-weight:600;cursor:pointer}
 .pill{padding:2px 9px;border-radius:20px;font-size:12px;font-weight:700}
@@ -181,15 +186,21 @@ kbd{background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-
   <div class="card" id="errCard">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
       <div>
-        <div class="h1" style="font-size:20px;margin:0">📕 Error Log</div>
-        <p class="sub" id="errSummary" style="margin:4px 0 0">No mistakes logged yet.</p>
+        <div class="h1" style="font-size:20px;margin:0">📊 Practice Review</div>
+        <p class="sub" id="errSummary" style="margin:4px 0 0">Nothing attempted yet.</p>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <button class="btn-primary" id="drillErrBtn">Drill my mistakes ▶</button>
-        <button class="btn-ghost btn-sm" id="toggleErrList">Show list</button>
+        <button class="btn-ghost btn-sm" id="toggleErrList">Show all attempted</button>
       </div>
     </div>
+    <div class="statrow" id="rvStats" style="margin:12px 0 4px"></div>
+    <div class="rv2col" id="rvBrkWrap">
+      <div><div class="rvlbl">Accuracy by section</div><div class="brk" id="rvBrkSec"></div></div>
+      <div><div class="rvlbl">Accuracy by question type</div><div class="brk" id="rvBrkType"></div></div>
+    </div>
     <div id="errControls" class="hidden" style="margin-top:12px">
+      <div class="opts" id="rvStatusF" style="margin-bottom:8px"></div>
       <div class="opts" id="errFilter" style="margin-bottom:8px"></div>
       <div id="errList"></div>
     </div>
@@ -316,7 +327,7 @@ function initHome(){
   $('#resumeBtn').classList.toggle('hidden',!store.current);
   $('#clearProg').onclick=()=>{if(confirm('Erase all saved progress, history and seen-question records?')){store={history:[],seen:{},stats:{},flags:{},current:null};save();renderHist();renderErrCard();$('#resumeBtn').classList.add('hidden');updatePool();}};
   $('#drillErrBtn').onclick=drillMistakes;
-  $('#toggleErrList').onclick=()=>{const c=$('#errControls');const h=c.classList.toggle('hidden');$('#toggleErrList').textContent=h?'Show list':'Hide list';};
+  $('#toggleErrList').onclick=()=>{const c=$('#errControls');const h=c.classList.toggle('hidden');$('#toggleErrList').textContent=h?'Show all attempted':'Hide list';};
   renderHist();renderErrCard();updatePool();
 }
 function segHandler(sel,attr,cb){$$(sel+' button').forEach(b=>b.onclick=()=>{$$(sel+' button').forEach(x=>x.classList.remove('on'));b.classList.add('on');cb(b.dataset[attr])})}
@@ -477,42 +488,70 @@ function markSeen(q){
   store.stats[q.uid]=s; save();
 }
 function errUids(){return Object.keys(store.stats).filter(u=>store.stats[u].lc===false&&QMAP[u]);}
+function attemptedUids(){return Object.keys(store.stats).filter(u=>QMAP[u]);}
 function renderErrCard(){
-  const ids=errUids();
-  $('#errSummary').textContent= ids.length? `${ids.length} question${ids.length>1?'s':''} to revisit. They stay here until you answer them correctly.` : 'No mistakes logged yet — they\'ll collect here automatically as you practice.';
-  $('#drillErrBtn').disabled=!ids.length; $('#drillErrBtn').style.opacity=ids.length?1:.5;
-  $('#toggleErrList').classList.toggle('hidden',!ids.length);
-  renderErrList('all');
+  const us=attemptedUids(), errs=errUids();
+  let atts=0,cors=0;
+  us.forEach(u=>{const s=store.stats[u];atts+=(s.c||0)+(s.w||0);cors+=(s.c||0);});
+  $('#errSummary').textContent= us.length?
+    `${us.length} of ${QUESTIONS.length} questions attempted · ${errs.length} currently missed (they leave the error list once you get them right).` :
+    'Every question you attempt collects here — full history, accuracy overall and by section, correct and incorrect alike.';
+  $('#rvStats').innerHTML= us.length? `
+    <div class="stat"><b>${us.length}</b><span>Questions attempted</span></div>
+    <div class="stat"><b>${atts}</b><span>Total attempts</span></div>
+    <div class="stat"><b>${cors}/${atts}</b><span>Correct attempts</span></div>
+    <div class="stat"><b>${atts?Math.round(cors/atts*100):0}%</b><span>Overall accuracy</span></div>`:'';
+  const secs={},typs={};
+  us.forEach(u=>{const q=QMAP[u],s=store.stats[u],a=(s.c||0)+(s.w||0);
+    const S1=secs[q.section]=secs[q.section]||{c:0,n:0}; S1.n+=a; S1.c+=(s.c||0);
+    const T1=typs[q.type]=typs[q.type]||{c:0,n:0}; T1.n+=a; T1.c+=(s.c||0);});
+  const row=(k,v)=>`<div class="brkrow"><span>${k}</span><div class="bar"><i style="width:${v.n?Math.round(v.c/v.n*100):0}%"></i></div><span>${v.c}/${v.n} · ${v.n?Math.round(v.c/v.n*100):0}%</span></div>`;
+  $('#rvBrkSec').innerHTML=Object.entries(secs).map(([k,v])=>row(k,v)).join('');
+  $('#rvBrkType').innerHTML=Object.entries(typs).map(([k,v])=>row(TYPE_SHORT[k],v)).join('');
+  $('#rvBrkWrap').style.display=us.length?'':'none';
+  $('#drillErrBtn').disabled=!errs.length; $('#drillErrBtn').style.opacity=errs.length?1:.5;
+  $('#toggleErrList').classList.toggle('hidden',!us.length);
+  renderErrList(errFilterVal,rvStatusVal);
 }
-let errFilterVal='all';
-function renderErrList(f){
-  errFilterVal=f;
-  const ids=errUids().map(u=>QMAP[u]);
-  $('#errFilter').innerHTML=['all',...TYPES].map((t,i)=>{
-    const n=t==='all'?ids.length:ids.filter(q=>q.type===t).length;
-    return `<div class="chip${(f===t||(f==='all'&&t==='all'))?' on':''}" data-ef="${t}">${t==='all'?'All':TYPE_SHORT[t]} (${n})</div>`;
+let errFilterVal='all', rvStatusVal='all';
+function renderErrList(f,st){
+  errFilterVal=f; rvStatusVal=st=st||'all';
+  const all=attemptedUids().map(u=>QMAP[u]);
+  const wrong=all.filter(q=>store.stats[q.uid].lc===false);
+  const right=all.filter(q=>store.stats[q.uid].lc!==false);
+  $('#rvStatusF').innerHTML=[['all','All attempted',all.length],['wrong','✗ Missed',wrong.length],['right','✓ Correct',right.length]]
+    .map(([k,lbl,n])=>`<div class="chip${st===k?' on':''}" data-sf="${k}">${lbl} (${n})</div>`).join('');
+  $$('#rvStatusF .chip').forEach(c=>c.onclick=()=>renderErrList(errFilterVal,c.dataset.sf));
+  let base=st==='wrong'?wrong:(st==='right'?right:all);
+  $('#errFilter').innerHTML=['all',...TYPES].map(t=>{
+    const n=t==='all'?base.length:base.filter(q=>q.type===t).length;
+    return `<div class="chip${(f===t||(f==='all'&&t==='all'))?' on':''}" data-ef="${t}">${t==='all'?'All types':TYPE_SHORT[t]} (${n})</div>`;
   }).join('');
-  $$('#errFilter .chip').forEach(c=>c.onclick=()=>renderErrList(c.dataset.ef));
-  let list=ids; if(f!=='all')list=ids.filter(q=>q.type===f);
+  $$('#errFilter .chip').forEach(c=>c.onclick=()=>renderErrList(c.dataset.ef,rvStatusVal));
+  let list=base; if(f!=='all')list=base.filter(q=>q.type===f);
   list=list.sort((a,b)=>store.stats[b.uid].t-store.stats[a.uid].t);
   $('#errList').innerHTML=list.map(q=>{
     const s=store.stats[q.uid];
-    const whyReasons=guessWhy(q,s.la);
+    const missed=s.lc===false;
+    const whyReasons=missed?guessWhy(q,s.la):null;
     const whyHtml=whyReasons?`<div style="background:#fff7ed;border:1px solid #f0c070;border-left:4px solid #b45309;border-radius:9px;padding:10px 14px;margin:8px 0;font-size:13.5px">
       <div style="font-weight:800;color:#b45309;font-size:11px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Why you likely got this wrong</div>
       ${whyReasons.map(r=>`<div style="margin:4px 0;color:#7c3a06">• ${r}</div>`).join('')}
     </div>`:'';
+    const attempts=`✓${s.c||0} ✗${s.w||0}`;
+    const lastAns=q.twopart?(s.la||'—'):`last answer <b style="color:${missed?'var(--red)':'var(--green)'}">${s.la||'—'}</b> · correct <b style="color:var(--green)">${q.twopart?'':q.answer}</b>`;
     return `<div class="rev-item"><div class="rh" data-u="${q.uid}">
-      <span>${TYPE_SHORT[q.type]} #${q.id} · ${q.difficulty} · missed ${s.w}× · last answer <b style="color:var(--red)">${s.la||'—'}</b> · correct <b style="color:var(--green)">${q.answer}</b></span>
-      <span style="display:flex;gap:8px;align-items:center"><span class="pill no">Unmastered</span><button class="btn-ghost btn-sm" data-master="${q.uid}">Mark mastered ✓</button></span></div>
+      <span>${TYPE_SHORT[q.type]} #${q.id} · ${q.difficulty} · attempts ${attempts} · ${lastAns}</span>
+      <span style="display:flex;gap:8px;align-items:center"><span class="pill ${missed?'no':'ok'}">${missed?'Missed':'Correct'}</span>${missed?`<button class="btn-ghost btn-sm" data-master="${q.uid}">Mark mastered ✓</button>`:''}</span></div>
       <div class="exdet hidden" id="ee_${q.uid}">
         ${whyHtml}
         ${q.passage?`<div class="expl" style="border-left-color:#888"><b>Passage.</b> ${esc(q.passage)}</div>`:''}
         ${qimgHTML(q)}<div style="margin:8px 0;font-weight:600">${q.imgonly?"":esc(q.stem)}</div>
-        ${['A','B','C','D','E'].filter(L=>q.choices[L]||q.type==='Data Sufficiency').map(L=>`<div style="font-size:13px;color:${L===q.answer?'var(--green)':(L===s.la?'var(--red)':'#444')};padding:3px 0">${L===q.answer?'✓ ':L===s.la?'✗ ':' '}${L}. ${esc(q.choices[L])}</div>`).join('')}
+        ${q.twopart?`<div style="font-size:13px;padding:3px 0">Correct answers — first column: <b style="color:var(--green)">${esc(q.r1)}</b> · second column: <b style="color:var(--green)">${esc(q.r2)}</b></div>`:
+          ['A','B','C','D','E'].filter(L=>q.choices[L]||q.type==='Data Sufficiency'||q.imgonly).map(L=>`<div style="font-size:13px;color:${L===q.answer?'var(--green)':(L===s.la&&missed?'var(--red)':'#444')};padding:3px 0">${L===q.answer?'✓ ':(L===s.la&&missed)?'✗ ':' '}${L}. ${esc(q.choices[L])}</div>`).join('')}
         ${explHTML(q,'Official Explanation.')||'<div class="sub" style="margin-top:8px">See question #'+q.id+' in your Guide.</div>'}
       </div></div>`;
-  }).join('')||'<span class="sub">No mistakes in this category.</span>';
+  }).join('')||'<span class="sub">Nothing in this category yet.</span>';
   $$('#errList .rh').forEach(h=>h.onclick=e=>{if(e.target.dataset.master)return;$('#ee_'+h.dataset.u).classList.toggle('hidden')});
   $$('#errList [data-master]').forEach(btn=>btn.onclick=()=>{
     store.stats[btn.dataset.master].lc=true;save();renderErrCard();updatePool();
