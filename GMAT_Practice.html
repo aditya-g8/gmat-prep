@@ -210,7 +210,7 @@ kbd{background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-
     <div class="field"><label>Recent sessions</label><div class="hist" id="histList"></div></div>
     <button class="btn-ghost btn-sm" id="clearProg">Clear all saved progress</button>
   </div>
-  <div class="foot">Questions, answer keys &amp; explanations sourced from your <i>GMAT Official Guide 2025–2026</i>. For personal study use. Works fully offline.</div>
+  <div class="foot">Questions, answer keys &amp; explanations sourced from your <i>GMAT Official Guide 2025–2026</i>. For personal study use. Works fully offline.<br><span style="opacity:.7">Build v3 — full 798-question bank with OG page images. If you don't see this line, your browser is showing an old cached copy: clear cache and reload.</span></div>
 </div>
 
 <!-- QUIZ -->
@@ -361,7 +361,11 @@ function startSession(){
      limit:secs,remaining:secs,edits:0,maxEdits:3,reviewed:false,qStart:Date.now(),times:{}};
   persistCurrent();renderQuiz();
 }
-function resumeSession(){if(!store.current)return;S=store.current;S.qStart=Date.now();renderQuiz();}
+function resumeSession(){if(!store.current)return;S=store.current;
+  // refresh saved question objects from the current bank so resumed sessions
+  // pick up repaired data (OG images, fixed stems) instead of stale copies
+  S.qs=S.qs.map(q=>QMAP[q.uid]||q);
+  S.qStart=Date.now();renderQuiz();}
 function persistCurrent(){store.current=S;save();}
 
 function curQ(){return S.qs[S.idx]}
