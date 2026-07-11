@@ -13,6 +13,8 @@ Self-contained website with no external dependencies. Works fully offline. `inde
 | `GMAT_Concepts.html` | Original 28-topic combined concept tutor (still works; now also links to new section pages) |
 | `GMAT_Practice.html` | **Timed Practice** — 798 official questions, timer, error log with "why likely wrong" analysis |
 | `GMAT_Planner.html` | **Study Planner & Tracker** — exam-date setup, phased week-by-week plan (30% fundamentals / 40% practice / 30% mocks), 6 GMAC mock scheduling, daily study log, accuracy traffic lights, mock score trend & "ready to book" alert. Dark-mode friendly. |
+| `MBA_Deadlines.html` | **MBA Deadline Tracker** — R1/R2/R3+ deadlines with countdowns for ISB, HEC Paris, IESE, SDA Bocconi, ESADE, ESMT, HHL, NUS, NYU Stern & Columbia (2026–27 cycle, researched July 2026). Dates are editable; estimated ones are flagged "verify". |
+| `og_figs/` | Question & explanation images rendered from your own OG PDF for the 194 questions whose figures/math notation didn't survive text transcription (plus 240 explanation images). Referenced by `GMAT_Practice.html`. |
 | `GMAT_Review_Handbook.pdf` | 12-page concept handbook |
 | `GMAT_Cheat_Sheet.pdf` | 5-page formula cheat sheet |
 
